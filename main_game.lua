@@ -19,7 +19,7 @@ function MainGame:draw()
 end
 
 function MainGame:loveDraw(sprite)
-	 love.graphics.draw(sprite.image, sprite.x, sprite.y)
+	 love.graphics.draw(sprite:getCurrentImage(), sprite.x, sprite.y)
 end
 
 function MainGame:update()
