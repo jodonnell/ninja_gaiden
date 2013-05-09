@@ -22,3 +22,11 @@ end
 function Ninja:getCurrentImage()
 	 return self.currentImage
 end
+
+function Ninja:moveRight()
+	 self.x = self.x + 4
+end
+
+function Ninja:moveLeft()
+	 self.x = self.x - 4
+end

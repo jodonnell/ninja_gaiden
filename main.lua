@@ -26,8 +26,16 @@ end
 
 function love.keypressed(key, unicode)
    if key == 'right' then
-			direction = 'right'
+			main_game:pressRight()
 	 elseif key == 'left' then
-			direction = 'left'
+			main_game:pressLeft()
+   end
+end
+
+function love.keyreleased(key, unicode)
+   if key == 'right' then
+			main_game:releaseRight()
+	 elseif key == 'left' then
+			main_game:releaseLeft()
    end
 end

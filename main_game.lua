@@ -4,6 +4,8 @@ require 'ninja'
 MainGame = class()
 
 function MainGame:init()
+	 self.rightPressed = false
+	 self.leftPressed = false
 end
 
 function MainGame:load()
@@ -23,5 +25,27 @@ function MainGame:loveDraw(sprite)
 end
 
 function MainGame:update()
+	 if self.rightPressed then
+			self.ninja:moveRight()
+	 elseif self.leftPressed then
+			self.ninja:moveLeft()
+	 end
+
 	 self.ninja:update()
+end
+
+function MainGame:pressRight()
+	 self.rightPressed = true
+end
+
+function MainGame:releaseRight()
+	 self.rightPressed = false
+end
+
+function MainGame:pressLeft()
+	 self.leftPressed = true
+end
+
+function MainGame:releaseLeft()
+	 self.leftPressed = false
 end
