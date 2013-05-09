@@ -65,3 +65,61 @@ function test_ninja_can_stop_moving_left()
 	 mainGame:update()
    assert_equal(x, mainGame.ninja.x)
 end
+
+function test_ninja_moving_right_runs_animation()
+	 mainGame.ninja.y = 450
+	 mainGame:pressRight()
+	 mainGame:update()
+	 assert_equal(mainGame.ninja.runningRight1, mainGame.ninja:getCurrentImage())
+	 
+	 for i=1,4 do
+			mainGame:update()
+	 end
+
+	 assert_equal(mainGame.ninja.runningRight2, mainGame.ninja:getCurrentImage())
+
+	 for i=1,4 do
+			mainGame:update()
+	 end
+
+	 assert_equal(mainGame.ninja.runningRight3, mainGame.ninja:getCurrentImage())
+
+	 for i=1,4 do
+			mainGame:update()
+	 end
+
+	 assert_equal(mainGame.ninja.runningRight1, mainGame.ninja:getCurrentImage())
+
+	 mainGame:releaseRight()
+	 mainGame:update()
+	 assert_equal(mainGame.ninja.image, mainGame.ninja:getCurrentImage())
+end
+
+function test_ninja_moving_left_runs_animation()
+	 mainGame.ninja.y = 450
+	 mainGame:pressLeft()
+	 mainGame:update()
+	 assert_equal(mainGame.ninja.runningLeft1, mainGame.ninja:getCurrentImage())
+	 
+	 for i=1,4 do
+			mainGame:update()
+	 end
+
+	 assert_equal(mainGame.ninja.runningLeft2, mainGame.ninja:getCurrentImage())
+
+	 for i=1,4 do
+			mainGame:update()
+	 end
+
+	 assert_equal(mainGame.ninja.runningLeft3, mainGame.ninja:getCurrentImage())
+
+	 for i=1,4 do
+			mainGame:update()
+	 end
+
+	 assert_equal(mainGame.ninja.runningLeft1, mainGame.ninja:getCurrentImage())
+
+	 mainGame:releaseLeft()
+	 mainGame:update()
+	 assert_equal(mainGame.ninja.left, mainGame.ninja:getCurrentImage())
+end
