@@ -9,10 +9,11 @@ end
 function MainGame:load()
 	 self.image = love.graphics.newImage("stagea.png")
 	 self.ninja = Ninja()
+	 self.screenScrollX = 0
 end
 
 function MainGame:draw()
-	 love.graphics.draw(self.image, x, 128)
+	 love.graphics.draw(self.image, self.screenScrollX, 128)
 	 self:loveDraw(self.ninja)
 	 love.graphics.print("FPS: "..love.timer.getFPS(), 10, 10)
 end
@@ -22,6 +23,9 @@ function MainGame:loveDraw(sprite)
 end
 
 function MainGame:update()
+	 if (self.ninja.x >= love.graphics.getWidth() / 2) and self.ninja.rightPressed then
+			self.screenScrollX = self.screenScrollX - 4
+	 end
 	 self.ninja:update()
 end
 

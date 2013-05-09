@@ -123,3 +123,11 @@ function test_ninja_moving_left_runs_animation()
 	 mainGame:update()
 	 assert_equal(mainGame.ninja.left, mainGame.ninja:getCurrentImage())
 end
+
+function test_screen_scrolls_when_ninja_in_center()
+	 mainGame.ninja.x = love.graphics.getWidth() / 2
+   local x = mainGame.ninja.x
+	 mainGame:pressRight()
+	 mainGame:update()
+   assert_equal(-4, mainGame.screenScrollX)
+end

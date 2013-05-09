@@ -2,6 +2,9 @@ require 'class'
 
 Ninja = class()
 
+RIGHT = 0
+LEFT = 1
+
 function Ninja:init()
 	 self.image = love.graphics.newImage("images/ryu_stand_right.png")
 	 self.left = love.graphics.newImage("images/ryu_stand_left.png")
@@ -21,6 +24,8 @@ function Ninja:init()
 	 self.rightPressed = false
 	 self.leftPressed = false
 
+	 self.direction = 0
+
 	 self.timer = 0
 end
 
@@ -35,9 +40,17 @@ function Ninja:update()
 			self.y = self.y + 10
 			self.currentImage = self.falling
 	 elseif self.currentImage == self.falling then
-			self.currentImage = self.image
+			if self.direction == RIGHT then
+				 self.currentImage = self.image
+			else
+				 self.currentImage = self.left
+			end
 	 elseif not (self.leftPressed or self.rightPressed) then
-			self.currentImage = self.image
+			if self.direction == RIGHT then
+				 self.currentImage = self.image
+			else
+				 self.currentImage = self.left
+			end
 	 end
 end
 
@@ -46,7 +59,9 @@ function Ninja:getCurrentImage()
 end
 
 function Ninja:moveRight()
-	 self.x = self.x + 4
+	 if self.x <= love.graphics.getWidth() / 2 then
+			self.x = self.x + 4
+	 end
 	 self.timer = self.timer + 1
 	 
 	 if self.timer == 1 then
@@ -58,6 +73,8 @@ function Ninja:moveRight()
 	 elseif self.timer == 12 then
 			self.timer = 0
 	 end
+
+	 self.direction = RIGHT
 end
 
 function Ninja:moveLeft()
@@ -75,4 +92,5 @@ function Ninja:moveLeft()
 			self.timer = 0
 	 end
 
+	 self.direction = LEFT
 end
