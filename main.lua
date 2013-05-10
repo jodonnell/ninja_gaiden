@@ -5,6 +5,7 @@ if os.getenv("LUA_TEST") then
    require "lunatest.lunatest"
 
    lunatest.suite("tests.main_test")
+   lunatest.suite("tests.ninja_test")
 
    lunatest.run()
    os.exit()

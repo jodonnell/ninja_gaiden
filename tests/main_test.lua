@@ -1,6 +1,7 @@
 module(..., package.seeall)
 
 function setup()
+	 love.graphics.newImage = function(path) return path end
    mainGame = MainGame()
 	 mainGame:load()
 end
@@ -9,29 +10,9 @@ function teardown()
    mainGame = nil
 end
 
-function test_ninja_falls()
-   local y = mainGame.ninja.y
-   mainGame:update()
-   assert_gt(y, mainGame.ninja.y)
-end
-
 function test_ninja_goes_into_fall_animation()
    mainGame:update()
    assert_equal(mainGame.ninja.falling, mainGame.ninja:getCurrentImage())
-end
-
-function test_ninja_lands_on_the_ground()
-	 for i=1,50 do
-			mainGame:update()
-	 end
-   assert_equal(450, mainGame.ninja.y)
-end
-
-function test_ninja_goes_to_stand_animation()
-	 for i=1,50 do
-			mainGame:update()
-	 end
-   assert_equal(mainGame.ninja.image, mainGame.ninja:getCurrentImage())
 end
 
 function test_ninja_can_move_right()
@@ -129,5 +110,43 @@ function test_screen_scrolls_when_ninja_in_center()
    local x = mainGame.ninja.x
 	 mainGame:pressRight()
 	 mainGame:update()
-   assert_equal(-4, mainGame.screenScrollX)
+   assert_equal(4, mainGame.screenScrollX)
+end
+
+function test_screen_scroll_right()
+	 mainGame.ninja.rightPressed = true
+	 mainGame.screenScrollX = 0
+	 mainGame.ninja.x = love.graphics.getWidth() / 2
+
+	 assert_true(mainGame:shouldScrollRight())
+
+	 mainGame.ninja.rightPressed = true
+	 mainGame.screenScrollX = mainGame.endOfStageX
+	 mainGame.ninja.x = love.graphics.getWidth() / 2
+
+	 assert_false(mainGame:shouldScrollRight())
+
+end
+
+function test_does_not_screen_scroll_right()
+	 mainGame.ninja.rightPressed = true
+	 mainGame.screenScrollX = 0
+	 mainGame.ninja.x = 0
+
+	 assert_false(mainGame:shouldScrollRight())
+end
+
+function test_screen_scroll_left()
+	 mainGame.ninja.leftPressed = true
+	 mainGame.screenScrollX = 0
+	 mainGame.ninja.x = love.graphics.getWidth() / 2
+
+	 assert_false(mainGame:shouldScrollLeft())
+
+	 mainGame.ninja.leftPressed = true
+	 mainGame.screenScrollX = mainGame.endOfStageX
+	 mainGame.ninja.x = love.graphics.getWidth() / 2 + 20
+
+	 assert_true(mainGame:shouldScrollLeft())
+
 end

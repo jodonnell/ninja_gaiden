@@ -29,11 +29,11 @@ function Ninja:init()
 	 self.timer = 0
 end
 
-function Ninja:update()
+function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 if self.rightPressed then
-			self:moveRight()
+			self:moveRight(moveNinjaRight)
 	 elseif self.leftPressed then
-			self:moveLeft()
+			self:moveLeft(moveNinjaLeft)
 	 end
 
 	 if self.y < 450 then
@@ -58,8 +58,8 @@ function Ninja:getCurrentImage()
 	 return self.currentImage
 end
 
-function Ninja:moveRight()
-	 if self.x <= love.graphics.getWidth() / 2 then
+function Ninja:moveRight(moveNinjaRight)
+	 if moveNinjaRight then
 			self.x = self.x + 4
 	 end
 	 self.timer = self.timer + 1
@@ -77,8 +77,10 @@ function Ninja:moveRight()
 	 self.direction = RIGHT
 end
 
-function Ninja:moveLeft()
-	 self.x = self.x - 4
+function Ninja:moveLeft(moveNinjaLeft)
+	 if moveNinjaLeft then
+			self.x = self.x - 4
+	 end
 
 	 self.timer = self.timer + 1
 	 
