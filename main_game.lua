@@ -60,7 +60,7 @@ function MainGame:shouldScrollLeft()
 				 return true
 			end
 
-			if self.ninja.x <= love.graphics.getWidth() / 2 and self.screenScrollX == 0 then
+			if self.ninja.x <= love.graphics.getWidth() / 2 and self.screenScrollX == self.endOfStageX then
 				 return true
 			end
 	 end
