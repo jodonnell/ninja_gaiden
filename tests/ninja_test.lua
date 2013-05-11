@@ -47,3 +47,10 @@ function test_ninja_transitions_to_move_right_when_ducking()
    assert_equal(ninja.runningRight1, ninja:getCurrentImage())
    assert_equal(450, ninja.y)
 end
+
+function test_ninja_can_jump()
+	 ninja.y = 450
+	 ninja.jumpPressed = true
+	 ninja:update()
+   assert_equal(440, ninja.y)
+end

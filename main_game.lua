@@ -104,3 +104,7 @@ end
 function MainGame:releaseDown()
 	 self.ninja.downPressed = false
 end
+
+function MainGame:pressJump()
+	 self.ninja.jumpPressed = true
+end

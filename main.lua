@@ -32,6 +32,8 @@ function love.keypressed(key, unicode)
 			main_game:pressLeft()
 	 elseif key == 'down' then
 			main_game:pressDown()
+	 elseif key == 'q' then
+			main_game:pressJump()
    end
 end
 
