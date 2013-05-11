@@ -1,4 +1,5 @@
 require 'class'
+require 'ninja_animations'
 
 Ninja = class()
 
@@ -6,24 +7,7 @@ RIGHT = 0
 LEFT = 1
 
 function Ninja:init()
-	 self.image = love.graphics.newImage("images/ryu_stand_right.png")
-	 self.left = love.graphics.newImage("images/ryu_stand_left.png")
-	 self.falling = love.graphics.newImage("images/ryu_falling_right.png")
-	 self.runningRight1 = love.graphics.newImage("images/ryu_running_1_right.png")
-	 self.runningRight2 = love.graphics.newImage("images/ryu_running_2_right.png")
-	 self.runningRight3 = love.graphics.newImage("images/ryu_running_3_right.png")
-
-	 self.runningLeft1 = love.graphics.newImage("images/ryu_running_1_left.png")
-	 self.runningLeft2 = love.graphics.newImage("images/ryu_running_2_left.png")
-	 self.runningLeft3 = love.graphics.newImage("images/ryu_running_3_left.png")
-
-	 self.duckingLeft = love.graphics.newImage("images/ryu_ducking_left.png")
-	 self.duckingRight = love.graphics.newImage("images/ryu_ducking_right.png")
-
-	 self.jumpingRight1 = love.graphics.newImage("images/ryu_right_jump_right.png")
-	 self.jumpingRight2 = love.graphics.newImage("images/ryu_down_jump_right.png")
-	 self.jumpingRight3 = love.graphics.newImage("images/ryu_left_jump_right.png")
-	 self.jumpingRight4 = love.graphics.newImage("images/ryu_up_jump_right.png")
+	 self.animations = NinjaAnimations(self);
 
 	 self.currentImage = self.image
 	 self.x = 105
@@ -52,21 +36,17 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 			self:moveLeft(moveNinjaLeft)
 	 end
 
+	 self.animations:changeAnimation()
+
 	 if self.y < 450 and self.jumping == false then
 			self.y = self.y + 10
-			self.currentImage = self.falling
+			self.animations:fall()
 			self:stand()
-	 elseif self.currentImage == self.falling then
-			self:stand()
-			if self.direction == RIGHT then
-				 self.currentImage = self.image
-			else
-				 self.currentImage = self.left
-			end
 	 elseif self.jumpPressed then
 			self.jumpPressed = false
 			self.jumping = true
 			self.timer = 0
+			self.animations:jump()
 	 elseif not (self.leftPressed or self.rightPressed or self.jumping) then
 			if self.downPressed then
 				 if not self.wasDucking then
@@ -74,13 +54,10 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 						self.wasDucking = true
 				 end
 
-				 self.currentImage = self.duckingRight
-			elseif self.direction == RIGHT then
-				 self:stand()
-				 self.currentImage = self.image
+				 self.animations:duck()
 			else
 				 self:stand()
-				 self.currentImage = self.left
+				 self.animations:stand()
 			end
 	 end
 
@@ -98,37 +75,24 @@ function Ninja:stand()
 end
 
 function Ninja:getCurrentImage()
-	 return self.currentImage
+	 return self.animations:getCurrentImage()
 end
 
 function Ninja:jump()
 	 self.timer = self.timer + 1
 
-	 if self.timer <= 5 then
-			self.y = self.y - 10
-	 elseif self.timer <= 10 then
+	 if self.timer <= 8 then
 			self.y = self.y - 8
-	 elseif self.timer <= 14 then
+	 elseif self.timer <= 13 then
 			self.y = self.y - 6
-	 elseif self.timer <= 18 then
-			self.y = self.y - 3
-	 elseif self.timer <= 24 then
+	 elseif self.timer <= 17 then
+			self.y = self.y - 4
+	 elseif self.timer <= 21 then
+			self.y = self.y - 2
+	 elseif self.timer <= 30 then
 	 else
 			self.timer = 0
 			self.jumping = false
-	 end
-
-
-	 if (self.timer % 3) == 0 then
-			if self.currentImage == self.jumpingRight1 then
-				 self.currentImage = self.jumpingRight2
-			elseif self.currentImage == self.jumpingRight2 then
-				 self.currentImage = self.jumpingRight3				 
-			elseif self.currentImage == self.jumpingRight3 then
-				 self.currentImage = self.jumpingRight4
-			else
-				 self.currentImage = self.jumpingRight1
-			end
 	 end
 end
 
@@ -138,17 +102,7 @@ function Ninja:moveRight(moveNinjaRight)
 	 end
 
 	 if self.jumping == false then
-			self.timer = self.timer + 1
-			
-			if self.timer == 1 then
-				 self.currentImage = self.runningRight1
-			elseif self.timer == 5 then
-				 self.currentImage = self.runningRight2
-			elseif self.timer == 9 then
-				 self.currentImage = self.runningRight3
-			elseif self.timer == 12 then
-				 self.timer = 0
-			end
+			self.animations:runRight()
 	 end
 
 	 self.direction = RIGHT
@@ -160,17 +114,7 @@ function Ninja:moveLeft(moveNinjaLeft)
 	 end
 
 	 if self.jumping == false then
-			self.timer = self.timer + 1
-			
-			if self.timer == 1 then
-				 self.currentImage = self.runningLeft1
-			elseif self.timer == 5 then
-				 self.currentImage = self.runningLeft2
-			elseif self.timer == 9 then
-				 self.currentImage = self.runningLeft3
-			elseif self.timer == 12 then
-				 self.timer = 0
-			end
+			self.animations:runLeft()
 	 end
 	 self.direction = LEFT
 end
