@@ -108,3 +108,7 @@ end
 function MainGame:pressJump()
 	 self.ninja.jumpPressed = true
 end
+
+function MainGame:pressAttack()
+	 self.ninja.attackPressed = true
+end

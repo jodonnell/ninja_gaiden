@@ -30,27 +30,29 @@ function test_duck_animation()
    assert_equal(animations:getCurrentImage(), animations.images['duckingRight'])
 end
 
+function test_attack_animation()
+	 animations:attack()
+   assert_equal(animations:getCurrentImage(), animations.images['attacking1Right'])
+
+	 advanceFrames(5)
+   assert_equal(animations:getCurrentImage(), animations.images['attacking2Right'])
+
+	 advanceFrames(5)
+   assert_equal(animations:getCurrentImage(), animations.images['attacking3Right'])
+end
+
 
 function test_ninja_moving_left_runs_animation()
 	 animations:runLeft()
 	 assert_equal(animations:getCurrentImage(), animations.images['running1Left'])
 	 
-	 for i=1,5 do
-			animations:changeAnimation()
-	 end
-
+	 advanceFrames(5)
 	 assert_equal(animations:getCurrentImage(), animations.images['running2Left'])
 	 
-	 for i=1,4 do
-			animations:changeAnimation()
-	 end
-
+	 advanceFrames(4)
 	 assert_equal(animations:getCurrentImage(), animations.images['running3Left'])
 
-	 for i=1,4 do
-			animations:changeAnimation()
-	 end
-
+	 advanceFrames(4)
 	 assert_equal(animations:getCurrentImage(), animations.images['running1Left'])
 end
 
@@ -58,21 +60,18 @@ function test_ninja_moving_right_runs_animation()
 	 animations:runRight()
 	 assert_equal(animations:getCurrentImage(), animations.images['running1Right'])
 	 
-	 for i=1,5 do
-			animations:changeAnimation()
-	 end
-
+	 advanceFrames(5)
 	 assert_equal(animations:getCurrentImage(), animations.images['running2Right'])
 	 
-	 for i=1,4 do
-			animations:changeAnimation()
-	 end
-
+	 advanceFrames(4)
 	 assert_equal(animations:getCurrentImage(), animations.images['running3Right'])
 
-	 for i=1,4 do
+	 advanceFrames(4)
+	 assert_equal(animations:getCurrentImage(), animations.images['running1Right'])
+end
+
+function advanceFrames(numFrames)
+	 for i=1, numFrames do
 			animations:changeAnimation()
 	 end
-
-	 assert_equal(animations:getCurrentImage(), animations.images['running1Right'])
 end

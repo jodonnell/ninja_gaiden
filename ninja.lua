@@ -17,6 +17,7 @@ function Ninja:init()
 	 self.leftPressed = false
 	 self.downPressed = false
 	 self.jumpPressed = false
+	 self.attackPressed = false
 
 	 self.jumping = false
 
@@ -47,6 +48,8 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 			self.jumping = true
 			self.timer = 0
 			self.animations:jump()
+	 elseif self.attackPressed then
+			self.animations:attack()
 	 elseif not (self.leftPressed or self.rightPressed or self.jumping) then
 			if self.downPressed then
 				 if not self.wasDucking then

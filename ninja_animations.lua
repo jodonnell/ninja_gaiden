@@ -11,6 +11,9 @@ function NinjaAnimations:init(ninja)
 	 self.currentImage = 'standing';
 	 self.direction = RIGHT;
 	 self.ninja = ninja
+
+	 self.offsetLeftAttack = 23
+
 	 self.images = { standingRight = love.graphics.newImage("images/ryu_stand_right.png"),
 									 standingLeft = love.graphics.newImage("images/ryu_stand_left.png"),
 									 running1Left = love.graphics.newImage("images/ryu_running_1_left.png"),
@@ -30,7 +33,13 @@ function NinjaAnimations:init(ninja)
 									 jumping1Left = love.graphics.newImage("images/ryu_right_jump_left.png"),
 									 jumping2Left = love.graphics.newImage("images/ryu_down_jump_left.png"),
 									 jumping3Left = love.graphics.newImage("images/ryu_left_jump_left.png"),
-									 jumping4Left = love.graphics.newImage("images/ryu_up_jump_left.png")
+									 jumping4Left = love.graphics.newImage("images/ryu_up_jump_left.png"),
+									 attacking1Right = love.graphics.newImage("images/ryu_attack_begin_right.png"),
+									 attacking2Right = love.graphics.newImage("images/ryu_attack_middle_right.png"),
+									 attacking3Right = love.graphics.newImage("images/ryu_attack_end_right.png"),
+									 attacking1Left = love.graphics.newImage("images/ryu_attack_begin_left.png"),
+									 attacking2Left = love.graphics.newImage("images/ryu_attack_middle_left.png"),
+									 attacking3Left = love.graphics.newImage("images/ryu_attack_end_left.png")
 	 }
 
 end
@@ -62,12 +71,34 @@ end
 function NinjaAnimations:changeAnimation()
 	 self.timer = self.timer + 1
 
-	 if self:isMovingRight() or self:isMovingLeft() then
+	 if self:isAttacking() then
+			self:attackingAnimation()
+	 elseif self:isMovingRight() or self:isMovingLeft() then
 			self:runningAnimation()
 	 elseif self:isJumping() then
 			self:jumpingAnimation()
 	 end
+end
 
+function NinjaAnimations:attackingAnimation()
+	 if self.timer == 1 then
+			self.currentImage = 'attacking1'
+	 elseif self.timer == 5 then
+	 		self.currentImage = 'attacking2'
+	 		if self.direction == LEFT then
+				 self.ninja.x = self.ninja.x - 62
+	 		end
+	 elseif self.timer == 9 then
+	 		self.currentImage = 'attacking3'
+	 		if self.direction == LEFT then
+	 			 self.ninja.x = self.ninja.x + 24
+	 		end
+	 elseif self.timer == 12 then
+	 		self.ninja.attackPressed = false
+	 		if self.direction == LEFT then
+	 			 self.ninja.x = self.ninja.x + 38
+	 		end
+	 end
 end
 
 function NinjaAnimations:runningAnimation()
@@ -95,6 +126,13 @@ function NinjaAnimations:jumpingAnimation()
 			end
 	 end
 end
+
+function NinjaAnimations:isAttacking()
+	 return self.currentImage == 'attacking1'
+			or self.currentImage == 'attacking2'
+			or self.currentImage == 'attacking3'
+end
+
 
 function NinjaAnimations:isMovingRight()
 	 return self.direction == RIGHT and (self.currentImage == 'running1' or 
@@ -136,4 +174,13 @@ end
 function NinjaAnimations:jump()
 	 self.timer = 0
 	 self.currentImage = 'jumping1'
+end
+
+function NinjaAnimations:attack()
+	 if self:isAttacking() then
+			return
+	 end
+
+	 self.timer = 0
+	 self.currentImage = 'attacking1'
 end
