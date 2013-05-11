@@ -17,12 +17,17 @@ function Ninja:init()
 	 self.runningLeft2 = love.graphics.newImage("images/ryu_running_2_left.png")
 	 self.runningLeft3 = love.graphics.newImage("images/ryu_running_3_left.png")
 
+	 self.duckingLeft = love.graphics.newImage("images/ryu_ducking_left.png")
+	 self.duckingRight = love.graphics.newImage("images/ryu_ducking_right.png")
+
 	 self.currentImage = self.image
 	 self.x = 105
 	 self.y = 150
 
 	 self.rightPressed = false
 	 self.leftPressed = false
+	 self.downPressed = false
+	 self.wasDucking = false
 
 	 self.direction = 0
 
@@ -31,27 +36,48 @@ end
 
 function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 if self.rightPressed then
+			self:stand()
 			self:moveRight(moveNinjaRight)
 	 elseif self.leftPressed then
+			self:stand()
 			self:moveLeft(moveNinjaLeft)
 	 end
 
 	 if self.y < 450 then
 			self.y = self.y + 10
 			self.currentImage = self.falling
+			self:stand()
 	 elseif self.currentImage == self.falling then
+			self:stand()
 			if self.direction == RIGHT then
 				 self.currentImage = self.image
 			else
 				 self.currentImage = self.left
 			end
 	 elseif not (self.leftPressed or self.rightPressed) then
-			if self.direction == RIGHT then
+			if self.downPressed then
+				 if not self.wasDucking then
+						self.y = self.y + 20
+						self.wasDucking = true
+				 end
+
+				 self.currentImage = self.duckingRight
+			elseif self.direction == RIGHT then
+				 self:stand()
 				 self.currentImage = self.image
 			else
+				 self:stand()
 				 self.currentImage = self.left
 			end
 	 end
+end
+
+function Ninja:stand()
+	 if self.wasDucking then
+			self.y = self.y - 20
+	 end
+
+	 self.wasDucking = false
 end
 
 function Ninja:getCurrentImage()

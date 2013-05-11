@@ -30,6 +30,8 @@ function love.keypressed(key, unicode)
 			main_game:pressRight()
 	 elseif key == 'left' then
 			main_game:pressLeft()
+	 elseif key == 'down' then
+			main_game:pressDown()
    end
 end
 
@@ -38,5 +40,7 @@ function love.keyreleased(key, unicode)
 			main_game:releaseRight()
 	 elseif key == 'left' then
 			main_game:releaseLeft()
+	 elseif key == 'down' then
+			main_game:releaseDown()
    end
 end

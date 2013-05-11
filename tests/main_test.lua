@@ -148,5 +148,4 @@ function test_screen_scroll_left()
 	 mainGame.ninja.x = love.graphics.getWidth() / 2
 
 	 assert_true(mainGame:shouldScrollLeft())
-
 end

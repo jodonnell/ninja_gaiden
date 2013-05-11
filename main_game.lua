@@ -96,3 +96,11 @@ end
 function MainGame:releaseLeft()
 	 self.ninja.leftPressed = false
 end
+
+function MainGame:pressDown()
+	 self.ninja.downPressed = true
+end
+
+function MainGame:releaseDown()
+	 self.ninja.downPressed = false
+end
