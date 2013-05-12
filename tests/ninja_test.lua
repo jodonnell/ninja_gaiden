@@ -60,3 +60,39 @@ function test_ninja_stops_running_when_attacking()
 	 ninja:update(true, false)
 	 assert_gt(0, ninja.x)
 end
+
+function test_ninja_can_move_right()
+   ninja.x = 0
+	 ninja.rightPressed = true
+	 ninja:update(true, false)
+   assert_gt(0, ninja.x)
+end
+
+function test_ninja_can_stop_moving_right()
+   ninja.x = 0
+	 ninja.rightPressed = true
+	 ninja:update(false, true)
+
+   local x = ninja.x
+	 ninja.rightPressed = false
+	 ninja:update(false, true)
+   assert_equal(x, ninja.x)
+end
+
+function test_ninja_can_move_left()
+   ninja.x = 0
+	 ninja.leftPressed = true
+	 ninja:update(false, true)
+   assert_lt(0, ninja.x)
+end
+
+function test_ninja_can_stop_moving_left()
+   ninja.x = 0
+	 ninja.leftPressed = true
+	 ninja:update(false, true)
+
+   local x = ninja.x
+	 ninja.leftPressed = false
+	 ninja:update(false, true)
+   assert_equal(x, ninja.x)
+end
