@@ -49,7 +49,7 @@ function NinjaAnimations:duck()
 end
 
 function NinjaAnimations:runRight()
-	 if self:isMovingRight() then
+	 if self:isMovingRight() or self:isJumping() then
 			return
 	 end
 
@@ -59,7 +59,7 @@ function NinjaAnimations:runRight()
 end
 
 function NinjaAnimations:runLeft()
-	 if self:isMovingLeft() then
+	 if self:isMovingLeft() or self:isJumping() then
 			return
 	 end
 

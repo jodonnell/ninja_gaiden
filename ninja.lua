@@ -104,10 +104,7 @@ function Ninja:moveRight(moveNinjaRight)
 			self.x = self.x + 4
 	 end
 
-	 if self.jumping == false then
-			self.animations:runRight()
-	 end
-
+	 self.animations:runRight()
 	 self.direction = RIGHT
 end
 
@@ -116,9 +113,7 @@ function Ninja:moveLeft(moveNinjaLeft)
 			self.x = self.x - 4
 	 end
 
-	 if self.jumping == false then
-			self.animations:runLeft()
-	 end
+	 self.animations:runLeft()
 	 self.direction = LEFT
 end
 
