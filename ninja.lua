@@ -3,13 +3,9 @@ require 'ninja_animations'
 
 Ninja = class()
 
-RIGHT = 0
-LEFT = 1
-
 function Ninja:init()
 	 self.animations = NinjaAnimations(self);
 
-	 self.currentImage = self.image
 	 self.x = 105
 	 self.y = 150
 
@@ -22,8 +18,6 @@ function Ninja:init()
 	 self.jumping = false
 
 	 self.wasDucking = false
-
-	 self.direction = 0
 
 	 self.timer = 0
 end
@@ -105,7 +99,6 @@ function Ninja:moveRight(moveNinjaRight)
 	 end
 
 	 self.animations:runRight()
-	 self.direction = RIGHT
 end
 
 function Ninja:moveLeft(moveNinjaLeft)
@@ -114,7 +107,6 @@ function Ninja:moveLeft(moveNinjaLeft)
 	 end
 
 	 self.animations:runLeft()
-	 self.direction = LEFT
 end
 
 function Ninja:draw()
