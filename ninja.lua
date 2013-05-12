@@ -121,3 +121,7 @@ function Ninja:moveLeft(moveNinjaLeft)
 	 end
 	 self.direction = LEFT
 end
+
+function Ninja:draw()
+	 love.graphics.draw(self:getCurrentImage(), self.x, self.y)
+end
