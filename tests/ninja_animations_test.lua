@@ -2,7 +2,7 @@ module(..., package.seeall)
 
 function setup()
 	 love.graphics.newImage = function(path) return path end
-   animations = NinjaAnimations()
+   animations = NinjaAnimations(Ninja())
 end
 
 function teardown()

@@ -12,7 +12,8 @@ function NinjaAnimations:init(ninja)
 	 self.direction = RIGHT;
 	 self.ninja = ninja
 
-	 self.offsetLeftAttack = 23
+	 self.wasDucking = false
+
 
 	 self.images = { standingRight = love.graphics.newImage("images/ryu_stand_right.png"),
 									 standingLeft = love.graphics.newImage("images/ryu_stand_left.png"),
@@ -42,30 +43,6 @@ function NinjaAnimations:init(ninja)
 									 attacking3Left = love.graphics.newImage("images/ryu_attack_end_left.png")
 	 }
 
-end
-
-function NinjaAnimations:duck()
-	 self.currentImage = 'ducking'
-end
-
-function NinjaAnimations:runRight()
-	 if self:isMovingRight() or self:isJumping() then
-			return
-	 end
-
-	 self.currentImage = 'running1'
-	 self.timer = 0
-	 self.direction = RIGHT
-end
-
-function NinjaAnimations:runLeft()
-	 if self:isMovingLeft() or self:isJumping() then
-			return
-	 end
-
-	 self.currentImage = 'running1'
-	 self.timer = 0
-	 self.direction = LEFT
 end
 
 function NinjaAnimations:changeAnimation()
@@ -165,15 +142,18 @@ end
 
 function NinjaAnimations:stand()
 	 self.currentImage = 'standing'
+	 self:stopDucking()
 end
 
 function NinjaAnimations:fall()
 	 self.currentImage = 'falling'
+	 self:stopDucking()
 end
 
 function NinjaAnimations:jump()
 	 self.timer = 0
 	 self.currentImage = 'jumping1'
+	 self:stopDucking()
 end
 
 function NinjaAnimations:attack()
@@ -183,4 +163,43 @@ function NinjaAnimations:attack()
 
 	 self.timer = 0
 	 self.currentImage = 'attacking1'
+	 self:stopDucking()
+end
+
+function NinjaAnimations:duck()
+	 self.currentImage = 'ducking'
+	 if not self.wasDucking then
+			self.ninja.y = self.ninja.y + 20
+			self.wasDucking = true
+	 end
+end
+
+function NinjaAnimations:runRight()
+	 if self:isMovingRight() or self:isJumping() then
+			return
+	 end
+
+	 self.currentImage = 'running1'
+	 self.timer = 0
+	 self.direction = RIGHT
+	 self:stopDucking()
+end
+
+function NinjaAnimations:runLeft()
+	 if self:isMovingLeft() or self:isJumping() then
+			return
+	 end
+
+	 self.currentImage = 'running1'
+	 self.timer = 0
+	 self.direction = LEFT
+	 self:stopDucking()
+end
+
+function NinjaAnimations:stopDucking()
+	 if self.wasDucking then
+			self.ninja.y = self.ninja.y - 20
+	 end
+
+	 self.wasDucking = false
 end
