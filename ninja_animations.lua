@@ -26,8 +26,6 @@ function NinjaAnimations:init(ninja)
 									 running3Right = love.graphics.newImage("images/ryu_running_3_right.png"),
 									 duckingLeft = love.graphics.newImage("images/ryu_ducking_left.png"),
 									 duckingRight = love.graphics.newImage("images/ryu_ducking_right.png"),
-									 fallingRight = love.graphics.newImage("images/ryu_falling_right.png"),
-									 fallingLeft = love.graphics.newImage("images/ryu_falling_left.png"),
 									 jumping1Right = love.graphics.newImage("images/ryu_right_jump_right.png"),
 									 jumping2Right = love.graphics.newImage("images/ryu_down_jump_right.png"),
 									 jumping3Right = love.graphics.newImage("images/ryu_left_jump_right.png"),
@@ -41,7 +39,9 @@ function NinjaAnimations:init(ninja)
 									 attacking3Right = love.graphics.newImage("images/ryu_attack_end_right.png"),
 									 attacking1Left = love.graphics.newImage("images/ryu_attack_begin_left.png"),
 									 attacking2Left = love.graphics.newImage("images/ryu_attack_middle_left.png"),
-									 attacking3Left = love.graphics.newImage("images/ryu_attack_end_left.png")
+									 attacking3Left = love.graphics.newImage("images/ryu_attack_end_left.png"),
+									 fallingRight = love.graphics.newImage("images/ryu_falling_attack_begin_right.png"),
+									 fallingLeft = love.graphics.newImage("images/ryu_falling_attack_begin_left.png"),
 	 }
 
 end

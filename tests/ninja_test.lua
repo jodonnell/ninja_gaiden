@@ -3,16 +3,13 @@ module(..., package.seeall)
 function setup()
 	 love.graphics.newImage = function(path) return path end
    ninja = Ninja()
-end
-
-function teardown()
-   mainGame = nil
+	 ninja.y = 450
 end
 
 function test_ninja_falls()
-   local y = ninja.y
+   ninja.y = 100
    ninja:update()
-   assert_gt(y, ninja.y)
+   assert_gt(100, ninja.y)
 end
 
 function test_ninja_lands_on_the_ground()
@@ -23,7 +20,6 @@ function test_ninja_lands_on_the_ground()
 end
 
 function test_ninja_duck_moves_y()
-	 ninja.y = 450
 	 ninja.downPressed = true
 	 ninja:update()
 	 ninja:update()
@@ -31,7 +27,6 @@ function test_ninja_duck_moves_y()
 end
 
 function test_ninja_transitions_to_move_right_when_ducking()
-	 ninja.y = 450
 	 ninja.downPressed = true
 	 ninja:update()
 	 ninja.rightPressed = true
@@ -40,7 +35,6 @@ function test_ninja_transitions_to_move_right_when_ducking()
 end
 
 function test_ninja_can_jump()
-	 ninja.y = 450
 	 ninja.jumpPressed = true
 	 ninja:update()
    assert_lt(450, ninja.y)
@@ -51,14 +45,11 @@ function test_ninja_stops_running_when_attacking()
 	 ninja.rightPressed = true
 	 ninja.attackPressed = true
 	 ninja:update(true, false)
-   assert_equal(0, ninja.x)
-
-	 ninja:update(true, false)
-   assert_equal(0, ninja.x)
+   assert_equal(0, ninja.x, 'Moved when attacked')
 
 	 ninja.attackPressed = false
 	 ninja:update(true, false)
-	 assert_gt(0, ninja.x)
+	 assert_gt(0, ninja.x, 'Didnt move even after stopped attacking')
 end
 
 function test_ninja_can_move_right()
@@ -95,4 +86,23 @@ function test_ninja_can_stop_moving_left()
 	 ninja.leftPressed = false
 	 ninja:update(false, true)
    assert_equal(x, ninja.x)
+end
+
+function test_ninja_jump_attack_and_move_right()
+   ninja.x = 0
+	 ninja.rightPressed = true
+	 ninja.jumpPressed = true
+	 
+	 for i=1, 10 do
+			ninja:update(true, left)
+	 end
+
+	 ninja.attackPressed = true
+
+   local x = ninja.x
+   local y = ninja.x
+	 ninja:update(true, left)
+
+   assert_gt(x, ninja.x)
+   assert_lt(y, ninja.y)
 end

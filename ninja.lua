@@ -88,7 +88,7 @@ function Ninja:move(moveNinjaRight, moveNinjaLeft)
 end
 
 function Ninja:isMovingRight()
-	 return self.rightPressed and self.attackPressed == false
+	 return self.rightPressed and (self.attackPressed == false or (self:isAttacking() and (self:isFalling() or self:isJumping())))
 end
 
 function Ninja:isMovingLeft()
@@ -109,6 +109,14 @@ function Ninja:moveLeft(moveNinjaLeft)
 	 end
 
 	 self.animations:runLeft()
+end
+
+function Ninja:isAttacking()
+	 return self.attackPressed
+end
+
+function Ninja:isJumping()
+	 return self.jumping
 end
 
 function Ninja:draw()
