@@ -49,3 +49,11 @@ function test_screen_scroll_left()
 
 	 assert_true(stage:shouldScrollLeft())
 end
+
+function test_does_not_scroll_when_ninja_attacking()
+	 stage.ninja.rightPressed = true
+	 stage.ninja.attackPressed = true
+	 stage.screenScrollX = 20
+
+	 assert_false(stage:shouldScrollRight())
+end

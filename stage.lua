@@ -55,7 +55,7 @@ function Stage:scrollScreenLeft()
 end
 
 function Stage:shouldScrollRight()
-	 if self.ninja.rightPressed then
+	 if self.ninja.rightPressed and self.ninja.attackPressed == false then
 			if self:isInMiddleOfStage() then
 				 return true
 			end
@@ -67,7 +67,7 @@ function Stage:shouldScrollRight()
 end
 
 function Stage:shouldScrollLeft()
-	 if self.ninja.leftPressed then
+	 if self.ninja.leftPressed and self.ninja.attackPressed == false then
 			if self:isInMiddleOfStage() then
 				 return true
 			end

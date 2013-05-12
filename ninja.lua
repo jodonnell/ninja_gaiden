@@ -21,17 +21,12 @@ function Ninja:init()
 end
 
 function Ninja:update(moveNinjaRight, moveNinjaLeft)
-	 if self.rightPressed then
-			self:moveRight(moveNinjaRight)
-	 elseif self.leftPressed then
-			self:moveLeft(moveNinjaLeft)
-	 end
+	 self:move(moveNinjaRight, moveNinjaLeft)
 
 	 self.animations:changeAnimation()
 
-	 if self.y < 450 and self.jumping == false then
-			self.y = self.y + 10
-			self.animations:fall()
+	 if self:isFalling() then
+			self:fall()
 	 elseif self.jumpPressed then
 			self.jumpPressed = false
 			self.jumping = true
@@ -40,7 +35,7 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 elseif self.attackPressed then
 			self.animations:attack()
 	 elseif not (self.leftPressed or self.rightPressed or self.jumping) then
-			if self.downPressed then
+			if self.downPessed then
 				 self.animations:duck()
 			else
 				 self.animations:stand()
@@ -50,10 +45,20 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 if self.jumping then
 			self:jump()
 	 end
+
+end
+
+function Ninja:isFalling()
+	 return self.y < 450 and self.jumping == false
 end
 
 function Ninja:getCurrentImage()
 	 return self.animations:getCurrentImage()
+end
+
+function Ninja:fall()
+	 self.y = self.y + 10
+	 self.animations:fall()
 end
 
 function Ninja:jump()
@@ -72,6 +77,22 @@ function Ninja:jump()
 			self.timer = 0
 			self.jumping = false
 	 end
+end
+
+function Ninja:move(moveNinjaRight, moveNinjaLeft)
+	 if self:isMovingRight() then
+			self:moveRight(moveNinjaRight)
+	 elseif self:isMovingLeft() then
+			self:moveLeft(moveNinjaLeft)
+	 end
+end
+
+function Ninja:isMovingRight()
+	 return self.rightPressed and self.attackPressed == false
+end
+
+function Ninja:isMovingLeft()
+	 return self.leftPressed and self.attackPressed == false
 end
 
 function Ninja:moveRight(moveNinjaRight)
