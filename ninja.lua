@@ -22,10 +22,8 @@ end
 
 function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 if self.rightPressed then
-			self:stand()
 			self:moveRight(moveNinjaRight)
 	 elseif self.leftPressed then
-			self:stand()
 			self:moveLeft(moveNinjaLeft)
 	 end
 
@@ -34,7 +32,6 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 if self.y < 450 and self.jumping == false then
 			self.y = self.y + 10
 			self.animations:fall()
-			self:stand()
 	 elseif self.jumpPressed then
 			self.jumpPressed = false
 			self.jumping = true
@@ -46,7 +43,6 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 			if self.downPressed then
 				 self.animations:duck()
 			else
-				 self:stand()
 				 self.animations:stand()
 			end
 	 end
@@ -54,14 +50,6 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 if self.jumping then
 			self:jump()
 	 end
-end
-
-function Ninja:stand()
-	 if self.wasDucking then
-			self.y = self.y - 20
-	 end
-
-	 self.wasDucking = false
 end
 
 function Ninja:getCurrentImage()
