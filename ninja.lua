@@ -35,7 +35,7 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 elseif self.attackPressed then
 			self.animations:attack()
 	 elseif not (self.leftPressed or self.rightPressed or self.jumping) then
-			if self.downPessed then
+			if self.downPressed then
 				 self.animations:duck()
 			else
 				 self.animations:stand()
