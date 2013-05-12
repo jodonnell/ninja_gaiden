@@ -27,14 +27,20 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 
 	 if self:isFalling() then
 			self:fall()
-	 elseif self.jumpPressed then
+	 end
+	 
+	 if self.attackPressed then
+			self:attack()
+	 end
+
+	 if self.jumpPressed then
 			self.jumpPressed = false
 			self.jumping = true
 			self.timer = 0
 			self.animations:jump()
-	 elseif self.attackPressed then
-			self.animations:attack()
-	 elseif not (self.leftPressed or self.rightPressed or self.jumping) then
+	 end
+
+	 if not (self.leftPressed or self.rightPressed or self.jumping) then
 			if self.downPressed then
 				 self.animations:duck()
 			else
@@ -46,6 +52,10 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 			self:jump()
 	 end
 
+end
+
+function Ninja:attack()
+	 self.animations:attack()
 end
 
 function Ninja:isFalling()
