@@ -1,5 +1,6 @@
 require 'class'
 require 'ninja'
+require 'stage'
 
 MainGame = class()
 
@@ -7,17 +8,14 @@ function MainGame:init()
 end
 
 function MainGame:load()
-	 self.image = love.graphics.newImage("stagea.png")
 	 self.ninja = Ninja()
-	 self.screenScrollX = 0
-	 self.endOfStageX = 1020
+	 self.stage = Stage()
 end
 
 function MainGame:draw()
-	 love.graphics.draw(self.image, -self.screenScrollX, 128)
+	 self.stage:draw()
 	 self:loveDraw(self.ninja)
 	 love.graphics.print("FPS: "..love.timer.getFPS(), 10, 10)
-	 love.graphics.print("FPS: "..self.screenScrollX, 10, 30)
 end
 
 function MainGame:loveDraw(sprite)
@@ -28,13 +26,13 @@ function MainGame:update()
 	 local moveNinjaRight = false
 	 local moveNinjaLeft = false
 	 if self:shouldScrollRight() then
-			self.screenScrollX = self.screenScrollX + 4
+			self.stage:moveRight()
 	 elseif self:shouldMoveNinjaRight() then
 			moveNinjaRight = true
 	 end
 
 	 if self:shouldScrollLeft() then
-			self.screenScrollX = self.screenScrollX - 4
+			self.stage:moveLeft()
 	 elseif self:shouldMoveNinjaLeft() then
 			moveNinjaLeft = true
 	 end
@@ -44,11 +42,11 @@ end
 
 function MainGame:shouldScrollRight()
 	 if self.ninja.rightPressed then
-			if self.screenScrollX > 0 and self.screenScrollX < self.endOfStageX then
+			if self.stage:isInMiddleOfStage() then
 				 return true
 			end
 
-			if self.ninja.x >= love.graphics.getWidth() / 2 and self.screenScrollX < self.endOfStageX then
+			if self.ninja.x >= love.graphics.getWidth() / 2 and not self.stage:atEndOfStage() then
 				 return true
 			end
 	 end
@@ -56,11 +54,11 @@ end
 
 function MainGame:shouldScrollLeft()
 	 if self.ninja.leftPressed then
-			if self.screenScrollX > 0 and self.screenScrollX < self.endOfStageX then
+			if self.stage:isInMiddleOfStage() then
 				 return true
 			end
 
-			if self.ninja.x <= love.graphics.getWidth() / 2 and self.screenScrollX == self.endOfStageX then
+			if self.ninja.x <= love.graphics.getWidth() / 2 and self.stage:atEndOfStage() then
 				 return true
 			end
 	 end

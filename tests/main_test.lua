@@ -47,18 +47,18 @@ function test_screen_scrolls_when_ninja_in_center()
    local x = mainGame.ninja.x
 	 mainGame:pressRight()
 	 mainGame:update()
-   assert_equal(4, mainGame.screenScrollX)
+   assert_equal(4, mainGame.stage.screenScrollX)
 end
 
 function test_screen_scroll_right()
 	 mainGame.ninja.rightPressed = true
-	 mainGame.screenScrollX = 0
+	 mainGame.stage.screenScrollX = 0
 	 mainGame.ninja.x = love.graphics.getWidth() / 2
 
 	 assert_true(mainGame:shouldScrollRight())
 
 	 mainGame.ninja.rightPressed = true
-	 mainGame.screenScrollX = mainGame.endOfStageX
+	 mainGame.stage.screenScrollX = mainGame.stage.endOfStageX
 	 mainGame.ninja.x = love.graphics.getWidth() / 2
 
 	 assert_false(mainGame:shouldScrollRight())
@@ -67,7 +67,7 @@ end
 
 function test_does_not_screen_scroll_right()
 	 mainGame.ninja.rightPressed = true
-	 mainGame.screenScrollX = 0
+	 mainGame.stage.screenScrollX = 0
 	 mainGame.ninja.x = 0
 
 	 assert_false(mainGame:shouldScrollRight())
@@ -75,13 +75,13 @@ end
 
 function test_screen_scroll_left()
 	 mainGame.ninja.leftPressed = true
-	 mainGame.screenScrollX = 0
+	 mainGame.stage.screenScrollX = 0
 	 mainGame.ninja.x = love.graphics.getWidth() / 2
 
 	 assert_false(mainGame:shouldScrollLeft())
 
 	 mainGame.ninja.leftPressed = true
-	 mainGame.screenScrollX = mainGame.endOfStageX
+	 mainGame.stage.screenScrollX = mainGame.stage.endOfStageX
 	 mainGame.ninja.x = love.graphics.getWidth() / 2
 
 	 assert_true(mainGame:shouldScrollLeft())

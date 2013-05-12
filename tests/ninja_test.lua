@@ -45,3 +45,18 @@ function test_ninja_can_jump()
 	 ninja:update()
    assert_lt(450, ninja.y)
 end
+
+function test_ninja_stops_running_when_attacking()
+	 ninja.x = 0
+	 ninja.rightPressed = true
+	 ninja.attackPressed = true
+	 ninja:update(true, false)
+   assert_equal(0, ninja.x)
+
+	 ninja:update(true, false)
+   assert_equal(0, ninja.x)
+
+	 ninja.attackPressed = false
+	 ninja:update(true, false)
+	 assert_gt(0, ninja.x)
+end
