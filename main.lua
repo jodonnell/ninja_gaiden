@@ -29,24 +29,24 @@ end
 
 function love.keypressed(key, unicode)
    if key == 'right' then
-			main_game:pressRight()
+			main_game.ninja.rightPressed = true
 	 elseif key == 'left' then
-			main_game:pressLeft()
+			main_game.ninja.leftPressed = true
 	 elseif key == 'down' then
-			main_game:pressDown()
+			main_game.ninja.downPressed = true
 	 elseif key == 'q' then
-			main_game:pressJump()
+			main_game.ninja.jumpPressed = true
 	 elseif key == ';' then
-			main_game:pressAttack()
+			main_game.ninja.attackPressed = true
    end
 end
 
 function love.keyreleased(key, unicode)
    if key == 'right' then
-			main_game:releaseRight()
+			main_game.ninja.rightPressed = false
 	 elseif key == 'left' then
-			main_game:releaseLeft()
+			main_game.ninja.leftPressed = false
 	 elseif key == 'down' then
-			main_game:releaseDown()
+			main_game.ninja.downPressed = false
    end
 end
