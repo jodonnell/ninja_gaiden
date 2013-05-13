@@ -18,8 +18,8 @@ function Ninja:init()
 	 self.timer = 0
 end
 
-function Ninja:update(moveNinjaRight, moveNinjaLeft)
-	 self:move(moveNinjaRight, moveNinjaLeft)
+function Ninja:update()
+	 self:move()
 
 	 self.animations:changeAnimation()
 
@@ -103,11 +103,11 @@ function Ninja:jump()
 	 end
 end
 
-function Ninja:move(moveNinjaRight, moveNinjaLeft)
+function Ninja:move()
 	 if self:isMovingRight() then
-			self:moveRight(moveNinjaRight)
+			self:moveRight()
 	 elseif self:isMovingLeft() then
-			self:moveLeft(moveNinjaLeft)
+			self:moveLeft()
 	 end
 end
 
@@ -119,19 +119,11 @@ function Ninja:isMovingLeft()
 	 return self.leftPressed and self.attackPressed == false
 end
 
-function Ninja:moveRight(moveNinjaRight)
-	 if moveNinjaRight then
-			self.x = self.x + 4
-	 end
-
+function Ninja:moveRight()
 	 self.animations:runRight()
 end
 
-function Ninja:moveLeft(moveNinjaLeft)
-	 if moveNinjaLeft then
-			self.x = self.x - 4
-	 end
-
+function Ninja:moveLeft()
 	 self.animations:runLeft()
 end
 

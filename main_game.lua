@@ -19,6 +19,6 @@ function MainGame:draw()
 end
 
 function MainGame:update()
-	 local moveNinjaRight, moveNinjaLeft = self.stage:scrollScreen()
-	 self.ninja:update(moveNinjaRight, moveNinjaLeft)
+	 self.stage:scrollScreen()
+	 self.ninja:update()
 end

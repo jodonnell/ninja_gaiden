@@ -31,27 +31,24 @@ function Stage:moveLeft()
 end
 
 function Stage:scrollScreen()
-	 local moveNinjaRight = self:scrollScreenRight()
-	 local moveNinjaLeft = self:scrollScreenLeft()
-	 return moveNinjaRight, moveNinjaLeft
+	 self:scrollScreenRight()
+	 self:scrollScreenLeft()
 end
 
 function Stage:scrollScreenRight()
 	 if self:shouldScrollRight() then
 			self:moveRight()
 	 elseif self:shouldMoveNinjaRight() then
-			return true
+			self.ninja.x = self.ninja.x + 4
 	 end
-	 return false
 end
 
 function Stage:scrollScreenLeft()
 	 if self:shouldScrollLeft() then
 			self:moveLeft()
 	 elseif self:shouldMoveNinjaLeft() then
-			return true
+			self.ninja.x = self.ninja.x - 4
 	 end
-	 return false
 end
 
 function Stage:shouldScrollRight()
