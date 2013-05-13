@@ -35,13 +35,35 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 			self:jump()
 	 end
 
-	 if not (self.leftPressed or self.rightPressed or self.jumpPressed) then
-			if self.downPressed then
-				 self.animations:duck()
-			else
-				 self.animations:stand()
-			end
+	 if self:isDucking() then
+			self:duck()
 	 end
+
+	 if self:standing() then
+			self:stand()
+	 end
+
+
+end
+
+function Ninja:isDucking()
+	 return self.downPressed and self:canDuck()
+end
+
+function Ninja:standing()
+	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self:isDucking())
+end
+
+function Ninja:canDuck()
+	 return not (self.leftPressed or self.rightPressed or self:isJumping())
+end
+
+function Ninja:duck()
+	 self.animations:duck()
+end
+
+function Ninja:stand()
+	 self.animations:stand()
 end
 
 function Ninja:attack()
