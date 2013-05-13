@@ -40,69 +40,21 @@ function test_ninja_can_jump()
    assert_lt(450, ninja.y)
 end
 
-function test_ninja_stops_running_when_attacking()
-	 ninja.x = 0
-	 ninja.rightPressed = true
-	 ninja.attackPressed = true
-	 ninja:update(true, false)
-   assert_equal(0, ninja.x, 'Moved when attacked')
-
-	 ninja.attackPressed = false
-	 ninja:update(true, false)
-	 assert_gt(0, ninja.x, 'Didnt move even after stopped attacking')
-end
-
-function test_ninja_can_move_right()
-   ninja.x = 0
-	 ninja.rightPressed = true
-	 ninja:update(true, false)
-   assert_gt(0, ninja.x)
-end
-
-function test_ninja_can_stop_moving_right()
-   ninja.x = 0
-	 ninja.rightPressed = true
-	 ninja:update(false, true)
-
-   local x = ninja.x
-	 ninja.rightPressed = false
-	 ninja:update(false, true)
-   assert_equal(x, ninja.x)
-end
-
-function test_ninja_can_move_left()
-   ninja.x = 0
-	 ninja.leftPressed = true
-	 ninja:update(false, true)
-   assert_lt(0, ninja.x)
-end
-
-function test_ninja_can_stop_moving_left()
-   ninja.x = 0
-	 ninja.leftPressed = true
-	 ninja:update(false, true)
-
-   local x = ninja.x
-	 ninja.leftPressed = false
-	 ninja:update(false, true)
-   assert_equal(x, ninja.x)
-end
-
 function test_ninja_jump_attack_and_move_right()
-   -- ninja.x = 0
-	 -- ninja.rightPressed = true
-	 -- ninja.jumpPressed = true
+   ninja.x = 0
+	 ninja.rightPressed = true
+	 ninja.jumpPressed = true
 	 
-	 -- for i=1, 10 do
-	 -- 		ninja:update(true, left)
-	 -- end
+	 for i=1, 10 do
+	 		ninja:update(true, left)
+	 end
 
-	 -- ninja.attackPressed = true
+	 ninja.attackPressed = true
 
-   -- local x = ninja.x
-   -- local y = ninja.x
-	 -- ninja:update(true, left)
+   local x = ninja.x
+   local y = ninja.y
+	 ninja:update(true, left)
 
-   -- assert_gt(x, ninja.x)
-   -- assert_lt(y, ninja.y)
+   assert_gt(x, ninja.x, 'Should move right')
+   assert_lt(y, ninja.y, 'Should move up')
 end

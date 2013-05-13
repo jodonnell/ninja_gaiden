@@ -19,6 +19,6 @@ function MainGame:draw()
 end
 
 function MainGame:update()
-	 self.stage:scrollScreen()
 	 self.ninja:update()
+	 self.stage:scrollScreen()
 end

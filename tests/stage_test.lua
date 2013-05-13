@@ -57,3 +57,30 @@ function test_does_not_scroll_when_ninja_attacking()
 
 	 assert_false(stage:shouldScrollRight())
 end
+
+function test_moves_ninja_right()
+   stage.ninja.x = 0
+	 stage.ninja.rightPressed = true
+	 stage:scrollScreen()
+   assert_gt(0, stage.ninja.x)
+end
+
+function test_ninja_can_move_left()
+   stage.ninja.x = 0
+	 stage.ninja.leftPressed = true
+	 stage:scrollScreen()
+   assert_lt(0, stage.ninja.x)
+end
+
+
+function test_ninja_stops_running_when_attacking()
+	 stage.ninja.x = 0
+	 stage.ninja.rightPressed = true
+	 stage.ninja.attackPressed = true
+	 stage:scrollScreen()
+   assert_equal(0, stage.ninja.x, 'Moved when attacked')
+
+	 stage.ninja.attackPressed = false
+	 stage:scrollScreen()
+	 assert_gt(0, stage.ninja.x, 'Didnt move even after stopped attacking')
+end
