@@ -152,6 +152,10 @@ function NinjaAnimations:fall()
 end
 
 function NinjaAnimations:jump()
+	 if self:isJumping() then
+			return
+	 end
+
 	 self.timer = 0
 	 self.currentImage = 'jumping1'
 	 self:correctAdjustments()
