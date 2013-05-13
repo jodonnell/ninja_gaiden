@@ -36,9 +36,13 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 	 if self.jumpPressed then
 			self.jumpPressed = false
 			self.jumping = true
-			self.timer = 0
 			self.animations:jump()
 	 end
+
+	 if self.jumping then
+			self:jump()
+	 end
+
 
 	 if not (self.leftPressed or self.rightPressed or self.jumping) then
 			if self.downPressed then
@@ -47,11 +51,6 @@ function Ninja:update(moveNinjaRight, moveNinjaLeft)
 				 self.animations:stand()
 			end
 	 end
-
-	 if self.jumping then
-			self:jump()
-	 end
-
 end
 
 function Ninja:attack()
