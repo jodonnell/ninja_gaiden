@@ -14,7 +14,7 @@ function NinjaAnimations:init(ninja)
 
 	 self.wasDucking = false
 	 self.wasAttackingLeft = false
-
+	 self.wasAttackFallingLeft = false
 
 	 self.images = { standingRight = love.graphics.newImage("images/ryu_stand_right.png"),
 									 standingLeft = love.graphics.newImage("images/ryu_stand_left.png"),
@@ -68,14 +68,14 @@ function NinjaAnimations:attackFallingAnimation()
 	 if self.timer == 5 then
 	 		self.currentImage = 'fallingAttack2'
 	 		if self.direction == LEFT then
-				 --self.ninja.x = self.ninja.x - 62
+				 self.ninja.x = self.ninja.x + 27
 	 		end
 	 elseif self.timer == 9 then
 	 		self.ninja.isAttacking = false
 	 		if self.direction == LEFT then
-				 self.wasAttackingLeft = true
+				 self.wasAttackFallingLeft = true
 	 		end
-			self.currentImage = '' -- to make fall not return early
+			self.currentImage = '' -- to force fall not return early
 			self:fall()
 	 end
 
@@ -86,7 +86,7 @@ function NinjaAnimations:attackingAnimation()
 			self.currentImage = 'attacking1'
 	 elseif self.timer == 5 then
 	 		self.currentImage = 'attacking2'
-	 		if self.direction == LEFT then
+			if self.direction == LEFT then
 				 self.ninja.x = self.ninja.x - 62
 	 		end
 	 elseif self.timer == 9 then
@@ -202,6 +202,10 @@ function NinjaAnimations:attack()
 
 	 if self:isFalling() or self:isJumping() then
 			self.currentImage = 'fallingAttack1'
+			if self.direction == LEFT then
+				 self.ninja.x = self.ninja.x - 57
+	 		end
+
 	 else
 			self.currentImage = 'attacking1'
 	 end
@@ -246,6 +250,12 @@ function NinjaAnimations:correctAdjustments()
 			self.ninja.x = self.ninja.x + 38
 			self.wasAttackingLeft = false
 	 end
+	 
+	 if self.wasAttackFallingLeft then
+			self.ninja.x = self.ninja.x + 30
+			self.wasAttackFallingLeft = false
+	 end
+			
 end
 
 function NinjaAnimations:stopDucking()
