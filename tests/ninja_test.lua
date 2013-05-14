@@ -39,22 +39,3 @@ function test_ninja_can_jump()
 	 ninja:update()
    assert_lt(450, ninja.y)
 end
-
-function test_ninja_jump_attack_and_move_right()
-   ninja.x = 0
-	 ninja.rightPressed = true
-	 ninja.jumpPressed = true
-	 
-	 for i=1, 10 do
-	 		ninja:update(true, left)
-	 end
-
-	 ninja.attackPressed = true
-
-   local x = ninja.x
-   local y = ninja.y
-	 ninja:update(true, left)
-
-   assert_gt(x, ninja.x, 'Should move right')
-   assert_lt(y, ninja.y, 'Should move up')
-end

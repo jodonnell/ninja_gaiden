@@ -41,6 +41,19 @@ function test_attack_animation()
    assert_equal(animations:getCurrentImage(), animations.images['attacking3Right'])
 end
 
+function test_attack_when_falling_does_a_different_animation()
+	 animations.currentImage = 'falling'
+	 animations:attack()
+   assert_equal(animations:getCurrentImage(), animations.images['fallingAttack1Right'], 'not first attack animation')
+
+	 advanceFrames(5)
+   assert_equal(animations:getCurrentImage(), animations.images['fallingAttack2Right'], 'not second attack animation')
+
+	 advanceFrames(5)
+   assert_equal(animations:getCurrentImage(), animations.images['fallingRight'], 'not original fall animation')
+	 
+end
+
 
 function test_ninja_moving_left_runs_animation()
 	 animations:runLeft()

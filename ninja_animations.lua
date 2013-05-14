@@ -42,6 +42,10 @@ function NinjaAnimations:init(ninja)
 									 attacking3Left = love.graphics.newImage("images/ryu_attack_end_left.png"),
 									 fallingRight = love.graphics.newImage("images/ryu_falling_attack_begin_right.png"),
 									 fallingLeft = love.graphics.newImage("images/ryu_falling_attack_begin_left.png"),
+									 fallingAttack1Right = love.graphics.newImage("images/ryu_falling_attack_middle_right.png"),
+									 fallingAttack2Right = love.graphics.newImage("images/ryu_falling_attack_end_right.png"),
+									 fallingAttack1Left = love.graphics.newImage("images/ryu_falling_attack_middle_left.png"),
+									 fallingAttack2Left = love.graphics.newImage("images/ryu_falling_attack_end_left.png")
 	 }
 
 end
@@ -51,11 +55,28 @@ function NinjaAnimations:changeAnimation()
 
 	 if self:isAttacking() then
 			self:attackingAnimation()
+	 elseif self:isAttackFalling() then
+			self:attackFallingAnimation()
 	 elseif self:isMovingRight() or self:isMovingLeft() then
 			self:runningAnimation()
 	 elseif self:isJumping() then
 			self:jumpingAnimation()
 	 end
+end
+
+function NinjaAnimations:attackFallingAnimation()
+	 if self.timer == 5 then
+	 		self.currentImage = 'fallingAttack2'
+	 		if self.direction == LEFT then
+				 self.ninja.x = self.ninja.x - 62
+	 		end
+	 elseif self.timer == 9 then
+	 		self.ninja.isAttacking = false
+	 		if self.direction == LEFT then
+				 self.wasAttackingLeft = true
+	 		end
+	 end
+
 end
 
 function NinjaAnimations:attackingAnimation()
@@ -72,7 +93,7 @@ function NinjaAnimations:attackingAnimation()
 	 			 self.ninja.x = self.ninja.x + 24
 	 		end
 	 elseif self.timer == 12 then
-	 		self.ninja.attackPressed = false
+	 		self.ninja.isAttacking = false
 	 		if self.direction == LEFT then
 				 self.wasAttackingLeft = true
 	 		end
@@ -111,6 +132,13 @@ function NinjaAnimations:isAttacking()
 			or self.currentImage == 'attacking3'
 end
 
+function NinjaAnimations:isFalling()
+	 return self.currentImage == 'falling'
+end
+
+function NinjaAnimations:isAttackFalling()
+	 return self.currentImage == 'fallingAttack1' or self.currentImage == 'fallingAttack2'
+end
 
 function NinjaAnimations:isMovingRight()
 	 return self.direction == RIGHT and (self.currentImage == 'running1' or 
@@ -166,8 +194,14 @@ function NinjaAnimations:attack()
 			return
 	 end
 
+	 -- if is falling currently do fall attack
+	 if self:isFalling() then
+			self.currentImage = 'fallingAttack1'
+	 else
+			self.currentImage = 'attacking1'
+	 end
+
 	 self.timer = 0
-	 self.currentImage = 'attacking1'
 	 self:correctAdjustments()
 end
 

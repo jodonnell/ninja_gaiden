@@ -13,7 +13,7 @@ function Ninja:init()
 	 self.leftPressed = false
 	 self.downPressed = false
 	 self.jumpPressed = false
-	 self.attackPressed = false
+	 self.isAttacking = false
 
 	 self.timer = 0
 end
@@ -27,7 +27,7 @@ function Ninja:update()
 			self:fall()
 	 end
 	 
-	 if self.attackPressed then
+	 if self.isAttacking then
 			self:attack()
 	 end
 
@@ -42,8 +42,6 @@ function Ninja:update()
 	 if self:standing() then
 			self:stand()
 	 end
-
-
 end
 
 function Ninja:isDucking()
@@ -112,11 +110,11 @@ function Ninja:move()
 end
 
 function Ninja:isMovingRight()
-	 return self.rightPressed and self.attackPressed == false
+	 return self.rightPressed and self.isAttacking == false
 end
 
 function Ninja:isMovingLeft()
-	 return self.leftPressed and self.attackPressed == false
+	 return self.leftPressed and self.isAttacking == false
 end
 
 function Ninja:moveRight()
@@ -128,7 +126,7 @@ function Ninja:moveLeft()
 end
 
 function Ninja:isAttacking()
-	 return self.attackPressed
+	 return self.isAttacking
 end
 
 function Ninja:isJumping()

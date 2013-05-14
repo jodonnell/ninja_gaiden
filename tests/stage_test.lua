@@ -52,7 +52,7 @@ end
 
 function test_does_not_scroll_when_ninja_attacking()
 	 stage.ninja.rightPressed = true
-	 stage.ninja.attackPressed = true
+	 stage.ninja.isAttacking = true
 	 stage.screenScrollX = 20
 
 	 assert_false(stage:shouldScrollRight())
@@ -76,11 +76,11 @@ end
 function test_ninja_stops_running_when_attacking()
 	 stage.ninja.x = 0
 	 stage.ninja.rightPressed = true
-	 stage.ninja.attackPressed = true
+	 stage.ninja.isAttacking = true
 	 stage:scrollScreen()
    assert_equal(0, stage.ninja.x, 'Moved when attacked')
 
-	 stage.ninja.attackPressed = false
+	 stage.ninja.isAttacking = false
 	 stage:scrollScreen()
 	 assert_gt(0, stage.ninja.x, 'Didnt move even after stopped attacking')
 end
