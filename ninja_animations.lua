@@ -75,6 +75,7 @@ function NinjaAnimations:attackFallingAnimation()
 	 		if self.direction == LEFT then
 				 self.wasAttackingLeft = true
 	 		end
+			self.currentImage = '' -- to make fall not return early
 			self:fall()
 	 end
 
@@ -176,6 +177,10 @@ function NinjaAnimations:stand()
 end
 
 function NinjaAnimations:fall()
+	 if self:isFalling() or self:isAttackFalling() then
+			return
+	 end
+
 	 self.currentImage = 'falling'
 	 self:correctAdjustments()
 end
@@ -191,11 +196,10 @@ function NinjaAnimations:jump()
 end
 
 function NinjaAnimations:attack()
-	 if self:isAttacking() then
+	 if self:isAttacking() or self:isAttackFalling() then
 			return
 	 end
 
-	 -- if is falling currently do fall attack
 	 if self:isFalling() then
 			self.currentImage = 'fallingAttack1'
 	 else
