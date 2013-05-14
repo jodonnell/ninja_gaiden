@@ -200,7 +200,7 @@ function NinjaAnimations:attack()
 			return
 	 end
 
-	 if self:isFalling() then
+	 if self:isFalling() or self:isJumping() then
 			self.currentImage = 'fallingAttack1'
 	 else
 			self.currentImage = 'attacking1'

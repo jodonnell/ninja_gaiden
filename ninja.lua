@@ -27,12 +27,12 @@ function Ninja:update()
 			self:fall()
 	 end
 	 
-	 if self.isAttacking then
-			self:attack()
-	 end
-
 	 if self.jumpPressed then
 			self:jump()
+	 end
+
+	 if self.isAttacking then
+			self:attack()
 	 end
 
 	 if self:isDucking() then
