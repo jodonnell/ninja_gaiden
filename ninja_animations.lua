@@ -94,7 +94,7 @@ function NinjaAnimations:attackingAnimation()
 	 		if self.direction == LEFT then
 	 			 self.ninja.x = self.ninja.x + 24
 	 		end
-	 elseif self.timer == 12 then
+	 elseif self.timer > 12 then
 	 		self.ninja.isAttacking = false
 	 		if self.direction == LEFT then
 				 self.wasAttackingLeft = true
@@ -172,6 +172,10 @@ function NinjaAnimations:getCurrentImage()
 end
 
 function NinjaAnimations:stand()
+	 if self:isAttacking() then
+			return
+	 end
+
 	 self.currentImage = 'standing'
 	 self:correctAdjustments()
 end
@@ -205,7 +209,6 @@ function NinjaAnimations:attack()
 			if self.direction == LEFT then
 				 self.ninja.x = self.ninja.x - 57
 	 		end
-
 	 else
 			self.currentImage = 'attacking1'
 	 end
