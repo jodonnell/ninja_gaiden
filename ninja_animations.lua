@@ -75,6 +75,7 @@ function NinjaAnimations:attackFallingAnimation()
 	 		if self.direction == LEFT then
 				 self.wasAttackingLeft = true
 	 		end
+			self:fall()
 	 end
 
 end
