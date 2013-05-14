@@ -68,7 +68,7 @@ function NinjaAnimations:attackFallingAnimation()
 	 if self.timer == 5 then
 	 		self.currentImage = 'fallingAttack2'
 	 		if self.direction == LEFT then
-				 self.ninja.x = self.ninja.x - 62
+				 --self.ninja.x = self.ninja.x - 62
 	 		end
 	 elseif self.timer == 9 then
 	 		self.ninja.isAttacking = false
@@ -186,7 +186,7 @@ function NinjaAnimations:fall()
 end
 
 function NinjaAnimations:jump()
-	 if self:isJumping() then
+	 if self:isJumping() or self:isAttackFalling() then
 			return
 	 end
 
@@ -219,7 +219,7 @@ function NinjaAnimations:duck()
 end
 
 function NinjaAnimations:runRight()
-	 if self:isMovingRight() or self:isJumping() then
+	 if self:isMovingRight() or self:isJumping() or self:isAttackFalling() then
 			return
 	 end
 
@@ -230,7 +230,7 @@ function NinjaAnimations:runRight()
 end
 
 function NinjaAnimations:runLeft()
-	 if self:isMovingLeft() or self:isJumping() then
+	 if self:isMovingLeft() or self:isJumping() or self:isAttackFalling() then
 			return
 	 end
 

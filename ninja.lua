@@ -110,11 +110,15 @@ function Ninja:move()
 end
 
 function Ninja:isMovingRight()
-	 return self.rightPressed and self.isAttacking == false
+	 return self.rightPressed and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
+end
+
+function Ninja:isAttackingFromGround()
+	 return self.isAttacking == true and self.y == 450
 end
 
 function Ninja:isMovingLeft()
-	 return self.leftPressed and self.isAttacking == false
+	 return self.leftPressed and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
 end
 
 function Ninja:moveRight()
