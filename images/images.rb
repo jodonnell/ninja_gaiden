@@ -46,4 +46,9 @@ create_image "ryu_running_1", 207, 80, 20, 31
 create_image "ryu_running_2", 236, 80, 22, 31
 create_image "ryu_running_3", 268, 80, 20, 31
 
+$original_image = ImageList.new("ninjagaiden2sheet2.gif")
+
+create_image "hunchback_walk1", 5, 16, 23, 29
+create_image "hunchback_walk2", 31, 16, 25, 29
+
 # convert old.png  -fill '#new_color' -opaque '#old_color' new.png
