@@ -15,6 +15,7 @@ function NinjaAnimations:init(ninja)
 	 self.wasDucking = false
 	 self.wasAttackingLeft = false
 	 self.wasAttackFallingLeft = false
+	 self.queuedAnimation = 'falling'
 
 	 self.images = { standingRight = love.graphics.newImage("images/ryu_stand_right.png"),
 									 standingLeft = love.graphics.newImage("images/ryu_stand_left.png"),
@@ -99,6 +100,10 @@ function NinjaAnimations:attackingAnimation()
 	 		if self.direction == LEFT then
 				 self.wasAttackingLeft = true
 	 		end
+
+			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
+				 self.currentImage = 'standing'
+			end
 	 end
 end
 
@@ -173,6 +178,7 @@ end
 
 function NinjaAnimations:stand()
 	 if self:isAttacking() then
+			self.queuedAnimation = 'standing'
 			return
 	 end
 
@@ -182,6 +188,7 @@ end
 
 function NinjaAnimations:fall()
 	 if self:isFalling() or self:isAttackFalling() then
+			self.queuedAnimation = 'falling'
 			return
 	 end
 
@@ -227,6 +234,7 @@ end
 
 function NinjaAnimations:runRight()
 	 if self:isMovingRight() or self:isJumping() or self:isAttackFalling() then
+			self.queuedAnimation = 'running1'
 			return
 	 end
 
@@ -238,6 +246,7 @@ end
 
 function NinjaAnimations:runLeft()
 	 if self:isMovingLeft() or self:isJumping() or self:isAttackFalling() then
+			self.queuedAnimation = 'running1'
 			return
 	 end
 
