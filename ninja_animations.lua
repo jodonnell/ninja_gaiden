@@ -1,10 +1,7 @@
 require 'class'
+require 'constants'
 
 NinjaAnimations = class()
-
-RIGHT = 0
-LEFT = 1
-
 
 function NinjaAnimations:init(ninja)
 	 self.timer = 0;

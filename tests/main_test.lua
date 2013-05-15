@@ -28,3 +28,12 @@ function test_ninja_jump_attack_and_move_right()
    assert_gt(x, mainGame.ninja.x, 'Should move right')
    assert_lt(y, mainGame.ninja.y, 'Should move up')
 end
+
+function test_enemy_appears_at_when_scrolling()
+	 mainGame.ninja.x = love.graphics.getWidth() / 2
+	 mainGame.ninja.rightPressed = true
+   assert_equal(0, #mainGame.enemies, 'No enemies')
+
+	 mainGame:update()
+   assert_equal(1, #mainGame.enemies, 'One enemy')
+end

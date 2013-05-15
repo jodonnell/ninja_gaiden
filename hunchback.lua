@@ -2,9 +2,9 @@ require 'class'
 
 Hunchback = class()
 
-function Hunchback:init()
-	 self.x = 800
-	 self.y = 450
+function Hunchback:init(x, y)
+	 self.x = x
+	 self.y = y
 
 	 self.images = { 
 			walk1Right = love.graphics.newImage("images/hunchback_walk1_right.png"),
