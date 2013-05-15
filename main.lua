@@ -8,6 +8,7 @@ if os.getenv("LUA_TEST") then
    lunatest.suite("tests.ninja_test")
    lunatest.suite("tests.ninja_animations_test")
    lunatest.suite("tests.stage_test")
+   lunatest.suite("tests.hunchback_test")
 
    lunatest.run()
    os.exit()

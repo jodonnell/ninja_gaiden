@@ -30,6 +30,10 @@ function MainGame:update()
 	 self.ninja:update()
 	 self.stage:scrollScreen()
 
+	 for i, enemy in ipairs(self.enemies) do
+			enemy:update()
+	 end
+
 	 if self.stage.screenScrollX == 4 then
 			table.insert(self.enemies, Hunchback(love.graphics.getWidth(), 450, LEFT))
 	 end
