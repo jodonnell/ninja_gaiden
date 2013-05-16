@@ -37,3 +37,26 @@ function test_enemy_appears_at_when_scrolling()
 	 mainGame:update()
    assert_equal(1, #mainGame.enemies, 'One enemy')
 end
+
+function test_enemy_moves_relative_to_stage()
+	 love.graphics.draw = function() return  end
+
+	 mainGame.ninja.x = love.graphics.getWidth() / 2
+	 mainGame.ninja.rightPressed = true
+
+	 mainGame:update()
+
+	 advanceDraw(1040)
+	 advanceDraw(1034)
+	 mainGame.ninja.rightPressed = false
+	 advanceDraw(1032)
+end
+
+function advanceDraw(newX)
+	 mainGame.enemies[1].loveDraw = function(self, image, x, y) 
+	 		assert_equal(newX, x, 'Moved relatively 4')
+	 end
+
+	 mainGame:update()
+	 mainGame:draw()
+end

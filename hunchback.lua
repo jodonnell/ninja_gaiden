@@ -17,8 +17,12 @@ function Hunchback:init(x, y, direction)
 	 self.timer = 0
 end
 
-function Hunchback:draw()
-	 love.graphics.draw(self:getCurrentImage(), self.x, self.y)
+function Hunchback:draw(adjustToViewPortX)
+	 self:loveDraw(self:getCurrentImage(), self.x - adjustToViewPortX, self.y)
+end
+
+function Hunchback:loveDraw(image, x, y)
+	 love.graphics.draw(image, x, y)
 end
 
 function Hunchback:update()

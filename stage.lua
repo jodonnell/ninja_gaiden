@@ -4,6 +4,8 @@ Stage = class()
 
 function Stage:init(ninja)
 	 self.image = love.graphics.newImage("stagea.png")
+	 self.ninjaX = ninja.x
+
 	 self.screenScrollX = 0
 	 self.endOfStageX = 1020
 	 self.ninja = ninja
