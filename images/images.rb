@@ -6,9 +6,7 @@ def create_image image_name, x, y, w, h
   image = $original_image.crop(x, y, w, h)
   image = image.scale(2.7)
 
-  image.write("#{image_name}_right.png")
-  image = image.flop
-  image.write("#{image_name}_left.png")
+  image.write("#{image_name}.png")
 end
 
 create_image "ryu_stand", 2, 2, 17, 32

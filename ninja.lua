@@ -140,5 +140,10 @@ function Ninja:isJumping()
 end
 
 function Ninja:draw()
-	 love.graphics.draw(self:getCurrentImage(), self.x, self.y)
+	 local image = self:getCurrentImage()
+	 if self.animations.direction == LEFT then
+			love.graphics.draw(image, self.x + image:getWidth(), self.y, 0, -1, 1)
+	 else
+			love.graphics.draw(image, self.x, self.y)
+	 end
 end

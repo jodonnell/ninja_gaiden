@@ -10,40 +10,23 @@ function NinjaAnimations:init(ninja)
 	 self.ninja = ninja
 
 	 self.wasDucking = false
-	 self.wasAttackingLeft = false
-	 self.wasAttackFallingLeft = false
 	 self.queuedAnimation = 'falling'
 
-	 self.images = { standingRight = love.graphics.newImage("images/ryu_stand_right.png"),
-									 standingLeft = love.graphics.newImage("images/ryu_stand_left.png"),
-									 running1Left = love.graphics.newImage("images/ryu_running_1_left.png"),
-									 running2Left = love.graphics.newImage("images/ryu_running_2_left.png"),
-									 running3Left = love.graphics.newImage("images/ryu_running_3_left.png"),
-									 running1Right = love.graphics.newImage("images/ryu_running_1_right.png"),
-									 running2Right = love.graphics.newImage("images/ryu_running_2_right.png"),
-									 running3Right = love.graphics.newImage("images/ryu_running_3_right.png"),
-									 duckingLeft = love.graphics.newImage("images/ryu_ducking_left.png"),
-									 duckingRight = love.graphics.newImage("images/ryu_ducking_right.png"),
-									 jumping1Right = love.graphics.newImage("images/ryu_right_jump_right.png"),
-									 jumping2Right = love.graphics.newImage("images/ryu_down_jump_right.png"),
-									 jumping3Right = love.graphics.newImage("images/ryu_left_jump_right.png"),
-									 jumping4Right = love.graphics.newImage("images/ryu_up_jump_right.png"),
-									 jumping1Left = love.graphics.newImage("images/ryu_right_jump_left.png"),
-									 jumping2Left = love.graphics.newImage("images/ryu_down_jump_left.png"),
-									 jumping3Left = love.graphics.newImage("images/ryu_left_jump_left.png"),
-									 jumping4Left = love.graphics.newImage("images/ryu_up_jump_left.png"),
-									 attacking1Right = love.graphics.newImage("images/ryu_attack_begin_right.png"),
-									 attacking2Right = love.graphics.newImage("images/ryu_attack_middle_right.png"),
-									 attacking3Right = love.graphics.newImage("images/ryu_attack_end_right.png"),
-									 attacking1Left = love.graphics.newImage("images/ryu_attack_begin_left.png"),
-									 attacking2Left = love.graphics.newImage("images/ryu_attack_middle_left.png"),
-									 attacking3Left = love.graphics.newImage("images/ryu_attack_end_left.png"),
-									 fallingRight = love.graphics.newImage("images/ryu_falling_attack_begin_right.png"),
-									 fallingLeft = love.graphics.newImage("images/ryu_falling_attack_begin_left.png"),
-									 fallingAttack1Right = love.graphics.newImage("images/ryu_falling_attack_middle_right.png"),
-									 fallingAttack2Right = love.graphics.newImage("images/ryu_falling_attack_end_right.png"),
-									 fallingAttack1Left = love.graphics.newImage("images/ryu_falling_attack_middle_left.png"),
-									 fallingAttack2Left = love.graphics.newImage("images/ryu_falling_attack_end_left.png")
+	 self.images = { standing = love.graphics.newImage("images/ryu_stand.png"),
+									 running1 = love.graphics.newImage("images/ryu_running_1.png"),
+									 running2 = love.graphics.newImage("images/ryu_running_2.png"),
+									 running3 = love.graphics.newImage("images/ryu_running_3.png"),
+									 ducking = love.graphics.newImage("images/ryu_ducking.png"),
+									 jumping1 = love.graphics.newImage("images/ryu_right_jump.png"),
+									 jumping2 = love.graphics.newImage("images/ryu_down_jump.png"),
+									 jumping3 = love.graphics.newImage("images/ryu_left_jump.png"),
+									 jumping4 = love.graphics.newImage("images/ryu_up_jump.png"),
+									 attacking1 = love.graphics.newImage("images/ryu_attack_begin.png"),
+									 attacking2 = love.graphics.newImage("images/ryu_attack_middle.png"),
+									 attacking3 = love.graphics.newImage("images/ryu_attack_end.png"),
+									 falling = love.graphics.newImage("images/ryu_falling_attack_begin.png"),
+									 fallingAttack1 = love.graphics.newImage("images/ryu_falling_attack_middle.png"),
+									 fallingAttack2 = love.graphics.newImage("images/ryu_falling_attack_end.png")
 	 }
 
 end
@@ -65,14 +48,8 @@ end
 function NinjaAnimations:attackFallingAnimation()
 	 if self.timer == 5 then
 	 		self.currentImage = 'fallingAttack2'
-	 		if self.direction == LEFT then
-				 self.ninja.x = self.ninja.x + 27
-	 		end
 	 elseif self.timer == 9 then
 	 		self.ninja.isAttacking = false
-	 		if self.direction == LEFT then
-				 self.wasAttackFallingLeft = true
-	 		end
 			self.currentImage = '' -- to force fall not return early
 			self:fall()
 	 end
@@ -84,19 +61,10 @@ function NinjaAnimations:attackingAnimation()
 			self.currentImage = 'attacking1'
 	 elseif self.timer == 5 then
 	 		self.currentImage = 'attacking2'
-			if self.direction == LEFT then
-				 self.ninja.x = self.ninja.x - 62
-	 		end
 	 elseif self.timer == 9 then
 	 		self.currentImage = 'attacking3'
-	 		if self.direction == LEFT then
-	 			 self.ninja.x = self.ninja.x + 24
-	 		end
 	 elseif self.timer > 12 then
 	 		self.ninja.isAttacking = false
-	 		if self.direction == LEFT then
-				 self.wasAttackingLeft = true
-	 		end
 
 			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
 				 self.currentImage = 'standing'
@@ -164,13 +132,7 @@ function NinjaAnimations:isMovingLeft()
 end
 
 function NinjaAnimations:getCurrentImage()
-	 local image = self.currentImage
-	 if self.direction == LEFT then
-			image = image .. 'Left'
-	 else
-			image = image .. 'Right'
-	 end
-	 return self.images[image]
+	 return self.images[self.currentImage]
 end
 
 function NinjaAnimations:stand()
@@ -210,9 +172,6 @@ function NinjaAnimations:attack()
 
 	 if self:isFalling() or self:isJumping() then
 			self.currentImage = 'fallingAttack1'
-			if self.direction == LEFT then
-				 self.ninja.x = self.ninja.x - 57
-	 		end
 	 else
 			self.currentImage = 'attacking1'
 	 end
@@ -255,16 +214,6 @@ end
 
 function NinjaAnimations:correctAdjustments()
 	 self:stopDucking()
-	 if self.wasAttackingLeft then
-			self.ninja.x = self.ninja.x + 38
-			self.wasAttackingLeft = false
-	 end
-	 
-	 if self.wasAttackFallingLeft then
-			self.ninja.x = self.ninja.x + 30
-			self.wasAttackFallingLeft = false
-	 end
-			
 end
 
 function NinjaAnimations:stopDucking()
