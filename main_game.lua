@@ -34,7 +34,7 @@ function MainGame:update()
 			enemy:update()
 	 end
 
-	 if self.stage.screenScrollX == 4 then
+	 if self.ninja.x == 585 then
 			table.insert(self.enemies, Hunchback(1050, 450, LEFT))
 	 end
 end

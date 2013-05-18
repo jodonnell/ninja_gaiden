@@ -8,17 +8,21 @@ function Hunchback:init(x, y, direction)
 	 self.direction = direction
 
 	 self.images = { 
-			walk1Right = love.graphics.newImage("images/hunchback_walk1_right.png"),
-			walk2Right = love.graphics.newImage("images/hunchback_walk2_right.png"),
-			walk1Left = love.graphics.newImage("images/hunchback_walk1_left.png"),
-			walk2Left = love.graphics.newImage("images/hunchback_walk2_left.png")
+			walk1 = love.graphics.newImage("images/hunchback_walk1.png"),
+			walk2 = love.graphics.newImage("images/hunchback_walk2.png")
 	 }
-	 self.currentImage = self.images['walk1Left']
+	 self.currentImage = self.images['walk1']
 	 self.timer = 0
 end
 
 function Hunchback:draw()
-	 love.graphics.draw(self:getCurrentImage(), self.x, self.y)
+	 local image = self:getCurrentImage()
+	 local imageWidth = image:getWidth()
+	 if self.direction == LEFT then
+			love.graphics.draw(image, self.x + imageWidth, self.y, 0, -1, 1)
+	 else
+			love.graphics.draw(image, self.x, self.y)
+	 end
 end
 
 function Hunchback:update()
@@ -26,9 +30,9 @@ function Hunchback:update()
 
 	 self.timer = self.timer + 1
 	 if self.timer == 10 then
-			self.currentImage = self.images['walk2Left']
+			self.currentImage = self.images['walk2']
 	 elseif self.timer == 20 then
-			self.currentImage = self.images['walk1Left']
+			self.currentImage = self.images['walk1']
 			self.timer = 0
 	 end
 end
