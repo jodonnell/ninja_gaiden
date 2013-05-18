@@ -7,13 +7,13 @@ function setup()
 end
 
 function test_hunchback_animates()
-   assert_equal(hunchback.images['walk1Left'], hunchback:getCurrentImage())
+   assert_equal(hunchback.images['walk1'], hunchback:getCurrentImage())
 
 	 update(hunchback, 10)
-   assert_equal(hunchback.images['walk2Left'], hunchback:getCurrentImage())
+   assert_equal(hunchback.images['walk2'], hunchback:getCurrentImage())
 
 	 update(hunchback, 10)
-   assert_equal(hunchback.images['walk1Left'], hunchback:getCurrentImage())
+   assert_equal(hunchback.images['walk1'], hunchback:getCurrentImage())
 end
 
 function test_hunchback_moves_left()

@@ -29,8 +29,12 @@ function NinjaAnimations:init(ninja)
 									 fallingAttack2 = love.graphics.newImage("images/ryu_falling_attack_end.png")
 	 }
 
-	 self.normalWidth = self.images['standing']:getWidth()
+	 self.normalWidth = self:getNormalWidth()
 
+end
+
+function NinjaAnimations:getNormalWidth()
+	 return self.images['standing']:getWidth()
 end
 
 function NinjaAnimations:changeAnimation()

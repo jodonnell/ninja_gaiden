@@ -2,6 +2,10 @@ module(..., package.seeall)
 
 function setup()
 	 love.graphics.newImage = function(path) return path end
+	 function NinjaAnimations:getNormalWidth()
+			return 20
+	 end
+
    mainGame = MainGame()
 	 mainGame:load()
 end
@@ -30,26 +34,12 @@ function test_ninja_jump_attack_and_move_right()
 end
 
 function test_enemy_appears_at_when_scrolling()
-	 mainGame.ninja.x = love.graphics.getWidth() / 2
+	 mainGame.ninja.x = 581
 	 mainGame.ninja.rightPressed = true
    assert_equal(0, #mainGame.enemies, 'No enemies')
 
 	 mainGame:update()
    assert_equal(1, #mainGame.enemies, 'One enemy')
-end
-
-function test_enemy_moves_relative_to_stage()
-	 love.graphics.draw = function() return  end
-
-	 mainGame.ninja.x = love.graphics.getWidth() / 2
-	 mainGame.ninja.rightPressed = true
-
-	 mainGame:update()
-
-	 advanceDraw(1040)
-	 advanceDraw(1034)
-	 mainGame.ninja.rightPressed = false
-	 advanceDraw(1032)
 end
 
 function advanceDraw(newX)
