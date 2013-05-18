@@ -1,0 +1,3 @@
+* Ninja
+** Bugs
+*** Holding down while jumping makes you duck in the wrong spot
