@@ -141,9 +141,26 @@ end
 
 function Ninja:draw()
 	 local image = self:getCurrentImage()
+
+	 local x = self.x
+	 local y = self.y
+	 local rotation = 0
+	 local scaleX = 1
+	 local scaleY = 1
+
 	 if self.animations.direction == LEFT then
-			love.graphics.draw(image, self.x + image:getWidth(), self.y, 0, -1, 1)
-	 else
-			love.graphics.draw(image, self.x, self.y)
+			local imageWidth = image:getWidth()
+			x = self.x + imageWidth - self:getOffset(imageWidth)
+			scaleX = -1
 	 end
+
+	 love.graphics.draw(image, x, y, rotation, scaleX, scaleY)
+end
+
+function Ninja:getOffset(imageWidth)
+	 local offset = 0
+	 if imageWidth > self.animations.normalWidth then
+			offset = imageWidth - self.animations.normalWidth
+	 end
+	 return offset
 end
