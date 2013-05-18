@@ -16,11 +16,12 @@ function MainGame:load()
 end
 
 function MainGame:draw()
+	 self:moveCamera()
 	 self.stage:draw()
 	 self.ninja:draw()
 
 	 for i, enemy in ipairs(self.enemies) do
-			enemy:draw(self.stage.screenScrollX)
+			enemy:draw()
 	 end
 
 	 love.graphics.print("FPS: "..love.timer.getFPS(), 10, 10)
@@ -28,7 +29,6 @@ end
 
 function MainGame:update()
 	 self.ninja:update()
-	 self.stage:scrollScreen()
 
 	 for i, enemy in ipairs(self.enemies) do
 			enemy:update()
@@ -36,5 +36,15 @@ function MainGame:update()
 
 	 if self.stage.screenScrollX == 4 then
 			table.insert(self.enemies, Hunchback(1050, 450, LEFT))
+	 end
+end
+
+function MainGame:moveCamera()
+	 local middleOfScreen = love.graphics.getWidth() / 2
+
+	 if self.ninja.x > self.stage.endOfStageX - middleOfScreen then
+			love.graphics.translate(-(self.stage.endOfStageX - middleOfScreen * 2), 0)
+	 elseif self.ninja.x > middleOfScreen then
+			love.graphics.translate(-self.ninja.x + middleOfScreen, 0)
 	 end
 end

@@ -122,10 +122,12 @@ function Ninja:isMovingLeft()
 end
 
 function Ninja:moveRight()
+	 self.x = self.x + 4
 	 self.animations:runRight()
 end
 
 function Ninja:moveLeft()
+	 self.x = self.x - 4
 	 self.animations:runLeft()
 end
 
