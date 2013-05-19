@@ -2,6 +2,7 @@ require 'class'
 require 'ninja'
 require 'hunchback'
 require 'stage'
+require 'explosion'
 require 'constants'
 
 MainGame = class()
@@ -13,12 +14,17 @@ function MainGame:load()
 	 self.ninja = Ninja()
 	 self.stage = Stage(self.ninja)
 	 self.enemies = {}
+	 self.explosions = {}
 end
 
 function MainGame:draw()
 	 self:moveCamera()
 	 self.stage:draw()
 	 self.ninja:draw()
+
+	 for i, explosion in ipairs(self.explosions) do
+			explosion:draw()
+	 end
 
 	 for i, enemy in ipairs(self.enemies) do
 			enemy:draw()
@@ -29,6 +35,13 @@ end
 
 function MainGame:update()
 	 self.ninja:update()
+
+	 for i, explosion in ipairs(self.explosions) do
+			explosion:update()
+			if explosion:isExplosionFinished() then
+				 table.remove(self.explosions, i)
+			end
+	 end
 
 	 for i, enemy in ipairs(self.enemies) do
 			enemy:update()
@@ -41,6 +54,7 @@ function MainGame:update()
 			if self.ninja.isAttacking then
 				 local collision = self:checkCollisionsBetweenSwordAndSprite(enemy)
 				 if collision then
+						table.insert(self.explosions, Explosion(enemy.x, enemy.y))
 						table.remove(self.enemies, i)
 				 end
 				 

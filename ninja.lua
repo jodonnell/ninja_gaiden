@@ -6,6 +6,7 @@ Ninja = class(Sprite)
 
 function Ninja:init()
 	 self.animations = NinjaAnimations(self)
+	 self.normalWidth = self:getWidth()
 
 	 self.x = 105
 	 self.y = 150
@@ -173,8 +174,8 @@ end
 
 function Ninja:getOffset(imageWidth)
 	 local offset = 0
-	 if imageWidth > self.animations.normalWidth then
-			offset = imageWidth - self.animations.normalWidth
+	 if imageWidth > self.normalWidth then
+			offset = imageWidth - self.normalWidth
 	 end
 	 return offset
 end
@@ -219,9 +220,9 @@ end
 function Ninja:getSwordBoundingBox()
 	 local x = self.x
 	 if self.animations.direction == LEFT then
-			x = x - self.animations.normalWidth
+			x = x - self.normalWidth
 	 else
-			x = x + self.animations.normalWidth
+			x = x + self.normalWidth
 	 end
 	 return x, self.y, self:getWidth(), self:getHeight()
 end
@@ -231,9 +232,9 @@ function Ninja:getBoundingBox()
 	 local x = self.x
 	 if self.isAttacking then
 			if self.animations.direction == LEFT then
-				 x = width - self.animations.normalWidth
+				 x = width - self.normalWidth
 			end
-			width = self.animations.normalWidth
+			width = self.normalWidth
 	 end
 	 return x, self.y, width, self:getHeight()
 end

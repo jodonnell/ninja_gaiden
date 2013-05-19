@@ -2,9 +2,6 @@ module(..., package.seeall)
 
 function setup()
 	 love.graphics.newImage = function(path) return path end
-	 function NinjaAnimations:getNormalWidth()
-			return 20
-	 end
 
    ninja = Ninja()
 	 ninja.y = 450

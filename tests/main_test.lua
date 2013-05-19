@@ -2,9 +2,6 @@ module(..., package.seeall)
 
 function setup()
 	 love.graphics.newImage = function(path) return path end
-	 function NinjaAnimations:getNormalWidth()
-			return 20
-	 end
 
    mainGame = MainGame()
 	 mainGame:load()
@@ -63,25 +60,13 @@ function test_ninja_can_hit_enemy()
 end
 
 function test_ninja_can_kill_enemy()
-	 function Ninja:getWidth()
-			return 50
-	 end
-	 function Ninja:getHeight()
-			return 20
-	 end
-	 function Hunchback:getWidth()
-			return 30
-	 end
-	 function Hunchback:getHeight()
-			return 20
-	 end
-
-	 mainGame.ninja.x = 400
+	 mainGame.ninja.x = 420
 	 table.insert(mainGame.enemies, Hunchback(435, mainGame.ninja.y, LEFT))
 
 	 mainGame.ninja.isAttacking = true
 	 mainGame:update()
-   assert_equal(0, #mainGame.enemies, 'No enemies')
+   assert_equal(0, #mainGame.enemies, 'Enemy did not disappear')
+   assert_equal(1, #mainGame.explosions, 'No explosions')
 end
 
 function advanceDraw(newX)
