@@ -35,7 +35,7 @@ function MainGame:update()
 	 end
 
 	 if self.ninja.x == 585 then
-			table.insert(self.enemies, Hunchback(1050, 450, LEFT))
+			table.insert(self.enemies, Hunchback(1050, 457, LEFT))
 	 end
 end
 
