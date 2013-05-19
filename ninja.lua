@@ -215,3 +215,25 @@ function Ninja:gotHurt()
 	 self.isHurt = true
 	 self.timer = 0
 end
+
+function Ninja:getSwordBoundingBox()
+	 local x = self.x
+	 if self.animations.direction == LEFT then
+			x = x - self.animations.normalWidth
+	 else
+			x = x + self.animations.normalWidth
+	 end
+	 return x, self.y, self:getWidth(), self:getHeight()
+end
+
+function Ninja:getBoundingBox()
+	 local width = self:getWidth()
+	 local x = self.x
+	 if self.isAttacking then
+			if self.animations.direction == LEFT then
+				 x = width - self.animations.normalWidth
+			end
+			width = self.animations.normalWidth
+	 end
+	 return x, self.y, width, self:getHeight()
+end

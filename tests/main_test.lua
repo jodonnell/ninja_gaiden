@@ -50,7 +50,7 @@ function test_ninja_can_hit_enemy()
 			return 20
 	 end
 	 function Hunchback:getWidth()
-			return 20
+			return 30
 	 end
 	 function Hunchback:getHeight()
 			return 20
@@ -60,6 +60,28 @@ function test_ninja_can_hit_enemy()
 	 table.insert(mainGame.enemies, Hunchback(400, mainGame.ninja.y, LEFT))
 	 mainGame:update()
 	 assert_true(mainGame.ninja.isHurt)
+end
+
+function test_ninja_can_kill_enemy()
+	 function Ninja:getWidth()
+			return 50
+	 end
+	 function Ninja:getHeight()
+			return 20
+	 end
+	 function Hunchback:getWidth()
+			return 30
+	 end
+	 function Hunchback:getHeight()
+			return 20
+	 end
+
+	 mainGame.ninja.x = 400
+	 table.insert(mainGame.enemies, Hunchback(435, mainGame.ninja.y, LEFT))
+
+	 mainGame.ninja.isAttacking = true
+	 mainGame:update()
+   assert_equal(0, #mainGame.enemies, 'No enemies')
 end
 
 function advanceDraw(newX)

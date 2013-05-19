@@ -33,13 +33,19 @@ function MainGame:update()
 	 for i, enemy in ipairs(self.enemies) do
 			enemy:update()
 			
-			local collision = self:checkCollision(self.ninja, enemy)
+			local collision = self:checkCollisionsBetweenSprites(self.ninja, enemy)
 			if collision then
 				 self.ninja:gotHurt()
 			end
+
+			if self.ninja.isAttacking then
+				 local collision = self:checkCollisionsBetweenSwordAndSprite(enemy)
+				 if collision then
+						table.remove(self.enemies, i)
+				 end
+				 
+			end
 	 end
-
-
 
 	 if self.ninja.x == 585 then
 			table.insert(self.enemies, Hunchback(1050, 457, LEFT))
@@ -56,9 +62,19 @@ function MainGame:moveCamera()
 	 end
 end
 
-function MainGame:checkCollision(obj1, obj2)
-	 local ax1, ay1, aw, ah = obj1:getBoundingBox()
-	 local bx1, by1, bw, bh = obj2:getBoundingBox()
+function MainGame:checkCollisionsBetweenSwordAndSprite(obj2)
+	 local ax, ay, aw, ah = self.ninja:getSwordBoundingBox()
+	 local bx, by, bw, bh = obj2:getBoundingBox()
+	 return self:checkCollision(ax, ay, aw, ah, bx, by, bw, bh)
+end
+
+function MainGame:checkCollisionsBetweenSprites(obj1, obj2)
+	 local ax, ay, aw, ah = obj1:getBoundingBox()
+	 local bx, by, bw, bh = obj2:getBoundingBox()
+	 return self:checkCollision(ax, ay, aw, ah, bx, by, bw, bh)
+end
+
+function MainGame:checkCollision(ax1, ay1, aw, ah, bx1, by1, bw, bh)
 	 local ax2,ay2,bx2,by2 = ax1 + aw, ay1 + ah, bx1 + bw, by1 + bh
 	 return ax1 < bx2 and ax2 > bx1 and ay1 < by2 and ay2 > by1
 end
