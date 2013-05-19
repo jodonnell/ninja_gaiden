@@ -37,6 +37,11 @@ function MainGame:update()
 	 if self.ninja.x == 585 then
 			table.insert(self.enemies, Hunchback(1050, 457, LEFT))
 	 end
+
+	 if self.ninja.x == 581 then
+			self.ninja:gotHurt()
+	 end
+
 end
 
 function MainGame:moveCamera()

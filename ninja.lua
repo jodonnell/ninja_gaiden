@@ -14,6 +14,7 @@ function Ninja:init()
 	 self.downPressed = false
 	 self.jumpPressed = false
 	 self.isAttacking = false
+	 self.isHurt = false
 
 	 self.timer = 0
 end
@@ -22,6 +23,10 @@ function Ninja:update()
 	 self:move()
 
 	 self.animations:changeAnimation()
+
+	 if self.isHurt then
+			self:hurt()
+	 end
 
 	 if self:isFalling() then
 			self:fall()
@@ -39,7 +44,7 @@ function Ninja:update()
 			self:duck()
 	 end
 
-	 if self:standing() then
+	 if self:isStanding() then
 			self:stand()
 	 end
 end
@@ -48,12 +53,16 @@ function Ninja:isDucking()
 	 return self.downPressed and self:canDuck()
 end
 
-function Ninja:standing()
-	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self:isDucking() or self:isFalling())
+function Ninja:isStanding()
+	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self:isDucking() or self:isFalling() or self.isHurt)
 end
 
 function Ninja:canDuck()
-	 return not (self.leftPressed or self.rightPressed or self:isJumping())
+	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self.isHurt)
+end
+
+function Ninja:canJump()
+	 return not (self:isFalling() or self.isHurt)
 end
 
 function Ninja:duck()
@@ -68,8 +77,12 @@ function Ninja:attack()
 	 self.animations:attack()
 end
 
+function Ninja:canAttack()
+	 return not (self.isHurt)
+end
+
 function Ninja:isFalling()
-	 return self.y < 450 and self.jumpPressed == false
+	 return self.y < 450 and self.jumpPressed == false and self.isHurt == false
 end
 
 function Ninja:getCurrentImage()
@@ -110,7 +123,7 @@ function Ninja:move()
 end
 
 function Ninja:isMovingRight()
-	 return self.rightPressed and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
+	 return self.rightPressed and self.isHurt == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
 end
 
 function Ninja:isAttackingFromGround()
@@ -118,7 +131,7 @@ function Ninja:isAttackingFromGround()
 end
 
 function Ninja:isMovingLeft()
-	 return self.leftPressed and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
+	 return self.leftPressed and self.isHurt == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
 end
 
 function Ninja:moveRight()
@@ -163,4 +176,27 @@ function Ninja:getOffset(imageWidth)
 			offset = imageWidth - self.animations.normalWidth
 	 end
 	 return offset
+end
+
+function Ninja:hurt()
+	 self.timer = self.timer + 1
+
+	 if self.timer <= 20 then
+			self.y = self.y - 4
+			self.x = self.x - 4
+	 elseif self.timer <= 40 then
+			self.y = self.y + 4
+			self.x = self.x - 4
+	 else
+			self.timer = 0
+			self.isHurt = false
+	 end
+
+	 self.animations:hurt()
+end
+
+function Ninja:gotHurt()
+	 self.jumpPressed = false
+	 self.isHurt = true
+	 self.timer = 0
 end

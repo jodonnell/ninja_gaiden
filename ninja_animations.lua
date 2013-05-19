@@ -10,7 +10,6 @@ function NinjaAnimations:init(ninja)
 	 self.ninja = ninja
 
 	 self.wasDucking = false
-	 self.queuedAnimation = 'falling'
 
 	 self.images = { standing = love.graphics.newImage("images/ryu_stand.png"),
 									 running1 = love.graphics.newImage("images/ryu_running_1.png"),
@@ -26,7 +25,8 @@ function NinjaAnimations:init(ninja)
 									 attacking3 = love.graphics.newImage("images/ryu_attack_end.png"),
 									 falling = love.graphics.newImage("images/ryu_falling_attack_begin.png"),
 									 fallingAttack1 = love.graphics.newImage("images/ryu_falling_attack_middle.png"),
-									 fallingAttack2 = love.graphics.newImage("images/ryu_falling_attack_end.png")
+									 fallingAttack2 = love.graphics.newImage("images/ryu_falling_attack_end.png"),
+									 hurt = love.graphics.newImage("images/ryu_hurt.png"),
 	 }
 
 	 self.normalWidth = self:getNormalWidth()
@@ -143,7 +143,6 @@ end
 
 function NinjaAnimations:stand()
 	 if self:isAttacking() then
-			self.queuedAnimation = 'standing'
 			return
 	 end
 
@@ -153,7 +152,6 @@ end
 
 function NinjaAnimations:fall()
 	 if self:isFalling() or self:isAttackFalling() then
-			self.queuedAnimation = 'falling'
 			return
 	 end
 
@@ -194,9 +192,13 @@ function NinjaAnimations:duck()
 	 end
 end
 
+function NinjaAnimations:hurt()
+	 self.currentImage = 'hurt'
+	 self:correctAdjustments()
+end
+
 function NinjaAnimations:runRight()
 	 if self:isMovingRight() or self:isJumping() or self:isAttackFalling() then
-			self.queuedAnimation = 'running1'
 			return
 	 end
 
@@ -208,7 +210,6 @@ end
 
 function NinjaAnimations:runLeft()
 	 if self:isMovingLeft() or self:isJumping() or self:isAttackFalling() then
-			self.queuedAnimation = 'running1'
 			return
 	 end
 

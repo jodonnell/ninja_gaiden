@@ -23,6 +23,11 @@ function test_stand_animation()
    assert_equal(animations.images['standing'], animations:getCurrentImage())
 end
 
+function test_hurt_animation()
+	 animations:hurt()
+   assert_equal(animations.images['hurt'], animations:getCurrentImage())
+end
+
 function test_duck_animation()
 	 animations:duck()
    assert_equal(animations.images['ducking'], animations:getCurrentImage())

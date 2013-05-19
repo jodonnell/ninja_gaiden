@@ -1,3 +1,11 @@
 * Ninja
 ** Bugs
 *** Holding down while jumping makes you duck in the wrong spot
+** features
+*** duck attack
+*** get hurt
+*** kill enemy
+*** climb
+*** land on things
+** tech debt
+*** fix up test suite
