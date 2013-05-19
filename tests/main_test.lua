@@ -44,7 +44,7 @@ end
 
 function test_ninja_can_hit_enemy()
 	 function Ninja:getWidth()
-			return 20
+			return 30
 	 end
 	 function Ninja:getHeight()
 			return 20
