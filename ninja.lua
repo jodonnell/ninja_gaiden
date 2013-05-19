@@ -17,14 +17,23 @@ function Ninja:init()
 	 self.jumpPressed = false
 	 self.isAttacking = false
 	 self.isHurt = false
+	 self.isInvincible = false
 
 	 self.timer = 0
+	 self.invincibilityTimer = 0
 end
 
 function Ninja:update()
 	 self:move()
 
 	 self.animations:changeAnimation()
+
+	 if self.isInvincible then
+			self.invincibilityTimer = self.invincibilityTimer + 1
+			if self.invincibilityTimer > 80 then
+				 self.isInvincible = false
+			end
+	 end
 
 	 if self.isHurt then
 			self:hurt()
@@ -169,7 +178,10 @@ function Ninja:draw()
 			scaleX = -1
 	 end
 
-	 love.graphics.draw(image, x, y, rotation, scaleX, scaleY)
+	 if self.isInvincible and (self.invincibilityTimer % 2) == 0 then
+	 else
+			love.graphics.draw(image, x, y, rotation, scaleX, scaleY)
+	 end
 end
 
 function Ninja:getOffset(imageWidth)
@@ -214,6 +226,8 @@ function Ninja:gotHurt()
 	 self.jumpPressed = false
 	 self.isAttacking = false
 	 self.isHurt = true
+	 self.isInvincible = true
+	 self.invincibilityTimer = 0
 	 self.timer = 0
 end
 

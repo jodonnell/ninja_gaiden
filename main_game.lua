@@ -46,9 +46,11 @@ function MainGame:update()
 	 for i, enemy in ipairs(self.enemies) do
 			enemy:update()
 			
-			local collision = self:checkCollisionsBetweenSprites(self.ninja, enemy)
-			if collision then
-				 self.ninja:gotHurt()
+			if not self.ninja.isInvincible then
+				 local collision = self:checkCollisionsBetweenSprites(self.ninja, enemy)
+				 if collision then
+						self.ninja:gotHurt()
+				 end
 			end
 
 			if self.ninja.isAttacking then

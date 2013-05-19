@@ -40,23 +40,18 @@ function test_enemy_appears_at_when_scrolling()
 end
 
 function test_ninja_can_hit_enemy()
-	 function Ninja:getWidth()
-			return 30
-	 end
-	 function Ninja:getHeight()
-			return 20
-	 end
-	 function Hunchback:getWidth()
-			return 30
-	 end
-	 function Hunchback:getHeight()
-			return 20
-	 end
-
 	 mainGame.ninja.x = 400
 	 table.insert(mainGame.enemies, Hunchback(400, mainGame.ninja.y, LEFT))
 	 mainGame:update()
 	 assert_true(mainGame.ninja.isHurt)
+end
+
+function test_ninja_cannot_hit_enemy_if_invincible()
+	 mainGame.ninja.x = 400
+	 mainGame.ninja.isInvincible = true
+	 table.insert(mainGame.enemies, Hunchback(400, mainGame.ninja.y, LEFT))
+	 mainGame:update()
+	 assert_false(mainGame.ninja.isHurt)
 end
 
 function test_ninja_can_kill_enemy()

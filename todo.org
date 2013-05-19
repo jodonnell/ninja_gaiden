@@ -5,9 +5,11 @@
 *** duck attack
 *** get hurt
 **** need to make bounce the other way
-**** need to make temporarily invincible
+**** DONE need to make temporarily invincible
 *** DONE kill enemy
 *** climb
 *** land on things
+*** enemies
+**** only one enemy should appear when you hit a certain point
 ** tech debt
 *** DONE fix up test suite

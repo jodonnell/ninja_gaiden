@@ -77,3 +77,12 @@ function test_ninja_stops_jumping_and_attacking_when_hurt()
 	 assert_false(ninja.jumpPressed)
 	 assert_false(ninja.isAttacking)
 end
+
+function test_ninja_becomes_invincible_when_hurt()
+	 ninja:gotHurt()
+	 ninja:update()
+	 assert_true(ninja.isInvincible)
+
+	 update(ninja, 80)
+	 assert_false(ninja.isInvincible)
+end
