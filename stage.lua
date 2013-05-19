@@ -13,5 +13,4 @@ end
 
 function Stage:draw()
 	 love.graphics.draw(self.image, -self.screenScrollX, 128)
-	 love.graphics.print("scroll: "..self.screenScrollX, 10, 30)
 end

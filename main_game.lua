@@ -24,7 +24,7 @@ function MainGame:draw()
 			enemy:draw()
 	 end
 
-	 love.graphics.print("FPS: "..love.timer.getFPS(), 10, 10)
+	 love.graphics.print("FPS: "..love.timer.getFPS(), -(self:getCameraX()) + 10, 10)
 end
 
 function MainGame:update()
@@ -53,13 +53,18 @@ function MainGame:update()
 end
 
 function MainGame:moveCamera()
-	 local middleOfScreen = love.graphics.getWidth() / 2
+	 love.graphics.translate(self:getCameraX(), 0)
+end
 
+function MainGame:getCameraX()
+	 local middleOfScreen = love.graphics.getWidth() / 2
+	 local x = 0
 	 if self.ninja.x > self.stage.endOfStageX - middleOfScreen then
-			love.graphics.translate(-(self.stage.endOfStageX - middleOfScreen * 2), 0)
+			x = -(self.stage.endOfStageX - middleOfScreen * 2)
 	 elseif self.ninja.x > middleOfScreen then
-			love.graphics.translate(-self.ninja.x + middleOfScreen, 0)
+			x = -self.ninja.x + middleOfScreen
 	 end
+	 return x
 end
 
 function MainGame:checkCollisionsBetweenSwordAndSprite(obj2)
