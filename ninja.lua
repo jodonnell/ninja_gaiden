@@ -181,22 +181,36 @@ end
 function Ninja:hurt()
 	 self.timer = self.timer + 1
 
-	 if self.timer <= 20 then
+	 if self.timer <= 5 then
+			self.y = self.y - 6
+	 elseif self.timer <= 10 then
 			self.y = self.y - 4
-			self.x = self.x - 4
-	 elseif self.timer <= 40 then
-			self.y = self.y + 4
-			self.x = self.x - 4
-	 else
+	 elseif self.timer <= 15 then
+			self.y = self.y - 2
+	 elseif self.timer <= 20 then
+			-- self.y = self.y 
+	 elseif self.y > 450 then
 			self.timer = 0
 			self.isHurt = false
+			return
+	 elseif self.timer <= 25 then
+			self.y = self.y + 2
+	 elseif self.timer <= 30 then
+			self.y = self.y + 4
+	 elseif self.timer <= 35 then
+			self.y = self.y + 6
+	 else
+			self.y = self.y + 10
 	 end
+
+	 self.x = self.x - 4
 
 	 self.animations:hurt()
 end
 
 function Ninja:gotHurt()
 	 self.jumpPressed = false
+	 self.isAttacking = false
 	 self.isHurt = true
 	 self.timer = 0
 end

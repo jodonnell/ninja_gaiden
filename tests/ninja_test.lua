@@ -72,9 +72,11 @@ function test_ninja_can_not_take_any_other_actions_when_hurt()
 	 assert_false(ninja:isMovingLeft())
 end
 
-function test_ninja_stops_jumping_when_hurt()
+function test_ninja_stops_jumping_and_attacking_when_hurt()
 	 ninja.jumpPressed = true
+	 ninja.isAttacking = true
 	 ninja:gotHurt()
 	 ninja:update()
 	 assert_false(ninja.jumpPressed)
+	 assert_false(ninja.isAttacking)
 end
