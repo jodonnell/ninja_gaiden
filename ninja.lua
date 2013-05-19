@@ -1,10 +1,11 @@
 require 'class'
 require 'ninja_animations'
+require 'sprite'
 
-Ninja = class()
+Ninja = class(Sprite)
 
 function Ninja:init()
-	 self.animations = NinjaAnimations(self);
+	 self.animations = NinjaAnimations(self)
 
 	 self.x = 105
 	 self.y = 150

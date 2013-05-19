@@ -42,6 +42,26 @@ function test_enemy_appears_at_when_scrolling()
    assert_equal(1, #mainGame.enemies, 'One enemy')
 end
 
+function test_ninja_can_hit_enemy()
+	 function Ninja:getWidth()
+			return 20
+	 end
+	 function Ninja:getHeight()
+			return 20
+	 end
+	 function Hunchback:getWidth()
+			return 20
+	 end
+	 function Hunchback:getHeight()
+			return 20
+	 end
+
+	 mainGame.ninja.x = 400
+	 table.insert(mainGame.enemies, Hunchback(400, mainGame.ninja.y, LEFT))
+	 mainGame:update()
+	 assert_true(mainGame.ninja.isHurt)
+end
+
 function advanceDraw(newX)
 	 mainGame.enemies[1].loveDraw = function(self, image, x, y) 
 	 		assert_equal(newX, x, 'Moved relatively 4')

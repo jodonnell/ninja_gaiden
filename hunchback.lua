@@ -1,6 +1,7 @@
 require 'class'
+require 'sprite'
 
-Hunchback = class()
+Hunchback = class(Sprite)
 
 function Hunchback:init(x, y, direction)
 	 self.x = x
@@ -37,6 +38,6 @@ function Hunchback:update()
 	 end
 end
 
-function Hunchback:getCurrentImage()
-	 return self.currentImage
+function Hunchback:getBoundingBox()
+	 return self.x + 30, self.y, self:getWidth() - 35, self:getHeight()
 end
