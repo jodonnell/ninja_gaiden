@@ -27,14 +27,18 @@ function NinjaAnimations:init(ninja)
 									 hurt = love.graphics.newImage("images/ryu_hurt.png"),
 									 duckingAttack1 = love.graphics.newImage("images/ryu_ducking_attack_begin.png"),
 									 duckingAttack2 = love.graphics.newImage("images/ryu_ducking_attack_middle.png"),
-									 duckingAttack3 = love.graphics.newImage("images/ryu_ducking_attack_end.png")
+									 duckingAttack3 = love.graphics.newImage("images/ryu_ducking_attack_end.png"),
+									 climbing1 = love.graphics.newImage("images/ryu_climb.png"),
+									 climbing2 = love.graphics.newImage("images/ryu_climb_arms.png")
 	 }
 end
 
 function NinjaAnimations:changeAnimation()
 	 self.timer = self.timer + 1
 
-	 if self:isAttacking() then
+	 if self:isClimbing() then
+			self:climbingAnimation()
+	 elseif self:isAttacking() then
 			self:attackingAnimation()
 	 elseif self:isAttackFalling() then
 			self:attackFallingAnimation()
@@ -44,6 +48,16 @@ function NinjaAnimations:changeAnimation()
 			self:runningAnimation()
 	 elseif self:isJumping() then
 			self:jumpingAnimation()
+	 end
+end
+
+function NinjaAnimations:climbingAnimation()
+	 if (self.timer % 5) == 0 then
+			if self.currentImage == 'climbing1' then
+				 self.currentImage = 'climbing2'
+			else
+				 self.currentImage = 'climbing1'
+			end
 	 end
 end
 
@@ -125,6 +139,10 @@ function NinjaAnimations:isAttacking()
 	 return self.currentImage == 'attacking1'
 			or self.currentImage == 'attacking2'
 			or self.currentImage == 'attacking3'
+end
+
+function NinjaAnimations:isClimbing()
+	 return self.currentImage == 'climbing1' or self.currentImage == 'climbing2'
 end
 
 function NinjaAnimations:isFalling()
@@ -217,6 +235,11 @@ function NinjaAnimations:duck()
 	 end
 
 	 self.currentImage = 'ducking'
+end
+
+function NinjaAnimations:climb()
+	 self.currentImage = 'climbing1'
+	 self.timer = 0
 end
 
 function NinjaAnimations:hurt()

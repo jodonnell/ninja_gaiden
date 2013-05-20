@@ -96,6 +96,18 @@ function test_ninja_moving_right_runs_animation()
 	 assert_equal(animations.images['running1'], animations:getCurrentImage())
 end
 
+function test_climbing_animation()
+	 animations:climb()
+	 assert_equal(animations.images['climbing1'], animations:getCurrentImage())
+	 
+	 advanceFrames(5)
+	 assert_equal(animations.images['climbing2'], animations:getCurrentImage())
+	 
+	 advanceFrames(5)
+	 assert_equal(animations.images['climbing1'], animations:getCurrentImage())
+end
+
+
 function advanceFrames(numFrames)
 	 for i=1, numFrames do
 			animations:changeAnimation()
