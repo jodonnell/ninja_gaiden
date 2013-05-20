@@ -9,8 +9,6 @@ function NinjaAnimations:init(ninja)
 	 self.direction = RIGHT;
 	 self.ninja = ninja
 
-	 self.wasDucking = false
-
 	 self.images = { standing = love.graphics.newImage("images/ryu_stand.png"),
 									 running1 = love.graphics.newImage("images/ryu_running_1.png"),
 									 running2 = love.graphics.newImage("images/ryu_running_2.png"),
@@ -66,8 +64,13 @@ function NinjaAnimations:attackDuckingAnimation()
 			self.currentImage = 'duckingAttack3'
 	 elseif self.timer > 12 then
 	 		self.ninja.isAttacking = false
-			-- self.currentImage = '' -- to force fall not return early
-			--self:fall()
+			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
+				 if self.ninja.downPressed then
+						self.currentImage = 'ducking'
+				 else
+						self.currentImage = 'standing'
+				 end
+			end
 	 end
 
 end
@@ -83,7 +86,11 @@ function NinjaAnimations:attackingAnimation()
 	 		self.ninja.isAttacking = false
 
 			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
-				 self.currentImage = 'standing'
+				 if self.ninja.downPressed then
+						self.currentImage = 'ducking'
+				 else
+						self.currentImage = 'standing'
+				 end
 			end
 	 end
 end
@@ -151,6 +158,10 @@ function NinjaAnimations:isMovingLeft()
 																			self.currentImage == 'running3')
 end
 
+function NinjaAnimations:isCrouched()
+	 return self:isDucking() or self:isAttackDucking()
+end
+
 function NinjaAnimations:isDucking()
 	 return self.currentImage == 'ducking'
 end
@@ -165,7 +176,6 @@ function NinjaAnimations:stand()
 	 end
 
 	 self.currentImage = 'standing'
-	 self:correctAdjustments()
 end
 
 function NinjaAnimations:fall()
@@ -174,7 +184,6 @@ function NinjaAnimations:fall()
 	 end
 
 	 self.currentImage = 'falling'
-	 self:correctAdjustments()
 end
 
 function NinjaAnimations:jump()
@@ -184,7 +193,6 @@ function NinjaAnimations:jump()
 
 	 self.timer = 0
 	 self.currentImage = 'jumping1'
-	 self:correctAdjustments()
 end
 
 function NinjaAnimations:attack()
@@ -201,7 +209,6 @@ function NinjaAnimations:attack()
 	 end
 
 	 self.timer = 0
-	 self:correctAdjustments()
 end
 
 function NinjaAnimations:duck()
@@ -210,15 +217,10 @@ function NinjaAnimations:duck()
 	 end
 
 	 self.currentImage = 'ducking'
-	 if self.wasDucking == false then
-			self.ninja.y = self.ninja.y + 20
-			self.wasDucking = true
-	 end
 end
 
 function NinjaAnimations:hurt()
 	 self.currentImage = 'hurt'
-	 self:correctAdjustments()
 end
 
 function NinjaAnimations:runRight()
@@ -229,7 +231,6 @@ function NinjaAnimations:runRight()
 	 self.currentImage = 'running1'
 	 self.timer = 0
 	 self.direction = RIGHT
-	 self:correctAdjustments()
 end
 
 function NinjaAnimations:runLeft()
@@ -240,17 +241,4 @@ function NinjaAnimations:runLeft()
 	 self.currentImage = 'running1'
 	 self.timer = 0
 	 self.direction = LEFT
-	 self:correctAdjustments()
-end
-
-function NinjaAnimations:correctAdjustments()
-	 self:stopDucking()
-end
-
-function NinjaAnimations:stopDucking()
-	 if self.wasDucking then
-			self.ninja.y = self.ninja.y - 20
-	 end
-
-	 self.wasDucking = false
 end

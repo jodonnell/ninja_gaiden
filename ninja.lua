@@ -178,8 +178,11 @@ function Ninja:draw()
 			scaleX = -1
 	 end
 
-	 if self.isInvincible and (self.invincibilityTimer % 2) == 0 then
-	 else
+	 if self.animations:isCrouched() then
+			y = y + 20
+	 end
+
+	 if not (self.isInvincible and (self.invincibilityTimer % 2) == 0) then
 			love.graphics.draw(image, x, y, rotation, scaleX, scaleY)
 	 end
 end
