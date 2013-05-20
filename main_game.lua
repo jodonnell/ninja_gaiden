@@ -49,7 +49,7 @@ function MainGame:update()
 			if not self.ninja.isInvincible then
 				 local collision = self:checkCollisionsBetweenSprites(self.ninja, enemy)
 				 if collision then
-						self.ninja:gotHurt()
+						self.ninja:gotHurt(self:collidedBounceLeft(enemy))
 				 end
 			end
 
@@ -98,4 +98,13 @@ end
 function MainGame:checkCollision(ax1, ay1, aw, ah, bx1, by1, bw, bh)
 	 local ax2,ay2,bx2,by2 = ax1 + aw, ay1 + ah, bx1 + bw, by1 + bh
 	 return ax1 < bx2 and ax2 > bx1 and ay1 < by2 and ay2 > by1
+end
+
+function MainGame:collidedBounceLeft(enemy)
+	 local ax, ay, aw, ah = self.ninja:getBoundingBox()
+	 local bx, by, bw, bh = enemy:getBoundingBox()
+	 if ax > bx + bw / 2 then
+			return true
+	 end
+	 return false
 end

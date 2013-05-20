@@ -1,10 +1,10 @@
 * Ninja
 ** Bugs
-*** Holding down while jumping makes you duck in the wrong spot
+*** DONE Holding down while jumping makes you duck in the wrong spot
 ** features
-*** duck attack
-*** get hurt
-**** need to make bounce the other way
+*** DONE duck attack
+*** DONE get hurt
+**** DONE need to make bounce the other way
 **** DONE need to make temporarily invincible
 *** DONE kill enemy
 *** climb

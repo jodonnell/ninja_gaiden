@@ -18,6 +18,7 @@ function Ninja:init()
 	 self.isAttacking = false
 	 self.isHurt = false
 	 self.isInvincible = false
+	 self.bouncesRight = false
 
 	 self.timer = 0
 	 self.invincibilityTimer = 0
@@ -205,10 +206,11 @@ function Ninja:hurt()
 	 elseif self.timer <= 15 then
 			self.y = self.y - 2
 	 elseif self.timer <= 20 then
-			-- self.y = self.y 
+
 	 elseif self.y > 450 then
 			self.timer = 0
 			self.isHurt = false
+			self.bouncesRight = false
 			return
 	 elseif self.timer <= 25 then
 			self.y = self.y + 2
@@ -220,18 +222,23 @@ function Ninja:hurt()
 			self.y = self.y + 10
 	 end
 
-	 self.x = self.x - 4
+	 if self.bouncesRight then
+			self.x = self.x + 4
+	 else
+			self.x = self.x - 4
+	 end
 
 	 self.animations:hurt()
 end
 
-function Ninja:gotHurt()
+function Ninja:gotHurt(bouncesRight)
 	 self.jumpPressed = false
 	 self.isAttacking = false
 	 self.isHurt = true
 	 self.isInvincible = true
 	 self.invincibilityTimer = 0
 	 self.timer = 0
+	 self.bouncesRight = bouncesRight
 end
 
 function Ninja:getSwordBoundingBox()

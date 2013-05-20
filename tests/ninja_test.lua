@@ -20,13 +20,6 @@ function test_ninja_lands_on_the_ground()
    assert_equal(450, ninja.y)
 end
 
-function test_ninja_duck_moves_y()
-	 ninja.downPressed = true
-	 ninja:update()
-	 ninja:update()
-   assert_equal(470, ninja.y)
-end
-
 function test_ninja_transitions_to_move_right_when_ducking()
 	 ninja.downPressed = true
 	 ninja:update()
@@ -46,6 +39,22 @@ function test_ninja_can_get_hurt()
 	 ninja.isHurt = true
 	 ninja:update()
 	 assert_lt(x, ninja.x)
+	 assert_lt(450, ninja.y)
+end
+
+function test_ninja_can_get_hurt()
+	 local x = ninja.x
+	 ninja:gotHurt()
+	 ninja:update()
+	 assert_lt(x, ninja.x)
+	 assert_lt(450, ninja.y)
+end
+
+function test_ninja_can_get_hurt_and_bounces_right()
+	 local x = ninja.x
+	 ninja:gotHurt(true)
+	 ninja:update()
+	 assert_gt(x, ninja.x)
 	 assert_lt(450, ninja.y)
 end
 
