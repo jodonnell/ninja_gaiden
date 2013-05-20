@@ -34,6 +34,8 @@ function love.keypressed(key, unicode)
 			main_game.ninja.rightPressed = true
 	 elseif key == 'left' then
 			main_game.ninja.leftPressed = true
+	 elseif key == 'up' then
+			main_game.ninja.upPressed = true
 	 elseif key == 'down' then
 			main_game.ninja.downPressed = true
 	 elseif key == 'q' and main_game.ninja:canJump() then
@@ -50,5 +52,7 @@ function love.keyreleased(key, unicode)
 			main_game.ninja.leftPressed = false
 	 elseif key == 'down' then
 			main_game.ninja.downPressed = false
+	 elseif key == 'up' then
+			main_game.ninja.upPressed = false
    end
 end

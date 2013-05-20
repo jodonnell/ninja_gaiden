@@ -95,3 +95,25 @@ function test_ninja_becomes_invincible_when_hurt()
 	 update(ninja, 80)
 	 assert_false(ninja.isInvincible)
 end
+
+function test_ninja_does_not_fall_when_climbing()
+	 ninja.y = 100
+	 ninja.isClimbing = true
+	 assert_false(ninja:isFalling())
+end
+
+function test_ninja_climbs_up()
+	 ninja.y = 100
+	 ninja.isClimbing = true
+	 ninja.upPressed = true
+	 ninja:update()
+	 assert_lt(100, ninja.y)
+end
+
+function test_ninja_climbs_down()
+	 ninja.y = 100
+	 ninja.isClimbing = true
+	 ninja.downPressed = true
+	 ninja:update()
+	 assert_gt(100, ninja.y)
+end

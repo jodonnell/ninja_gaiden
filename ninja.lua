@@ -14,11 +14,13 @@ function Ninja:init()
 	 self.rightPressed = false
 	 self.leftPressed = false
 	 self.downPressed = false
+	 self.upPressed = false
 	 self.jumpPressed = false
 	 self.isAttacking = false
 	 self.isHurt = false
 	 self.isInvincible = false
 	 self.bouncesRight = false
+	 self.isClimbing = false
 
 	 self.timer = 0
 	 self.invincibilityTimer = 0
@@ -38,6 +40,14 @@ function Ninja:update()
 
 	 if self.isHurt then
 			self:hurt()
+	 end
+
+	 if self.upPressed and self.isClimbing then
+			self.y = self.y - 4
+	 end
+
+	 if self.downPressed and self.isClimbing then
+			self.y = self.y + 4
 	 end
 
 	 if self:isFalling() then
@@ -66,11 +76,11 @@ function Ninja:isDucking()
 end
 
 function Ninja:isStanding()
-	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self:isDucking() or self:isFalling() or self.isHurt or self.animations:isAttackDucking())
+	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self:isDucking() or self:isFalling() or self.isHurt or self.animations:isAttackDucking() or self.isClimbing)
 end
 
 function Ninja:canDuck()
-	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self.isHurt or self:isFalling() or self.animations:isAttacking())
+	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self.isHurt or self:isFalling() or self.animations:isAttacking() or self.isClimbing)
 end
 
 function Ninja:canJump()
@@ -90,11 +100,11 @@ function Ninja:attack()
 end
 
 function Ninja:canAttack()
-	 return not (self.isHurt)
+	 return not (self.isHurt or self.isClimbing)
 end
 
 function Ninja:isFalling()
-	 return self.y < 450 and self.jumpPressed == false and self.isHurt == false
+	 return self.y < 450 and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
 end
 
 function Ninja:getCurrentImage()
@@ -135,7 +145,7 @@ function Ninja:move()
 end
 
 function Ninja:isMovingRight()
-	 return self.rightPressed and self.isHurt == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
+	 return self.rightPressed and self.isHurt == false and self.isClimbing == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
 end
 
 function Ninja:isAttackingFromGround()
@@ -143,7 +153,7 @@ function Ninja:isAttackingFromGround()
 end
 
 function Ninja:isMovingLeft()
-	 return self.leftPressed and self.isHurt == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
+	 return self.leftPressed and self.isHurt == false and self.isClimbing == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
 end
 
 function Ninja:moveRight()
@@ -154,6 +164,12 @@ end
 function Ninja:moveLeft()
 	 self.x = self.x - 4
 	 self.animations:runLeft()
+
+	 if self.x < 80 then
+			self.animations:climb()
+			self.isClimbing = true
+	 end
+
 end
 
 function Ninja:isAttacking()
