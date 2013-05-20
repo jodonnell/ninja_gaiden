@@ -2,10 +2,10 @@ require 'RMagick'
 include Magick
 
 $original_image = ImageList.new("ninjagaiden2sheet1.gif")
-def create_image image_name, x, y, w, h
+def create_image image_name, x, y, w, h, flop=false
   image = $original_image.crop(x, y, w, h)
   image = image.scale(2.7)
-
+  image = image.flop if flop
   image.write("#{image_name}.png")
 end
 
@@ -33,12 +33,12 @@ create_image "ryu_falling_special", 278, 41, 24, 31
 create_image "ryu_falling", 324, 40, 21, 31
 
 
-create_image "ryu_climb", 2, 81, 15, 31
-create_image "ryu_climb_arms", 23, 81, 15, 31
+create_image "ryu_climb", 2, 81, 15, 31, true
+create_image "ryu_climb_arms", 23, 81, 15, 31, true
 
-create_image "ryu_climb_special_begin", 59, 80, 15, 31
-create_image "ryu_climb_special_in_end", 79, 80, 21, 31
-create_image "ryu_climb_special_out_end", 143, 79, 31, 32
+create_image "ryu_climb_special_begin", 59, 80, 15, 31, true
+create_image "ryu_climb_special_in_end", 79, 80, 21, 31, true
+create_image "ryu_climb_special_out_end", 143, 79, 31, 32, true
 
 create_image "ryu_running_1", 207, 80, 20, 31
 create_image "ryu_running_2", 236, 80, 22, 31
