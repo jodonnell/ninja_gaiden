@@ -27,6 +27,9 @@ function NinjaAnimations:init(ninja)
 									 fallingAttack1 = love.graphics.newImage("images/ryu_falling_attack_middle.png"),
 									 fallingAttack2 = love.graphics.newImage("images/ryu_falling_attack_end.png"),
 									 hurt = love.graphics.newImage("images/ryu_hurt.png"),
+									 duckingAttack1 = love.graphics.newImage("images/ryu_ducking_attack_begin.png"),
+									 duckingAttack2 = love.graphics.newImage("images/ryu_ducking_attack_middle.png"),
+									 duckingAttack3 = love.graphics.newImage("images/ryu_ducking_attack_end.png")
 	 }
 end
 
@@ -37,6 +40,8 @@ function NinjaAnimations:changeAnimation()
 			self:attackingAnimation()
 	 elseif self:isAttackFalling() then
 			self:attackFallingAnimation()
+	 elseif self:isAttackDucking() then
+			self:attackDuckingAnimation()
 	 elseif self:isMovingRight() or self:isMovingLeft() then
 			self:runningAnimation()
 	 elseif self:isJumping() then
@@ -51,6 +56,18 @@ function NinjaAnimations:attackFallingAnimation()
 	 		self.ninja.isAttacking = false
 			self.currentImage = '' -- to force fall not return early
 			self:fall()
+	 end
+end
+
+function NinjaAnimations:attackDuckingAnimation()
+	 if self.timer == 5 then
+	 		self.currentImage = 'duckingAttack2'
+	 elseif self.timer == 9 then
+			self.currentImage = 'duckingAttack3'
+	 elseif self.timer > 12 then
+	 		self.ninja.isAttacking = false
+			-- self.currentImage = '' -- to force fall not return early
+			--self:fall()
 	 end
 
 end
@@ -111,6 +128,10 @@ function NinjaAnimations:isAttackFalling()
 	 return self.currentImage == 'fallingAttack1' or self.currentImage == 'fallingAttack2'
 end
 
+function NinjaAnimations:isAttackDucking()
+	 return self.currentImage == 'duckingAttack1' or self.currentImage == 'duckingAttack2' or self.currentImage == 'duckingAttack3'
+end
+
 function NinjaAnimations:isMovingRight()
 	 return self.direction == RIGHT and (self.currentImage == 'running1' or 
 																			 self.currentImage == 'running2' or
@@ -128,6 +149,10 @@ function NinjaAnimations:isMovingLeft()
 	 return self.direction == LEFT and (self.currentImage == 'running1' or 
 																			self.currentImage == 'running2' or
 																			self.currentImage == 'running3')
+end
+
+function NinjaAnimations:isDucking()
+	 return self.currentImage == 'ducking'
 end
 
 function NinjaAnimations:getCurrentImage()
@@ -163,12 +188,14 @@ function NinjaAnimations:jump()
 end
 
 function NinjaAnimations:attack()
-	 if self:isAttacking() or self:isAttackFalling() then
+	 if self:isAttacking() or self:isAttackFalling() or self:isAttackDucking() then
 			return
 	 end
 
 	 if self:isFalling() or self:isJumping() then
 			self.currentImage = 'fallingAttack1'
+	 elseif self:isDucking() then
+			self.currentImage = 'duckingAttack1'
 	 else
 			self.currentImage = 'attacking1'
 	 end
@@ -178,6 +205,10 @@ function NinjaAnimations:attack()
 end
 
 function NinjaAnimations:duck()
+	 if self:isAttackDucking() then
+			return
+	 end
+
 	 self.currentImage = 'ducking'
 	 if self.wasDucking == false then
 			self.ninja.y = self.ninja.y + 20

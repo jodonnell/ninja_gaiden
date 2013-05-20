@@ -41,6 +41,19 @@ function test_attack_animation()
    assert_equal(animations.images['attacking3'], animations:getCurrentImage())
 end
 
+function test_ducking_attack_animation()
+	 animations:duck()
+	 animations:attack()
+   assert_equal(animations.images['duckingAttack1'], animations:getCurrentImage())
+
+	 advanceFrames(5)
+   assert_equal(animations.images['duckingAttack2'], animations:getCurrentImage())
+
+	 advanceFrames(5)
+   assert_equal(animations.images['duckingAttack3'], animations:getCurrentImage())
+end
+
+
 function test_attack_when_falling_does_a_different_animation()
 	 animations.currentImage = 'falling'
 	 animations:attack()
