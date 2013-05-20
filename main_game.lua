@@ -103,7 +103,7 @@ end
 function MainGame:collidedBounceLeft(enemy)
 	 local ax, ay, aw, ah = self.ninja:getBoundingBox()
 	 local bx, by, bw, bh = enemy:getBoundingBox()
-	 if ax > bx + bw / 2 then
+	 if ax + aw / 2 > bx + bw / 2 then
 			return true
 	 end
 	 return false
