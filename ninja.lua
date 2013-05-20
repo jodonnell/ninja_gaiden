@@ -65,11 +65,11 @@ function Ninja:isDucking()
 end
 
 function Ninja:isStanding()
-	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self:isDucking() or self:isFalling() or self.isHurt)
+	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self:isDucking() or self:isFalling() or self.isHurt or self.animations:isAttackDucking())
 end
 
 function Ninja:canDuck()
-	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self.isHurt or self:isFalling())
+	 return not (self.leftPressed or self.rightPressed or self:isJumping() or self.isHurt or self:isFalling() or self.animations:isAttacking())
 end
 
 function Ninja:canJump()
