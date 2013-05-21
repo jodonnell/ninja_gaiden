@@ -52,7 +52,7 @@ function NinjaAnimations:changeAnimation()
 end
 
 function NinjaAnimations:climbingAnimation()
-	 if (self.timer % 5) == 0 then
+	 if (self.ninja.upPressed or self.ninja.downPressed) and (self.timer % 5) == 0 then
 			if self.currentImage == 'climbing1' then
 				 self.currentImage = 'climbing2'
 			else

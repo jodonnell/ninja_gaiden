@@ -97,6 +97,7 @@ function test_ninja_moving_right_runs_animation()
 end
 
 function test_climbing_animation()
+	 animations.ninja.upPressed = true
 	 animations:climb()
 	 assert_equal(animations.images['climbing1'], animations:getCurrentImage())
 	 
