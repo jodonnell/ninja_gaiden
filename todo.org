@@ -1,6 +1,7 @@
 * Ninja
 ** Bugs
 *** DONE Holding down while jumping makes you duck in the wrong spot
+*** If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
 ** features
 *** DONE duck attack
 *** DONE get hurt
@@ -8,6 +9,7 @@
 **** DONE need to make temporarily invincible
 *** DONE kill enemy
 *** climb
+**** Make the jump smaller off a climb
 *** land on things
 *** enemies
 **** only one enemy should appear when you hit a certain point

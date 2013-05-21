@@ -84,6 +84,13 @@ function Ninja:canDuck()
 end
 
 function Ninja:canJump()
+	 if self.isClimbing then
+			if self.animations.direction == LEFT then
+				 return self.rightPressed
+			else
+				 return self.leftPressed
+			end
+	 end
 	 return not (self:isFalling() or self.isHurt)
 end
 
@@ -112,7 +119,7 @@ function Ninja:getCurrentImage()
 end
 
 function Ninja:fall()
-	 self.y = self.y + 10
+	 self.y = self.y + 12
 	 self.animations:fall()
 end
 
@@ -166,6 +173,7 @@ function Ninja:moveLeft()
 	 self.animations:runLeft()
 
 	 if self.x < 80 then
+			self.jumpPressed = false
 			self.animations:climb()
 			self.isClimbing = true
 	 end
@@ -245,6 +253,12 @@ function Ninja:hurt()
 	 end
 
 	 self.animations:hurt()
+end
+
+function Ninja:startJumping()
+	 self.jumpPressed = true
+	 self.isClimbing = false
+	 self.timer = 0
 end
 
 function Ninja:gotHurt(bouncesRight)

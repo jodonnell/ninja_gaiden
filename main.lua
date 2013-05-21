@@ -39,7 +39,7 @@ function love.keypressed(key, unicode)
 	 elseif key == 'down' then
 			main_game.ninja.downPressed = true
 	 elseif key == 'q' and main_game.ninja:canJump() then
-			main_game.ninja.jumpPressed = true
+			main_game.ninja:startJumping()
 	 elseif key == ';' and main_game.ninja:canAttack() then
 			main_game.ninja.isAttacking = true
    end
