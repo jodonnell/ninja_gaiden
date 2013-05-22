@@ -16,6 +16,7 @@ function love.conf(t)
     t.screen.vsync = true       -- Enable vertical sync (boolean)
     t.screen.fsaa = 0           -- The number of FSAA-buffers (number)
     t.screen.width = 1024       -- The window width (number)
-    t.screen.height = 640       -- The window height (number)
+		t.screen.height = 640       -- The window height (number)
+    --t.screen.height = 768       -- The window height (number)
     t.version = "0.8.0"         -- The LÖVE version this game was made for (number)
 end
