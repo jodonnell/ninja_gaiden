@@ -8,10 +8,15 @@
 **** DONE need to make bounce the other way
 **** DONE need to make temporarily invincible
 *** DONE kill enemy
-*** climb
-**** Make the jump smaller off a climb
-*** land on things
+*** DONE climb
+**** DONE Make the jump smaller off a climb
+*** make generic climbing and falling boundaries
 *** enemies
 **** only one enemy should appear when you hit a certain point
+*** falling off cliffs
+*** life
+*** lives
 ** tech debt
 *** DONE fix up test suite
+*** Seems to run at different speeds on different computers
+*** Fullscreen dependant on conf file
