@@ -257,8 +257,14 @@ end
 
 function Ninja:startJumping()
 	 self.jumpPressed = true
+
+	 if self.isClimbing then
+			self.timer = 8
+	 else
+			self.timer = 0
+	 end
+
 	 self.isClimbing = false
-	 self.timer = 0
 end
 
 function Ninja:gotHurt(bouncesRight)
