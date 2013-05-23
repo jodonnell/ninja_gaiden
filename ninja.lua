@@ -2,6 +2,7 @@ require 'class'
 require 'ninja_animations'
 require 'sprite'
 require 'ninja/hurt'
+require 'ninja/jump'
 
 Ninja = class(Sprite)
 
@@ -55,7 +56,7 @@ function Ninja:update()
 	 end
 	 
 	 if self.jumpPressed then
-			self:jump()
+			self.jump:update()
 	 end
 
 	 if self.isAttacking then
@@ -121,26 +122,6 @@ end
 function Ninja:fall()
 	 self.y = self.y + 12
 	 self.animations:fall()
-end
-
-function Ninja:jump()
-	 self.animations:jump()
-
-	 self.timer = self.timer + 1
-
-	 if self.timer <= 8 then
-			self.y = self.y - 8
-	 elseif self.timer <= 13 then
-			self.y = self.y - 6
-	 elseif self.timer <= 17 then
-			self.y = self.y - 4
-	 elseif self.timer <= 21 then
-			self.y = self.y - 2
-	 elseif self.timer <= 30 then
-	 else
-			self.timer = 0
-			self.jumpPressed = false
-	 end
 end
 
 function Ninja:move()
@@ -223,11 +204,14 @@ end
 function Ninja:startJumping()
 	 self.jumpPressed = true
 
+	 local timer
 	 if self.isClimbing then
-			self.timer = 8
+			timer = 8
 	 else
-			self.timer = 0
+			timer = 0
 	 end
+
+	 self.jump = Jump(self, timer)
 
 	 self.isClimbing = false
 end
