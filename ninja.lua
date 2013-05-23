@@ -1,6 +1,7 @@
 require 'class'
 require 'ninja_animations'
 require 'sprite'
+require 'ninja/hurt'
 
 Ninja = class(Sprite)
 
@@ -19,7 +20,6 @@ function Ninja:init()
 	 self.isAttacking = false
 	 self.isHurt = false
 	 self.isInvincible = false
-	 self.bouncesRight = false
 	 self.isClimbing = false
 
 	 self.timer = 0
@@ -39,7 +39,7 @@ function Ninja:update()
 	 end
 
 	 if self.isHurt then
-			self:hurt()
+			self.hurt:update()
 	 end
 
 	 if self.upPressed and self.isClimbing then
@@ -220,41 +220,6 @@ function Ninja:getOffset(imageWidth)
 	 return offset
 end
 
-function Ninja:hurt()
-	 self.timer = self.timer + 1
-
-	 if self.timer <= 5 then
-			self.y = self.y - 6
-	 elseif self.timer <= 10 then
-			self.y = self.y - 4
-	 elseif self.timer <= 15 then
-			self.y = self.y - 2
-	 elseif self.timer <= 20 then
-
-	 elseif self.y > 450 then
-			self.timer = 0
-			self.isHurt = false
-			self.bouncesRight = false
-			return
-	 elseif self.timer <= 25 then
-			self.y = self.y + 2
-	 elseif self.timer <= 30 then
-			self.y = self.y + 4
-	 elseif self.timer <= 35 then
-			self.y = self.y + 6
-	 else
-			self.y = self.y + 10
-	 end
-
-	 if self.bouncesRight then
-			self.x = self.x + 4
-	 else
-			self.x = self.x - 4
-	 end
-
-	 self.animations:hurt()
-end
-
 function Ninja:startJumping()
 	 self.jumpPressed = true
 
@@ -271,9 +236,9 @@ function Ninja:gotHurt(bouncesRight)
 	 self.jumpPressed = false
 	 self.isAttacking = false
 	 self.isHurt = true
+	 self.hurt = Hurt(self, bouncesRight)
 	 self.isInvincible = true
 	 self.invincibilityTimer = 0
-	 self.timer = 0
 	 self.bouncesRight = bouncesRight
 end
 

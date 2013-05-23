@@ -20,3 +20,20 @@
 *** DONE fix up test suite
 *** Seems to run at different speeds on different computers
 *** Fullscreen dependant on conf file
+
+
+	 -- 933 right
+	 -- 1015 left
+	 -- 105 top + 128
+	 
+	 -- 1115
+	 -- 1349
+	 -- 200
+
+	 -- 1721
+	 -- 1780
+	 -- 275
+
+	 -- 1886
+	 -- offscreen
+	 -- 200
