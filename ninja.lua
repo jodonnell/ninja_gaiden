@@ -1,4 +1,5 @@
 require 'class'
+require 'constants'
 require 'ninja_animations'
 require 'sprite'
 require 'ninja/hurt'

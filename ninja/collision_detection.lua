@@ -1,4 +1,5 @@
 require 'class'
+require 'constants'
 
 CollisionDetection = class()
 
