@@ -1,2 +1,4 @@
 LEFT = 0
 RIGHT = 1
+
+NINJA_FALL_SPEED = 12

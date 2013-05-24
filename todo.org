@@ -2,6 +2,7 @@
 ** Bugs
 *** DONE Holding down while jumping makes you duck in the wrong spot
 *** If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
+*** if you are jumping and moving right and land on a platform the jump animation continues
 ** features
 *** DONE duck attack
 *** DONE get hurt

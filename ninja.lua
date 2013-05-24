@@ -125,7 +125,7 @@ function Ninja:getCurrentImage()
 end
 
 function Ninja:fall()
-	 self.y = self.y + 12
+	 self.y = self.y + NINJA_FALL_SPEED
 	 self.animations:fall()
 end
 
