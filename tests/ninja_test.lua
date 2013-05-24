@@ -4,6 +4,7 @@ function setup()
 	 love.graphics.newImage = function(path) return path end
 
    ninja = Ninja()
+	 ninja:setClimbableRects({Rect(0, 450, 2000, 450)})
 	 ninja.y = 450
 end
 

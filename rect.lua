@@ -3,32 +3,32 @@ require 'class'
 Rect = class()
 
 function Rect:init(left, top, right, bottom)
-	 self.left = left
-	 self.top = top
-	 self.right = right
-	 self.bottom = bottom
+	 self.l = left
+	 self.t = top
+	 self.r = right
+	 self.b = bottom
 end
 
 function Rect:left()
-	 return self.left
+	 return self.l
 end
 
 function Rect:right()
-	 return self.right
+	 return self.r
 end
 
 function Rect:bottom()
-	 return self.bottom
+	 return self.b
 end
 
 function Rect:top()
-	 return self.top
+	 return self.t
 end
 
 function Rect:width()
-	 return self.right - self.left
+	 return self.r - self.l
 end
 
 function Rect:height()
-	 return self.bottom - self.top
+	 return self.b - self.t
 end

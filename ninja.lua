@@ -27,6 +27,10 @@ function Ninja:init()
 	 self.invincibilityTimer = 0
 end
 
+function Ninja:setClimbableRects(rects)
+	 self.climbableRects = rects
+end
+
 function Ninja:update()
 	 self:move()
 
@@ -112,7 +116,19 @@ function Ninja:canAttack()
 end
 
 function Ninja:isFalling()
-	 return self.y < 450 and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
+	 return (not self:isBottomColliding()) and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
+end
+
+function Ninja:isBottomColliding()
+	 
+	 for i, climbableRect in ipairs(self.climbableRects) do
+			local inBoundsX = self.x > climbableRect:left() and self.x < climbableRect:right()
+			if inBoundsX and self.y >= climbableRect:top() then
+				 return true
+			end
+	 end
+	 
+	 return false
 end
 
 function Ninja:getCurrentImage()
@@ -134,10 +150,6 @@ end
 
 function Ninja:isMovingRight()
 	 return self.rightPressed and self.isHurt == false and self.isClimbing == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
-end
-
-function Ninja:isAttackingFromGround()
-	 return self.isAttacking == true and self.y == 450
 end
 
 function Ninja:isMovingLeft()
