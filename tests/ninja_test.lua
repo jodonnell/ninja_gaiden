@@ -118,3 +118,11 @@ function test_ninja_climbs_down()
 	 ninja:update()
 	 assert_gt(100, ninja.y)
 end
+
+function test_ninja_collision_detection_works_correctly()
+	 ninja.x = 10
+	 ninja.y = 80
+	 ninja:setClimbableRects({Rect(5, 50, 2000, 50)})
+	 ninja:update()
+	 assert_gt(80, ninja.y)
+end

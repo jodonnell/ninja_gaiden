@@ -3,6 +3,7 @@ require 'ninja_animations'
 require 'sprite'
 require 'ninja/hurt'
 require 'ninja/jump'
+require 'ninja/collision_detection'
 
 Ninja = class(Sprite)
 
@@ -28,7 +29,7 @@ function Ninja:init()
 end
 
 function Ninja:setClimbableRects(rects)
-	 self.climbableRects = rects
+	 self.collisionDetection = CollisionDetection(self, rects)
 end
 
 function Ninja:update()
@@ -116,19 +117,7 @@ function Ninja:canAttack()
 end
 
 function Ninja:isFalling()
-	 return (not self:isBottomColliding()) and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
-end
-
-function Ninja:isBottomColliding()
-	 
-	 for i, climbableRect in ipairs(self.climbableRects) do
-			local inBoundsX = self.x > climbableRect:left() and self.x < climbableRect:right()
-			if inBoundsX and self.y >= climbableRect:top() then
-				 return true
-			end
-	 end
-	 
-	 return false
+	 return (not self.collisionDetection:isBottomColliding()) and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
 end
 
 function Ninja:getCurrentImage()

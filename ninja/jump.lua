@@ -10,7 +10,7 @@ end
 function Jump:update()
 	 self.timer = self.timer + 1
 
-	 if self.timer <= 8 then
+	 if self.timer <= 9 then
 			self.ninja.y = self.ninja.y - 8
 	 elseif self.timer <= 13 then
 			self.ninja.y = self.ninja.y - 6
