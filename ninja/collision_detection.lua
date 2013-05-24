@@ -19,3 +19,7 @@ function CollisionDetection:isBottomColliding()
 	 
 	 return false
 end
+
+function CollisionDetection:isLeftColliding()
+	 return self.ninja.x < 80
+end

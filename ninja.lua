@@ -155,7 +155,7 @@ function Ninja:moveLeft()
 	 self.x = self.x - 4
 	 self.animations:runLeft()
 
-	 if self.x < 80 then
+	 if self.collisionDetection:isLeftColliding() then
 			self.jumpPressed = false
 			self.animations:climb()
 			self.isClimbing = true
