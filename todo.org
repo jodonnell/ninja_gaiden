@@ -20,6 +20,7 @@
 *** DONE fix up test suite
 *** Seems to run at different speeds on different computers
 *** Fullscreen dependant on conf file
+*** extract love to abstraction
 
 
 	 -- 933 right

@@ -29,7 +29,7 @@ function test_ninja_transitions_to_move_right_when_ducking()
 end
 
 function test_ninja_can_jump()
-	 ninja.jumpPressed = true
+	 ninja:startJumping()
 	 ninja:update()
    assert_lt(450, ninja.y)
 end
