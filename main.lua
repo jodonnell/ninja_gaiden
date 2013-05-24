@@ -38,9 +38,9 @@ function love.keypressed(key, unicode)
 			main_game.ninja.upPressed = true
 	 elseif key == 'down' then
 			main_game.ninja.downPressed = true
-	 elseif key == 'q' and main_game.ninja:canJump() then
+	 elseif (key == 'q' or key == 'x') and main_game.ninja:canJump() then
 			main_game.ninja:startJumping()
-	 elseif key == ';' and main_game.ninja:canAttack() then
+	 elseif (key == ';' or key == 'z') and main_game.ninja:canAttack() then
 			main_game.ninja.isAttacking = true
    end
 end
