@@ -54,3 +54,9 @@ function CollisionDetection:isAtTop()
 			self.ninja.y = self.attachedToRect:top()
 	 end
 end
+
+function CollisionDetection:isAtBottom()
+	 if self.ninja.y >= self.attachedToRect:bottom() then
+			self.ninja.isClimbing = false
+	 end
+end

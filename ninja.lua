@@ -56,6 +56,7 @@ function Ninja:update()
 
 	 if self.downPressed and self.isClimbing then
 			self.y = self.y + 4
+			self.collisionDetection:isAtBottom()
 	 end
 
 	 if self:isFalling() then
