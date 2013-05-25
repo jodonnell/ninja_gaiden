@@ -1,8 +1,8 @@
 * Ninja
 ** Bugs
 *** DONE Holding down while jumping makes you duck in the wrong spot
-*** If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
-*** if you are jumping and moving right and land on a platform the jump animation continues
+*** DONE If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
+*** DONE if you are jumping and moving right and land on a platform the jump animation continues
 ** features
 *** DONE duck attack
 *** DONE get hurt
@@ -11,10 +11,10 @@
 *** DONE kill enemy
 *** DONE climb
 **** DONE Make the jump smaller off a climb
-*** make generic climbing and falling boundaries
+*** DONE make generic climbing and falling boundaries
 *** enemies
 **** only one enemy should appear when you hit a certain point
-*** falling off cliffs
+*** DONE falling off cliffs
 *** life
 *** lives
 ** tech debt
@@ -22,20 +22,3 @@
 *** Seems to run at different speeds on different computers
 *** Fullscreen dependant on conf file
 *** extract love to abstraction
-
-
-	 -- 933 right
-	 -- 1015 left
-	 -- 105 top + 128
-	 
-	 -- 1115
-	 -- 1349
-	 -- 200
-
-	 -- 1721
-	 -- 1780
-	 -- 275
-
-	 -- 1886
-	 -- offscreen
-	 -- 200
