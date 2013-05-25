@@ -19,7 +19,7 @@ function Hurt:update()
 			self.ninja.y = self.ninja.y - 2
 	 elseif self.timer <= 20 then
 
-	 elseif self.ninja.y > 450 then
+	 elseif self.ninja.collisionDetection:isBottomColliding() then
 			self.ninja.isHurt = false
 			return
 	 elseif self.timer <= 25 then
