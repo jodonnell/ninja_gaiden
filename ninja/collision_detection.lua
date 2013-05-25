@@ -26,6 +26,7 @@ function CollisionDetection:isLeftColliding()
 			local inBoundsY = self.ninja.y > climbableRect:top() and self.ninja.y < climbableRect:bottom()
 		
 			if inBoundsY and self.ninja.x <= climbableRect:right() and self.ninja.x + 4 >= climbableRect:right() then
+				 self.ninja.x = climbableRect:right()
 				 return true
 			end
 	 end
@@ -38,6 +39,7 @@ function CollisionDetection:isRightColliding()
 			local inBoundsY = self.ninja.y > climbableRect:top() and self.ninja.y < climbableRect:bottom()
 		
 			if inBoundsY and self.ninja.x >= climbableRect:left() and self.ninja.x - 4 <= climbableRect:left() then
+				 self.ninja.x = climbableRect:left()
 				 return true
 			end
 	 end
