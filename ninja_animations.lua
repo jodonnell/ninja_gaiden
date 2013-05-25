@@ -247,21 +247,23 @@ function NinjaAnimations:hurt()
 end
 
 function NinjaAnimations:runRight()
+	 self.direction = RIGHT
+
 	 if self:isMovingRight() or self:isJumping() or self:isAttackFalling() then
 			return
 	 end
 
 	 self.currentImage = 'running1'
 	 self.timer = 0
-	 self.direction = RIGHT
 end
 
 function NinjaAnimations:runLeft()
+	 self.direction = LEFT
+
 	 if self:isMovingLeft() or self:isJumping() or self:isAttackFalling() then
 			return
 	 end
 
 	 self.currentImage = 'running1'
 	 self.timer = 0
-	 self.direction = LEFT
 end
