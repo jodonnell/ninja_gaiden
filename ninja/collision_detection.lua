@@ -21,5 +21,25 @@ function CollisionDetection:isBottomColliding()
 end
 
 function CollisionDetection:isLeftColliding()
-	 return self.ninja.x < 80
+	 for i, climbableRect in ipairs(self.rects) do
+			local inBoundsY = self.ninja.y > climbableRect:top() and self.ninja.y < climbableRect:bottom()
+		
+			if inBoundsY and self.ninja.x <= climbableRect:right() and self.ninja.x + 4 >= climbableRect:right() then
+				 return true
+			end
+	 end
+	 
+	 return false
+end
+
+function CollisionDetection:isRightColliding()
+	 for i, climbableRect in ipairs(self.rects) do
+			local inBoundsY = self.ninja.y > climbableRect:top() and self.ninja.y < climbableRect:bottom()
+		
+			if inBoundsY and self.ninja.x >= climbableRect:left() and self.ninja.x - 4 <= climbableRect:left() then
+				 return true
+			end
+	 end
+	 
+	 return false
 end

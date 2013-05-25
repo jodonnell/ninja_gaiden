@@ -149,6 +149,12 @@ end
 function Ninja:moveRight()
 	 self.x = self.x + 4
 	 self.animations:runRight()
+
+	 if self.collisionDetection:isRightColliding() then
+			self.jumpPressed = false
+			self.animations:climb()
+			self.isClimbing = true
+	 end
 end
 
 function Ninja:moveLeft()

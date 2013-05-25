@@ -126,3 +126,22 @@ function test_ninja_collision_detection_works_correctly()
 	 ninja:update()
 	 assert_gt(80, ninja.y)
 end
+
+function test_ninja_collision_detection_left_works_correctly()
+	 ninja.x = 100
+	 ninja.y = 120
+	 ninja:setClimbableRects({Rect(5, 50, 99, 300)})
+	 ninja.leftPressed = true
+	 ninja:update()
+	 assert_true(ninja.isClimbing)
+end
+
+function test_ninja_collision_detection_right_works_correctly()
+	 ninja.x = 4
+	 ninja.y = 120
+	 ninja:setClimbableRects({Rect(5, 50, 99, 300)})
+	 ninja.rightPressed = true
+	 ninja:update()
+	 assert_true(ninja.isClimbing)
+end
+
