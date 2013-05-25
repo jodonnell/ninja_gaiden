@@ -51,6 +51,7 @@ function Ninja:update()
 
 	 if self.upPressed and self.isClimbing then
 			self.y = self.y - 4
+			self.collisionDetection:isAtTop()
 	 end
 
 	 if self.downPressed and self.isClimbing then
