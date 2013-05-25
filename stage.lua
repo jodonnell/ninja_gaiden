@@ -28,6 +28,8 @@ function Stage:createClimbableRects()
 	 self.rects[4] = Rect(1070, 240, 1349, 450)
 
 	 self.rects[5] = Rect(1675, 320, 1784, 320)
+
+	 self.rects[6] = Rect(1845, 240, self.endOfStageX, 450)
 end
 
 function Stage:climbableRects()
