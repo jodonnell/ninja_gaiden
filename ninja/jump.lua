@@ -21,6 +21,8 @@ function Jump:update()
 	 elseif self.timer <= 30 then
 	 else
 			self.ninja.jumpPressed = false
+			self.ninja.animations:fall()
+			return
 	 end
 
 	 self.ninja.animations:jump()
