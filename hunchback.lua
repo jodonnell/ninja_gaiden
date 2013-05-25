@@ -3,9 +3,10 @@ require 'sprite'
 
 Hunchback = class(Sprite)
 
-function Hunchback:init(x, y, direction)
+function Hunchback:init(x, y, direction, id)
 	 self.x = x
 	 self.y = y
+	 self.id = id
 	 self.direction = direction
 
 	 self.images = { 

@@ -12,9 +12,9 @@ end
 
 function MainGame:load()
 	 self.ninja = Ninja()
-	 self.stage = Stage(self.ninja)
 	 self.enemies = {}
 	 self.explosions = {}
+	 self.stage = Stage(self.ninja, self.enemies)
 end
 
 function MainGame:draw()
@@ -63,9 +63,7 @@ function MainGame:update()
 			end
 	 end
 
-	 if self.ninja.x == 585 then
-			table.insert(self.enemies, Hunchback(1050, 457, LEFT))
-	 end
+	 self.stage:update()
 end
 
 function MainGame:moveCamera()

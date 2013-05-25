@@ -12,8 +12,8 @@
 *** DONE climb
 **** DONE Make the jump smaller off a climb
 *** DONE make generic climbing and falling boundaries
-*** enemies
-**** only one enemy should appear when you hit a certain point
+*** DONE enemies
+**** DONE only one enemy should appear when you hit a certain point
 *** DONE falling off cliffs
 *** life
 *** lives

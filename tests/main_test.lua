@@ -31,7 +31,7 @@ function test_ninja_jump_attack_and_move_right()
 end
 
 function test_enemy_appears_at_when_scrolling()
-	 mainGame.ninja.x = 581
+	 mainGame.ninja.x = 584
 	 mainGame.ninja.rightPressed = true
    assert_equal(0, #mainGame.enemies, 'No enemies')
 
