@@ -11,10 +11,13 @@ function MainGame:init()
 end
 
 function MainGame:load()
+	 self.score = 0
 	 self.ninja = Ninja()
 	 self.enemies = {}
 	 self.explosions = {}
 	 self.stage = Stage(self.ninja, self.enemies)
+
+	 love.graphics.setNewFont("images/MEGAMAN10.ttf", 50)
 end
 
 function MainGame:draw()
@@ -30,7 +33,8 @@ function MainGame:draw()
 			enemy:draw()
 	 end
 
-	 love.graphics.print("FPS: "..love.timer.getFPS(), -(self:getCameraX()) + 10, 10)
+	 love.graphics.print("SCORE - "..self.score, -(self:getCameraX()) + 10, 10)
+	 love.graphics.print("FPS "..love.timer.getFPS(), -(self:getCameraX()) + 10, 40)
 end
 
 function MainGame:update()

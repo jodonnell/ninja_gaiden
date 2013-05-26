@@ -3,7 +3,7 @@
 *** DONE Holding down while jumping makes you duck in the wrong spot
 *** DONE If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
 *** DONE if you are jumping and moving right and land on a platform the jump animation continues
-*** Can jump over and over
+*** DONE Can jump over and over
 ** features
 *** DONE duck attack
 *** DONE get hurt
@@ -24,3 +24,5 @@
 *** Seems to run at different speeds on different computers
 *** Fullscreen dependant on conf file
 *** extract love to abstraction
+** assets
+*** font from http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=528
