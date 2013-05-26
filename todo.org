@@ -3,6 +3,7 @@
 *** DONE Holding down while jumping makes you duck in the wrong spot
 *** DONE If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
 *** DONE if you are jumping and moving right and land on a platform the jump animation continues
+*** Can jump over and over
 ** features
 *** DONE duck attack
 *** DONE get hurt
@@ -14,6 +15,7 @@
 *** DONE make generic climbing and falling boundaries
 *** DONE enemies
 **** DONE only one enemy should appear when you hit a certain point
+**** Make sword box y more accurate
 *** DONE falling off cliffs
 *** life
 *** lives

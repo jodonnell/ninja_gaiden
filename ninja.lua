@@ -100,7 +100,7 @@ function Ninja:canJump()
 				 return self.leftPressed
 			end
 	 end
-	 return not (self:isFalling() or self.isHurt)
+	 return not (self:isFalling() or self.isHurt or self.jumpPressed)
 end
 
 function Ninja:duck()

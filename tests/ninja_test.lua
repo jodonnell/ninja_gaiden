@@ -37,14 +37,6 @@ end
 
 function test_ninja_can_get_hurt()
 	 local x = ninja.x
-	 ninja.isHurt = true
-	 ninja:update()
-	 assert_lt(x, ninja.x)
-	 assert_lt(450, ninja.y)
-end
-
-function test_ninja_can_get_hurt()
-	 local x = ninja.x
 	 ninja:gotHurt()
 	 ninja:update()
 	 assert_lt(x, ninja.x)
@@ -157,4 +149,10 @@ function test_ninja_climbs_down()
 
 	 ninja:update()
 	 assert_gt(100, ninja.y)
+end
+
+function test_ninja_cannot_jump_over_and_over()
+	 ninja:startJumping()
+	 ninja:update()
+	 assert_false(ninja:canJump())
 end
