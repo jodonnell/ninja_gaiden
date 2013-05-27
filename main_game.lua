@@ -33,8 +33,23 @@ function MainGame:draw()
 			enemy:draw()
 	 end
 
-	 love.graphics.print("SCORE - "..self.score, -(self:getCameraX()) + 10, 10)
-	 love.graphics.print("FPS "..love.timer.getFPS(), -(self:getCameraX()) + 10, 40)
+	 self:drawHUD()
+end
+
+function MainGame:drawHUD()
+	 local xPos = -(self:getCameraX())
+	 local leftOffset = xPos + 100
+	 love.graphics.print("SCORE - "..self.score, leftOffset, 10)
+	 love.graphics.print("STAGE - 1 - 1", xPos + 500, 10)
+	 love.graphics.print("P - "..0, xPos + 800, 10)
+
+	 love.graphics.print("TIMER - "..0, leftOffset, 50)
+	 love.graphics.print("NINJA - "..0, xPos + 500, 50)
+
+	 love.graphics.print("MAGIC - "..0, leftOffset, 90)
+	 love.graphics.print("ENEMY - "..0, xPos + 500, 90)
+
+	 love.graphics.print(love.timer.getFPS(), xPos, 0)
 end
 
 function MainGame:update()
