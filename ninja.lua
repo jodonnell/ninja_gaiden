@@ -51,12 +51,12 @@ function Ninja:update()
 	 end
 
 	 if self.upPressed and self.isClimbing then
-			self.y = self.y - 4
+			self.y = self.y - NINJA_CLIMB_SPEED
 			self.collisionDetection:isAtTop()
 	 end
 
 	 if self.downPressed and self.isClimbing then
-			self.y = self.y + 4
+			self.y = self.y + NINJA_CLIMB_SPEED
 			self.collisionDetection:isAtBottom()
 	 end
 
@@ -150,7 +150,7 @@ function Ninja:isMovingLeft()
 end
 
 function Ninja:moveRight()
-	 self.x = self.x + 4
+	 self.x = self.x + NINJA_MOVE_SPEED
 	 self.animations:runRight()
 
 	 if self.collisionDetection:isRightColliding() then
@@ -161,7 +161,7 @@ function Ninja:moveRight()
 end
 
 function Ninja:moveLeft()
-	 self.x = self.x - 4
+	 self.x = self.x - NINJA_MOVE_SPEED
 	 self.animations:runLeft()
 
 	 if self.collisionDetection:isLeftColliding() then
