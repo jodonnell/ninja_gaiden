@@ -17,7 +17,7 @@ function MainGame:load()
 	 self.explosions = {}
 	 self.stage = Stage(self.ninja, self.enemies)
 
-	 love.graphics.setNewFont("images/MEGAMAN10.ttf", 50)
+	 love.graphics.setNewFont("images/PressStart2P.ttf", 30)
 end
 
 function MainGame:draw()
@@ -38,18 +38,20 @@ end
 
 function MainGame:drawHUD()
 	 local xPos = -(self:getCameraX())
-	 local leftOffset = xPos + 100
-	 love.graphics.print("SCORE - "..self.score, leftOffset, 10)
-	 love.graphics.print("STAGE - 1 - 1", xPos + 500, 10)
-	 love.graphics.print("P - "..0, xPos + 800, 10)
+	 local firstColumnX = xPos + 100
+	 local secondColumnX = xPos + 400
+	 local thirdColumnX = xPos + 800
+	 love.graphics.print("SCORE: "..self.score, firstColumnX, 10)
+	 love.graphics.print("STAGE: 1.1", secondColumnX, 10)
+	 love.graphics.print("P: 2", thirdColumnX, 10)
 
-	 love.graphics.print("TIMER - "..0, leftOffset, 50)
-	 love.graphics.print("NINJA - "..0, xPos + 500, 50)
+	 love.graphics.print("TIMER: "..0, firstColumnX, 50)
+	 love.graphics.print("NINJA: "..0, secondColumnX, 50)
 
-	 love.graphics.print("MAGIC - "..0, leftOffset, 90)
-	 love.graphics.print("ENEMY - "..0, xPos + 500, 90)
+	 love.graphics.print("MAGIC: "..0, firstColumnX, 90)
+	 love.graphics.print("ENEMY: "..0, secondColumnX, 90)
 
-	 love.graphics.print(love.timer.getFPS(), xPos, 0)
+	 love.graphics.print(love.timer.getFPS(), xPos, 10)
 end
 
 function MainGame:update()
