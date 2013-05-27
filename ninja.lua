@@ -25,7 +25,8 @@ function Ninja:init()
 	 self.isInvincible = false
 	 self.isClimbing = false
 
-	 self.timer = 0
+	 self.life = 20
+
 	 self.invincibilityTimer = 0
 end
 

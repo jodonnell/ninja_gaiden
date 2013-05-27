@@ -156,3 +156,7 @@ function test_ninja_cannot_jump_over_and_over()
 	 ninja:update()
 	 assert_false(ninja:canJump())
 end
+
+function test_ninja_has_life()
+	 assert_equal(20, ninja.life)
+end
