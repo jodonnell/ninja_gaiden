@@ -43,7 +43,7 @@ function MainGame:drawHUD()
 	 local thirdColumnX = xPos + 800
 	 love.graphics.print("SCORE: "..self.score, firstColumnX, 10)
 	 love.graphics.print("STAGE: 1.1", secondColumnX, 10)
-	 love.graphics.print("P: 2", thirdColumnX, 10)
+	 love.graphics.print("P: " .. self.ninja.lives, thirdColumnX, 10)
 
 	 love.graphics.print("TIMER: "..0, firstColumnX, 50)
 	 love.graphics.print("NINJA: ", secondColumnX, 50)
