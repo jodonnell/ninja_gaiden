@@ -270,3 +270,7 @@ function Ninja:lostLife()
 	 self.life = NINJA_MAX_LIFE
 	 self:setInitialStates()
 end
+
+function Ninja:hasLostLife()
+	 return self.life == 0 or self.y > love.graphics.getHeight()
+end
