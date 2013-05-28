@@ -12,6 +12,13 @@ function Ninja:init()
 	 self.animations = NinjaAnimations(self)
 	 self.normalWidth = self:getWidth()
 
+	 self:setInitialStates()
+
+	 self.life = NINJA_MAX_LIFE
+	 self.lives = 2
+end
+
+function Ninja:setInitialStates()
 	 self.x = 105
 	 self.y = 150
 
@@ -24,8 +31,6 @@ function Ninja:init()
 	 self.isHurt = false
 	 self.isInvincible = false
 	 self.isClimbing = false
-
-	 self.life = NINJA_MAX_LIFE
 
 	 self.invincibilityTimer = 0
 end
@@ -258,4 +263,10 @@ function Ninja:getBoundingBox()
 			width = self.normalWidth
 	 end
 	 return x, self.y, width, self:getHeight()
+end
+
+function Ninja:lostLife()
+	 self.lives = self.lives - 1
+	 self.life = NINJA_MAX_LIFE
+	 self:setInitialStates()
 end

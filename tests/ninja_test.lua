@@ -165,3 +165,7 @@ function test_ninja_loses_life_when_hurt()
 	 ninja:gotHurt()
 	 assert_equal(NINJA_MAX_LIFE - 1, ninja.life)
 end
+
+function test_ninja_has_lives()
+	 assert_equal(NINJA_STARTING_LIVES, ninja.lives)
+end

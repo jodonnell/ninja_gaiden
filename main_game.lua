@@ -15,7 +15,7 @@ function MainGame:load()
 	 self.ninja = Ninja()
 	 self.enemies = {}
 	 self.explosions = {}
-	 self.stage = Stage(self.ninja, self.enemies)
+	 self.stage = Stage(self.ninja)
 
 	 love.graphics.setNewFont("images/PressStart2P.ttf", 30)
 end
@@ -87,7 +87,13 @@ function MainGame:update()
 			end
 	 end
 
-	 self.stage:update()
+	 self.stage:update(self.enemies)
+
+	 if self.ninja.life == 0 then
+			self.ninja:lostLife()
+			self.enemies = {}
+	 end
+
 end
 
 function MainGame:moveCamera()

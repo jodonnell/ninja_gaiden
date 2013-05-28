@@ -64,6 +64,18 @@ function test_ninja_can_kill_enemy()
    assert_equal(1, #mainGame.explosions, 'No explosions')
 end
 
+function test_ninja_dies()
+	 mainGame.ninja.life = 1
+	 mainGame.ninja:gotHurt()
+	 mainGame.enemies = {[1]=Hunchback(1, 1, LEFT, 1)}
+
+	 mainGame:update()
+	 assert_equal(NINJA_STARTING_LIVES - 1, mainGame.ninja.lives)
+	 assert_equal(105, mainGame.ninja.x)
+	 assert_equal(150, mainGame.ninja.y)
+   assert_equal(0, #mainGame.enemies, 'Enemy did not disappear')
+end
+
 function advanceDraw(newX)
 	 mainGame.enemies[1].loveDraw = function(self, image, x, y) 
 	 		assert_equal(newX, x, 'Moved relatively 4')
