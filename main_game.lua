@@ -89,7 +89,7 @@ function MainGame:update()
 
 	 self.stage:update(self.enemies)
 
-	 if self.ninja.life == 0 then
+	 if self.ninja.life == 0 or self.ninja.y > love.graphics.getHeight() then
 			self.ninja:lostLife()
 			self.enemies = {}
 	 end
