@@ -48,10 +48,11 @@ function MainGame:drawHUD()
 	 love.graphics.print("TIMER: "..0, firstColumnX, 50)
 	 love.graphics.print("NINJA: ", secondColumnX, 50)
 
-	 self:drawLifeBars(secondColumnX + 190)
+	 self:drawLifeBars(secondColumnX + 190, 45)
 
 	 love.graphics.print("MAGIC: "..0, firstColumnX, 90)
-	 love.graphics.print("ENEMY: "..0, secondColumnX, 90)
+	 love.graphics.print("ENEMY: ", secondColumnX, 90)
+	 self:drawLifeBars(secondColumnX + 190, 85)
 
 	 love.graphics.print(love.timer.getFPS(), xPos, 10)
 end
@@ -130,7 +131,7 @@ function MainGame:collidedBounceLeft(enemy)
 	 return false
 end
 
-function MainGame:drawLifeBars(startingX)
+function MainGame:drawLifeBars(startingX, y)
 	 love.graphics.setColor( 255, 100, 100 )
 
 	 for i = 0, NINJA_MAX_LIFE - 1 do
@@ -139,7 +140,7 @@ function MainGame:drawLifeBars(startingX)
 			if self.ninja.life > i then 
 				 fillMode = 'fill'
 			end
-			love.graphics.rectangle(fillMode, barX, 45, 10, 25 )
+			love.graphics.rectangle(fillMode, barX, y, 10, 25 )
 	 end
 	 love.graphics.setColor( 255, 255, 255 )
 
