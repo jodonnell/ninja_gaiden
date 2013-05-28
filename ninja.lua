@@ -25,7 +25,7 @@ function Ninja:init()
 	 self.isInvincible = false
 	 self.isClimbing = false
 
-	 self.life = 20
+	 self.life = NINJA_MAX_LIFE
 
 	 self.invincibilityTimer = 0
 end
@@ -235,6 +235,7 @@ function Ninja:gotHurt(bouncesRight)
 	 self.isInvincible = true
 	 self.invincibilityTimer = 0
 	 self.bouncesRight = bouncesRight
+	 self.life = self.life - 1
 end
 
 function Ninja:getSwordBoundingBox()

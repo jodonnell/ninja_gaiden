@@ -160,3 +160,8 @@ end
 function test_ninja_has_life()
 	 assert_equal(20, ninja.life)
 end
+
+function test_ninja_loses_life_when_hurt()
+	 ninja:gotHurt()
+	 assert_equal(19, ninja.life)
+end
