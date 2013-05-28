@@ -235,6 +235,7 @@ end
 function Ninja:gotHurt(bouncesRight)
 	 self.jumpPressed = false
 	 self.isAttacking = false
+	 self.isClimbing = false
 	 self.isHurt = true
 	 self.hurt = Hurt(self, bouncesRight)
 	 self.isInvincible = true
