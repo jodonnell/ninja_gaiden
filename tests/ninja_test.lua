@@ -158,10 +158,10 @@ function test_ninja_cannot_jump_over_and_over()
 end
 
 function test_ninja_has_life()
-	 assert_equal(20, ninja.life)
+	 assert_equal(NINJA_MAX_LIFE, ninja.life)
 end
 
 function test_ninja_loses_life_when_hurt()
 	 ninja:gotHurt()
-	 assert_equal(19, ninja.life)
+	 assert_equal(NINJA_MAX_LIFE - 1, ninja.life)
 end
