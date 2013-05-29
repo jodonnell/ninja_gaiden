@@ -44,7 +44,7 @@ function Ninja:update(dt)
 	 self.lastX = self.x
 	 self:move(dt)
 
-	 self.animations:changeAnimation()
+	 self.animations:changeAnimation(self.dt)
 
 	 if self.isInvincible then
 			self.invincibilityTimer = self.invincibilityTimer + 1

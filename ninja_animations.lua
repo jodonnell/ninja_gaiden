@@ -33,8 +33,8 @@ function NinjaAnimations:init(ninja)
 	 }
 end
 
-function NinjaAnimations:changeAnimation()
-	 self.timer = self.timer + 1
+function NinjaAnimations:changeAnimation(dt)
+	 self.timer = self.timer + dt
 
 	 if self:isClimbing() then
 			self:climbingAnimation()
@@ -45,7 +45,7 @@ function NinjaAnimations:changeAnimation()
 	 elseif self:isAttackDucking() then
 			self:attackDuckingAnimation()
 	 elseif self:isMovingRight() or self:isMovingLeft() then
-			self:runningAnimation()
+			self:runningAnimation(dt)
 	 elseif self:isJumping() then
 			self:jumpingAnimation()
 	 end
@@ -110,13 +110,13 @@ function NinjaAnimations:attackingAnimation()
 end
 
 function NinjaAnimations:runningAnimation()
-	 if self.timer == 1 then
+	 if self.timer < 0.08 then
 			self.currentImage = 'running1'
-	 elseif self.timer == 5 then
+	 elseif self.timer < 0.16 then
 			self.currentImage = 'running2'
-	 elseif self.timer == 9 then
+	 elseif self.timer < 0.24 then
 			self.currentImage = 'running3'
-	 elseif self.timer == 12 then
+	 else
 			self.timer = 0
 	 end
 end
