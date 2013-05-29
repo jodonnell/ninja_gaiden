@@ -15,6 +15,7 @@ function CollisionDetection:isBottomColliding(dt)
 
 			if inBoundsX and self.ninja.y >= climbableRect:top() and self.ninja.lastY <= climbableRect:top() then
 				 self.ninja:setY(climbableRect:top())
+				 self.ninja.lastY = climbableRect:top()
 				 return true
 			end
 	 end
