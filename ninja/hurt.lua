@@ -8,25 +8,25 @@ function Hurt:init(ninja, bouncesRight)
 	 self.bouncesRight = bouncesRight
 end
 
-function Hurt:update()
-	 self.timer = self.timer + 1
+function Hurt:update(dt)
+	 self.timer = self.timer + dt
 
-	 if self.timer <= 5 then
+	 if self.timer <= 0.1 then
 			self.ninja.y = self.ninja.y - 6
-	 elseif self.timer <= 10 then
+	 elseif self.timer <= 0.2 then
 			self.ninja.y = self.ninja.y - 4
-	 elseif self.timer <= 15 then
+	 elseif self.timer <= 0.3 then
 			self.ninja.y = self.ninja.y - 2
-	 elseif self.timer <= 20 then
+	 elseif self.timer <= 0.4 then
 
 	 elseif self.ninja.collisionDetection:isBottomColliding() then
 			self.ninja.isHurt = false
 			return
-	 elseif self.timer <= 25 then
+	 elseif self.timer <= 0.5 then
 			self.ninja.y = self.ninja.y + 2
-	 elseif self.timer <= 30 then
+	 elseif self.timer <= 0.6 then
 			self.ninja.y = self.ninja.y + 4
-	 elseif self.timer <= 35 then
+	 elseif self.timer <= 0.7 then
 			self.ninja.y = self.ninja.y + 6
 	 else
 			self.ninja.y = self.ninja.y + 10

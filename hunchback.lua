@@ -42,11 +42,12 @@ function Hunchback:update(dt)
 			self.direction = LEFT
 	 end
 
-	 self.timer = self.timer + 1
-	 if self.timer == 10 then
+	 self.timer = self.timer + dt
+	 if self.timer < 0.3 then
 			self.currentImage = self.images['walk2']
-	 elseif self.timer == 20 then
+	 elseif self.timer < 0.6 then
 			self.currentImage = self.images['walk1']
+	 else
 			self.timer = 0
 	 end
 end

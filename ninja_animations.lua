@@ -45,26 +45,27 @@ function NinjaAnimations:changeAnimation(dt)
 	 elseif self:isAttackDucking() then
 			self:attackDuckingAnimation()
 	 elseif self:isMovingRight() or self:isMovingLeft() then
-			self:runningAnimation(dt)
+			self:runningAnimation()
 	 elseif self:isJumping() then
 			self:jumpingAnimation()
 	 end
 end
 
 function NinjaAnimations:climbingAnimation()
-	 if (self.ninja.upPressed or self.ninja.downPressed) and (self.timer % 5) == 0 then
+	 if (self.ninja.upPressed or self.ninja.downPressed) and self.timer > 0.1 then
 			if self.currentImage == 'climbing1' then
 				 self.currentImage = 'climbing2'
 			else
 				 self.currentImage = 'climbing1'
 			end
+			self.timer = 0
 	 end
 end
 
 function NinjaAnimations:attackFallingAnimation()
-	 if self.timer == 5 then
+	 if self.timer < 0.02 then
 	 		self.currentImage = 'fallingAttack2'
-	 elseif self.timer == 9 then
+	 elseif self.timer < 0.04 then
 	 		self.ninja.isAttacking = false
 			self.currentImage = '' -- to force fall not return early
 			self:fall()
@@ -72,11 +73,11 @@ function NinjaAnimations:attackFallingAnimation()
 end
 
 function NinjaAnimations:attackDuckingAnimation()
-	 if self.timer == 5 then
+	 if self.timer < 0.02 then
 	 		self.currentImage = 'duckingAttack2'
-	 elseif self.timer == 9 then
+	 elseif self.timer < 0.04 then
 			self.currentImage = 'duckingAttack3'
-	 elseif self.timer > 12 then
+	 elseif self.timer > 0.08 then
 	 		self.ninja.isAttacking = false
 			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
 				 if self.ninja.downPressed then
@@ -90,13 +91,13 @@ function NinjaAnimations:attackDuckingAnimation()
 end
 
 function NinjaAnimations:attackingAnimation()
-	 if self.timer == 1 then
+	 if self.timer < 0.02 then
 			self.currentImage = 'attacking1'
-	 elseif self.timer == 5 then
+	 elseif self.timer < 0.04 then
 	 		self.currentImage = 'attacking2'
-	 elseif self.timer == 9 then
+	 elseif self.timer < 0.08 then
 	 		self.currentImage = 'attacking3'
-	 elseif self.timer > 12 then
+	 elseif self.timer > 0.012 then
 	 		self.ninja.isAttacking = false
 
 			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
@@ -122,7 +123,7 @@ function NinjaAnimations:runningAnimation()
 end
 
 function NinjaAnimations:jumpingAnimation()
-	 if (self.timer % 3) == 0 then
+	 if self.timer > 0.04 then
 			if self.currentImage == 'jumping1' then
 				 self.currentImage = 'jumping2'
 			elseif self.currentImage == 'jumping2' then
@@ -132,6 +133,7 @@ function NinjaAnimations:jumpingAnimation()
 			else
 				 self.currentImage = 'jumping1'
 			end
+			self.timer = 0
 	 end
 end
 

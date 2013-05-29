@@ -47,14 +47,14 @@ function Ninja:update(dt)
 	 self.animations:changeAnimation(self.dt)
 
 	 if self.isInvincible then
-			self.invincibilityTimer = self.invincibilityTimer + 1
-			if self.invincibilityTimer > 80 then
+			self.invincibilityTimer = self.invincibilityTimer + dt
+			if self.invincibilityTimer > 1.2 then
 				 self.isInvincible = false
 			end
 	 end
 
 	 if self.isHurt then
-			self.hurt:update()
+			self.hurt:update(dt)
 	 end
 
 	 if self.upPressed and self.isClimbing then
@@ -208,7 +208,12 @@ function Ninja:draw()
 			y = y + 20
 	 end
 
-	 if not (self.isInvincible and (self.invincibilityTimer % 2) == 0) then
+	 function round2(num, idp)
+			return tonumber(string.format("%." .. (idp or 0) .. "f", num))
+	 end
+
+	 local boo = round2(self.invincibilityTimer, 1)
+	 if not (self.isInvincible and (boo % 0.2) == 0) then
 			love.graphics.draw(image, x, y, rotation, scaleX, scaleY)
 	 end
 end
@@ -226,7 +231,7 @@ function Ninja:startJumping()
 
 	 local timer
 	 if self.isClimbing then
-			timer = 8
+			timer = 0.15
 	 else
 			timer = 0
 	 end
