@@ -7,17 +7,17 @@ function Jump:init(ninja, startTimer)
 	 self.ninja = ninja
 end
 
-function Jump:update()
+function Jump:update(dt)
 	 self.timer = self.timer + 1
 
 	 if self.timer <= 9 then
-			self.ninja.y = self.ninja.y - 8
+			self.ninja.y = self.ninja.y - (480 * dt)
 	 elseif self.timer <= 13 then
-			self.ninja.y = self.ninja.y - 6
+			self.ninja.y = self.ninja.y - (360 * dt)
 	 elseif self.timer <= 17 then
-			self.ninja.y = self.ninja.y - 4
+			self.ninja.y = self.ninja.y - (240 * dt)
 	 elseif self.timer <= 21 then
-			self.ninja.y = self.ninja.y - 2
+			self.ninja.y = self.ninja.y - (120 * dt)
 	 elseif self.timer <= 30 then
 	 else
 			self.ninja.jumpPressed = false

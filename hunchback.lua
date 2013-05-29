@@ -29,11 +29,11 @@ function Hunchback:draw()
 	 end
 end
 
-function Hunchback:update()
+function Hunchback:update(dt)
 	 if self.direction == LEFT then
-			self.x = self.x - 2
+			self.x = self.x - (120 * dt)
 	 else
-			self.x = self.x + 2
+			self.x = self.x + (120 * dt)
 	 end
 
 	 if self.x <= self.leftBound then

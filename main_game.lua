@@ -57,8 +57,8 @@ function MainGame:drawHUD()
 	 love.graphics.print(love.timer.getFPS(), xPos, 10)
 end
 
-function MainGame:update()
-	 self.ninja:update()
+function MainGame:update(dt)
+	 self.ninja:update(dt)
 
 	 for i, explosion in ipairs(self.explosions) do
 			explosion:update()
@@ -68,7 +68,7 @@ function MainGame:update()
 	 end
 
 	 for i, enemy in ipairs(self.enemies) do
-			enemy:update()
+			enemy:update(dt)
 			
 			if not self.ninja.isInvincible then
 				 local collision = self:checkCollisionsBetweenSprites(self.ninja, enemy)

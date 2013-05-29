@@ -20,7 +20,7 @@ end
 
 function Ninja:setInitialStates()
 	 self.x = 105
-	 self.y = 150
+	 self:setY(150)
 
 	 self.rightPressed = false
 	 self.leftPressed = false
@@ -39,8 +39,10 @@ function Ninja:setClimbableRects(rects)
 	 self.collisionDetection = CollisionDetection(self, rects)
 end
 
-function Ninja:update()
-	 self:move()
+function Ninja:update(dt)
+	 self.dt = dt
+	 self.lastX = self.x
+	 self:move(dt)
 
 	 self.animations:changeAnimation()
 
@@ -56,21 +58,21 @@ function Ninja:update()
 	 end
 
 	 if self.upPressed and self.isClimbing then
-			self.y = self.y - NINJA_CLIMB_SPEED
+			self:setY(self.y - (NINJA_CLIMB_SPEED * dt))
 			self.collisionDetection:isAtTop()
 	 end
 
 	 if self.downPressed and self.isClimbing then
-			self.y = self.y + NINJA_CLIMB_SPEED
+			self:setY(self.y + (NINJA_CLIMB_SPEED * dt))
 			self.collisionDetection:isAtBottom()
 	 end
 
 	 if self:isFalling() then
-			self:fall()
+			self:fall(dt)
 	 end
 	 
 	 if self.jumpPressed then
-			self.jump:update()
+			self.jump:update(dt)
 	 end
 
 	 if self.isAttacking then
@@ -126,23 +128,23 @@ function Ninja:canAttack()
 end
 
 function Ninja:isFalling()
-	 return (not self.collisionDetection:isBottomColliding()) and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
+	 return (not self.collisionDetection:isBottomColliding(self.dt)) and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
 end
 
 function Ninja:getCurrentImage()
 	 return self.animations:getCurrentImage()
 end
 
-function Ninja:fall()
-	 self.y = self.y + NINJA_FALL_SPEED
+function Ninja:fall(dt)
+	 self:setY(self.y + (NINJA_FALL_SPEED * dt))
 	 self.animations:fall()
 end
 
-function Ninja:move()
+function Ninja:move(dt)
 	 if self:isMovingRight() then
-			self:moveRight()
+			self:moveRight(dt)
 	 elseif self:isMovingLeft() then
-			self:moveLeft()
+			self:moveLeft(dt)
 	 end
 end
 
@@ -154,11 +156,20 @@ function Ninja:isMovingLeft()
 	 return self.leftPressed and self.isHurt == false and self.isClimbing == false and (self.isAttacking == false or (self:isJumping() or self:isFalling()))
 end
 
-function Ninja:moveRight()
-	 self.x = self.x + NINJA_MOVE_SPEED
+function Ninja:moveRight(dt)
+	 self.x = self.x + (NINJA_MOVE_SPEED * dt)
 	 self.animations:runRight()
 
 	 if self.collisionDetection:isRightColliding() then
+			self:startClimbing()
+	 end
+end
+
+function Ninja:moveLeft(dt)
+	 self.x = self.x - (NINJA_MOVE_SPEED * dt)
+	 self.animations:runLeft()
+
+	 if self.collisionDetection:isLeftColliding() then
 			self:startClimbing()
 	 end
 end
@@ -168,15 +179,6 @@ function Ninja:startClimbing()
 	 self.animations:climb()
 	 self.isClimbing = true
 	 self.isAttacking = false
-end
-
-function Ninja:moveLeft()
-	 self.x = self.x - NINJA_MOVE_SPEED
-	 self.animations:runLeft()
-
-	 if self.collisionDetection:isLeftColliding() then
-			self:startClimbing()
-	 end
 end
 
 function Ninja:isAttacking()
@@ -276,4 +278,9 @@ end
 
 function Ninja:hasLostLife()
 	 return self.life == 0 or self.y > love.graphics.getHeight()
+end
+
+function Ninja:setY(y)
+	 self.lastY = self.y
+	 self.y = y
 end

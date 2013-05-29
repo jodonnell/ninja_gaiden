@@ -38,8 +38,8 @@ function love.draw()
 	 main_game:draw()
 end
 
-function love.update()
-	 main_game:update()
+function love.update(dt)
+	 main_game:update(dt)
 end
 
 function love.keypressed(key, unicode)
