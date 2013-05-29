@@ -159,10 +159,15 @@ function Ninja:moveRight()
 	 self.animations:runRight()
 
 	 if self.collisionDetection:isRightColliding() then
-			self.jumpPressed = false
-			self.animations:climb()
-			self.isClimbing = true
+			self:startClimbing()
 	 end
+end
+
+function Ninja:startClimbing()
+	 self.jumpPressed = false
+	 self.animations:climb()
+	 self.isClimbing = true
+	 self.isAttacking = false
 end
 
 function Ninja:moveLeft()
@@ -170,11 +175,8 @@ function Ninja:moveLeft()
 	 self.animations:runLeft()
 
 	 if self.collisionDetection:isLeftColliding() then
-			self.jumpPressed = false
-			self.animations:climb()
-			self.isClimbing = true
+			self:startClimbing()
 	 end
-
 end
 
 function Ninja:isAttacking()
