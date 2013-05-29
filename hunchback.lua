@@ -3,11 +3,13 @@ require 'sprite'
 
 Hunchback = class(Sprite)
 
-function Hunchback:init(x, y, direction, id)
+function Hunchback:init(x, y, direction, id, leftBound, rightBound)
 	 self.x = x
 	 self.y = y
 	 self.id = id
 	 self.direction = direction
+	 self.leftBound = leftBound
+	 self.rightBound = rightBound
 
 	 self.images = { 
 			walk1 = love.graphics.newImage("images/hunchback_walk1.png"),
@@ -28,7 +30,17 @@ function Hunchback:draw()
 end
 
 function Hunchback:update()
-	 self.x = self.x - 2
+	 if self.direction == LEFT then
+			self.x = self.x - 2
+	 else
+			self.x = self.x + 2
+	 end
+
+	 if self.x <= self.leftBound then
+			self.direction = RIGHT
+	 elseif self.x >= self.rightBound then
+			self.direction = LEFT
+	 end
 
 	 self.timer = self.timer + 1
 	 if self.timer == 10 then
