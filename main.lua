@@ -17,7 +17,20 @@ end
 
 local main_game = MainGame()
 
+function setWindow()
+	 local modes = love.graphics.getModes()
+	 local height = 0
+	 for key,value in pairs(modes) do 
+			if value['width'] == 1024 then
+				 height = value['height']
+			end
+	 end
+
+	 local success = love.graphics.setMode( 1024, height, false, false, 0 )
+end
+
 function love.load()
+	 setWindow()
 	 main_game:load()
 end
 
