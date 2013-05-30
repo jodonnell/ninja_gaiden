@@ -1,4 +1,5 @@
 module(..., package.seeall)
+require 'tests.helpers'
 
 function setup()
 	 love.graphics.newImage = function(path) return path end
@@ -59,10 +60,10 @@ function test_attack_when_falling_does_a_different_animation()
 	 animations:attack()
    assert_equal(animations.images['fallingAttack1'], animations:getCurrentImage(), 'not first attack animation')
 
-	 advanceFrames(5)
+	 advanceFrames(6)
    assert_equal(animations.images['fallingAttack2'], animations:getCurrentImage(), 'not second attack animation')
 
-	 advanceFrames(4)
+	 advanceFrames(6)
    assert_equal(animations.images['falling'], animations:getCurrentImage(), 'not original fall animation')
 	 
 end
@@ -75,10 +76,10 @@ function test_ninja_moving_left_runs_animation()
 	 advanceFrames(5)
 	 assert_equal(animations.images['running2'], animations:getCurrentImage())
 	 
-	 advanceFrames(4)
+	 advanceFrames(5)
 	 assert_equal(animations.images['running3'], animations:getCurrentImage())
 
-	 advanceFrames(4)
+	 advanceFrames(6)
 	 assert_equal(animations.images['running1'], animations:getCurrentImage())
 end
 
@@ -89,10 +90,10 @@ function test_ninja_moving_right_runs_animation()
 	 advanceFrames(5)
 	 assert_equal(animations.images['running2'], animations:getCurrentImage())
 	 
-	 advanceFrames(4)
+	 advanceFrames(5)
 	 assert_equal(animations.images['running3'], animations:getCurrentImage())
 
-	 advanceFrames(4)
+	 advanceFrames(6)
 	 assert_equal(animations.images['running1'], animations:getCurrentImage())
 end
 
@@ -101,16 +102,16 @@ function test_climbing_animation()
 	 animations:climb()
 	 assert_equal(animations.images['climbing1'], animations:getCurrentImage())
 	 
-	 advanceFrames(5)
+	 advanceFrames(6)
 	 assert_equal(animations.images['climbing2'], animations:getCurrentImage())
 	 
-	 advanceFrames(5)
+	 advanceFrames(6)
 	 assert_equal(animations.images['climbing1'], animations:getCurrentImage())
 end
 
 
 function advanceFrames(numFrames)
 	 for i=1, numFrames do
-			animations:changeAnimation()
+			animations:changeAnimation(ONE_FRAME)
 	 end
 end

@@ -1,44 +1,45 @@
 module(..., package.seeall)
+require 'tests.helpers'
 
 function setup()
 	 love.graphics.newImage = function(path) return path end
 
    ninja = Ninja()
 	 ninja:setClimbableRects({Rect(0, 450, 2000, 450)})
-	 ninja.y = 450
+	 ninja:setY(450)
 end
 
 function test_ninja_falls()
    ninja.y = 100
-   ninja:update()
+   ninja:update(ONE_FRAME)
    assert_gt(100, ninja.y)
 end
 
 function test_ninja_lands_on_the_ground()
 	 for i=1,50 do
-			ninja:update()
+			ninja:update(ONE_FRAME)
 	 end
    assert_equal(450, ninja.y)
 end
 
 function test_ninja_transitions_to_move_right_when_ducking()
 	 ninja.downPressed = true
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 ninja.rightPressed = true
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
    assert_equal(450, ninja.y)
 end
 
 function test_ninja_can_jump()
 	 ninja:startJumping()
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
    assert_lt(450, ninja.y)
 end
 
 function test_ninja_can_get_hurt()
 	 local x = ninja.x
 	 ninja:gotHurt()
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_lt(x, ninja.x)
 	 assert_lt(450, ninja.y)
 end
@@ -46,7 +47,7 @@ end
 function test_ninja_can_get_hurt_and_bounces_right()
 	 local x = ninja.x
 	 ninja:gotHurt(true)
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_gt(x, ninja.x)
 	 assert_lt(450, ninja.y)
 end
@@ -76,7 +77,7 @@ function test_ninja_status_reset_when_hurt()
 	 ninja.isAttacking = true
 	 ninja.isClimbing = true
 	 ninja:gotHurt()
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_false(ninja.jumpPressed)
 	 assert_false(ninja.isAttacking)
 	 assert_false(ninja.isClimbing)
@@ -84,7 +85,7 @@ end
 
 function test_ninja_becomes_invincible_when_hurt()
 	 ninja:gotHurt()
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_true(ninja.isInvincible)
 
 	 update(ninja, 80)
@@ -101,7 +102,7 @@ function test_ninja_collision_detection_works_correctly()
 	 ninja.x = 10
 	 ninja.y = 80
 	 ninja:setClimbableRects({Rect(5, 50, 2000, 50)})
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_gt(80, ninja.y)
 end
 
@@ -110,7 +111,7 @@ function test_ninja_collision_detection_left_works_correctly()
 	 ninja.y = 120
 	 ninja:setClimbableRects({Rect(5, 50, 99, 300)})
 	 ninja.leftPressed = true
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_true(ninja.isClimbing)
 end
 
@@ -119,7 +120,7 @@ function test_ninja_collision_detection_right_works_correctly()
 	 ninja.y = 120
 	 ninja:setClimbableRects({Rect(5, 50, 99, 300)})
 	 ninja.rightPressed = true
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_true(ninja.isClimbing)
 end
 
@@ -129,12 +130,12 @@ function test_ninja_climbs_up()
 	 ninja.rightPressed = true
 	 ninja:setClimbableRects({Rect(100, 50, 101, 300)})
 
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 
 	 ninja.rightPressed = false
 	 ninja.upPressed = true
 
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_lt(100, ninja.y)
 end
 
@@ -144,18 +145,18 @@ function test_ninja_climbs_down()
 	 ninja.rightPressed = true
 	 ninja:setClimbableRects({Rect(100, 50, 101, 300)})
 
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 
 	 ninja.rightPressed = false
 	 ninja.downPressed = true
 
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_gt(100, ninja.y)
 end
 
 function test_ninja_cannot_jump_over_and_over()
 	 ninja:startJumping()
-	 ninja:update()
+	 ninja:update(ONE_FRAME)
 	 assert_false(ninja:canJump())
 end
 

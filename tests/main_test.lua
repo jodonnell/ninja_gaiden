@@ -1,4 +1,5 @@
 module(..., package.seeall)
+require 'tests.helpers'
 
 function setup()
 	 love.graphics.newImage = function(path) return path end
@@ -17,14 +18,14 @@ function test_ninja_jump_attack_and_move_right()
 	 mainGame.ninja:startJumping()
 	 
 	 for i=1, 10 do
-	 		mainGame:update()
+	 		mainGame:update(ONE_FRAME)
 	 end
 
 	 mainGame.ninja.isAttacking = true
 
    local x = mainGame.ninja.x
    local y = mainGame.ninja.y
-	 mainGame:update()
+	 mainGame:update(ONE_FRAME)
 
    assert_gt(x, mainGame.ninja.x, 'Should move right')
    assert_lt(y, mainGame.ninja.y, 'Should move up')
@@ -35,31 +36,31 @@ function test_enemy_appears_at_when_scrolling()
 	 mainGame.ninja.rightPressed = true
    assert_equal(0, #mainGame.enemies, 'No enemies')
 
-	 mainGame:update()
+	 mainGame:update(ONE_FRAME)
    assert_equal(1, #mainGame.enemies, 'One enemy')
 end
 
 function test_ninja_can_hit_enemy()
-	 mainGame.ninja.x = 400
-	 table.insert(mainGame.enemies, Hunchback(400, mainGame.ninja.y, LEFT))
-	 mainGame:update()
+	 mainGame.ninja.x = 100
+	 table.insert(mainGame.enemies, Hunchback(100, mainGame.ninja.y, LEFT, 0, 200))
+	 mainGame:update(ONE_FRAME)
 	 assert_true(mainGame.ninja.isHurt)
 end
 
 function test_ninja_cannot_hit_enemy_if_invincible()
-	 mainGame.ninja.x = 400
+	 mainGame.ninja.x = 100
 	 mainGame.ninja.isInvincible = true
-	 table.insert(mainGame.enemies, Hunchback(400, mainGame.ninja.y, LEFT))
-	 mainGame:update()
+	 table.insert(mainGame.enemies, Hunchback(100, mainGame.ninja.y, LEFT, 0, 200))
+	 mainGame:update(ONE_FRAME)
 	 assert_false(mainGame.ninja.isHurt)
 end
 
 function test_ninja_can_kill_enemy()
-	 mainGame.ninja.x = 420
-	 table.insert(mainGame.enemies, Hunchback(435, mainGame.ninja.y, LEFT))
+	 mainGame.ninja.x = 100
+	 table.insert(mainGame.enemies, Hunchback(135, mainGame.ninja.y, LEFT, 0, 200))
 
 	 mainGame.ninja.isAttacking = true
-	 mainGame:update()
+	 mainGame:update(ONE_FRAME)
    assert_equal(0, #mainGame.enemies, 'Enemy did not disappear')
    assert_equal(1, #mainGame.explosions, 'No explosions')
 end
@@ -67,9 +68,9 @@ end
 function test_ninja_dies()
 	 mainGame.ninja.life = 1
 	 mainGame.ninja:gotHurt()
-	 mainGame.enemies = {[1]=Hunchback(1, 1, LEFT, 1)}
+	 mainGame.enemies = {[1]=Hunchback(1, 1, LEFT, 1, 0, 200)}
 
-	 mainGame:update()
+	 mainGame:update(ONE_FRAME)
 	 assert_equal(NINJA_STARTING_LIVES - 1, mainGame.ninja.lives)
 	 assert_equal(105, mainGame.ninja.x)
 	 assert_equal(150, mainGame.ninja.y)
@@ -77,10 +78,9 @@ function test_ninja_dies()
 end
 
 function test_ninja_dies_if_falls_off_cliff()
-	 mainGame.ninja.y = love.graphics.getHeight() + 20
-	 mainGame.enemies = {[1]=Hunchback(1, 1, LEFT, 1)}
-
-	 mainGame:update()
+	 mainGame.ninja.y = love.graphics.getHeight() + 40
+	 mainGame.ninja.lastY = love.graphics.getHeight() + 40
+	 mainGame:update(ONE_FRAME)
 	 assert_equal(NINJA_STARTING_LIVES - 1, mainGame.ninja.lives)
 end
 
@@ -89,6 +89,6 @@ function advanceDraw(newX)
 	 		assert_equal(newX, x, 'Moved relatively 4')
 	 end
 
-	 mainGame:update()
+	 mainGame:update(ONE_FRAME)
 	 mainGame:draw()
 end
