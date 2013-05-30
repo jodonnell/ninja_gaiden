@@ -226,11 +226,9 @@ end
 function Ninja:startJumping()
 	 self.jumpPressed = true
 
-	 local timer
+	 local timer = 0
 	 if self.isClimbing then
 			timer = 0.15
-	 else
-			timer = 0
 	 end
 
 	 self.jump = Jump(self, timer)
