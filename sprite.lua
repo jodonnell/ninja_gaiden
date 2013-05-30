@@ -4,7 +4,7 @@ Sprite = class()
 
 function Sprite:getWidth()
 	 if os.getenv("LUA_TEST") then
-			return 30
+			return 40
 	 else
 			return self:getCurrentImage():getWidth()
 	 end
