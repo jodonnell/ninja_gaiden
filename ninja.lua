@@ -2,6 +2,7 @@ require 'class'
 require 'constants'
 require 'ninja_animations'
 require 'sprite'
+require 'utility'
 require 'ninja/hurt'
 require 'ninja/jump'
 require 'ninja/collision_detection'
@@ -208,12 +209,8 @@ function Ninja:draw()
 			y = y + 20
 	 end
 
-	 function round2(num, idp)
-			return tonumber(string.format("%." .. (idp or 0) .. "f", num))
-	 end
-
-	 local boo = round2(self.invincibilityTimer, 1)
-	 if not (self.isInvincible and (boo % 0.2) == 0) then
+	 local timer = round(self.invincibilityTimer, 1)
+	 if not (self.isInvincible and (timer % 0.2) == 0) then
 			love.graphics.draw(image, x, y, rotation, scaleX, scaleY)
 	 end
 end
