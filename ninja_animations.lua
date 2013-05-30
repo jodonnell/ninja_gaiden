@@ -63,9 +63,11 @@ function NinjaAnimations:climbingAnimation()
 end
 
 function NinjaAnimations:attackFallingAnimation()
-	 if self.timer < 0.02 then
+	 if self.timer < 0.1 then
+	 		self.currentImage = 'fallingAttack1'
+	 elseif self.timer < 0.2 then
 	 		self.currentImage = 'fallingAttack2'
-	 elseif self.timer < 0.04 then
+	 else
 	 		self.ninja.isAttacking = false
 			self.currentImage = '' -- to force fall not return early
 			self:fall()
@@ -73,11 +75,13 @@ function NinjaAnimations:attackFallingAnimation()
 end
 
 function NinjaAnimations:attackDuckingAnimation()
-	 if self.timer < 0.02 then
+	 if self.timer < 0.06 then
+	 		self.currentImage = 'duckingAttack1'
+	 elseif self.timer < 0.12 then
 	 		self.currentImage = 'duckingAttack2'
-	 elseif self.timer < 0.04 then
+	 elseif self.timer < 0.24 then
 			self.currentImage = 'duckingAttack3'
-	 elseif self.timer > 0.08 then
+	 else
 	 		self.ninja.isAttacking = false
 			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
 				 if self.ninja.downPressed then
@@ -91,13 +95,13 @@ function NinjaAnimations:attackDuckingAnimation()
 end
 
 function NinjaAnimations:attackingAnimation()
-	 if self.timer < 0.02 then
+	 if self.timer < 0.06 then
 			self.currentImage = 'attacking1'
-	 elseif self.timer < 0.04 then
+	 elseif self.timer < 0.14 then
 	 		self.currentImage = 'attacking2'
-	 elseif self.timer < 0.08 then
+	 elseif self.timer < 0.22 then
 	 		self.currentImage = 'attacking3'
-	 elseif self.timer > 0.012 then
+	 elseif self.timer > 0.28 then
 	 		self.ninja.isAttacking = false
 
 			if self.ninja.rightPressed == false and self.ninja.leftPressed == false then
