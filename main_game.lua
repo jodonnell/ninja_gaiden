@@ -61,7 +61,7 @@ function MainGame:update(dt)
 	 self.ninja:update(dt)
 
 	 for i, explosion in ipairs(self.explosions) do
-			explosion:update()
+			explosion:update(dt)
 			if explosion:isExplosionFinished() then
 				 table.remove(self.explosions, i)
 			end
