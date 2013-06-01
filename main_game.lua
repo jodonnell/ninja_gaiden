@@ -55,6 +55,8 @@ function MainGame:drawHUD()
 	 self:drawLifeBars(secondColumnX + 190, 85)
 
 	 love.graphics.print(love.timer.getFPS(), xPos, 10)
+	 love.graphics.print(self.ninja.x, xPos, 40)
+	 love.graphics.print(self.ninja.y, xPos, 80)
 end
 
 function MainGame:update(dt)

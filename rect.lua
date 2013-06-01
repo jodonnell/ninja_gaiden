@@ -2,11 +2,11 @@ require 'class'
 
 Rect = class()
 
-function Rect:init(left, top, right, bottom)
+function Rect:init(left, top, width, height)
 	 self.l = left
 	 self.t = top
-	 self.r = right
-	 self.b = bottom
+	 self.w = width
+	 self.h = height
 end
 
 function Rect:left()
@@ -14,11 +14,11 @@ function Rect:left()
 end
 
 function Rect:right()
-	 return self.r
+	 return self.l + self.w
 end
 
 function Rect:bottom()
-	 return self.b
+	 return self.t + self.h
 end
 
 function Rect:top()
@@ -26,9 +26,9 @@ function Rect:top()
 end
 
 function Rect:width()
-	 return self.r - self.l
+	 return self.w
 end
 
 function Rect:height()
-	 return self.b - self.t
+	 return self.h
 end

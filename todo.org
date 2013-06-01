@@ -17,12 +17,12 @@
 **** DONE only one enemy should appear when you hit a certain point
 **** Make sword box y more accurate
 *** DONE falling off cliffs
-*** life
-*** lives
+*** DONE life
+*** DONE lives
 ** tech debt
 *** DONE fix up test suite
-*** Seems to run at different speeds on different computers
-*** Fullscreen dependant on conf file
+*** DONE Seems to run at different speeds on different computers
+*** DONE Fullscreen dependant on conf file
 *** extract love to abstraction
 ** assets
 *** font from http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=528

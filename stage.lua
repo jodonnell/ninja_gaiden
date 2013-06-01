@@ -4,7 +4,7 @@ require 'rect'
 Stage = class()
 
 function Stage:init(ninja)
-	 self.image = love.graphics.newImage("images/stage.png")
+	 self.image = love.graphics.newImage("images/first_stage.png")
 
 	 self.screenScrollX = 0
 	 self.endOfStageX = 2038
@@ -27,12 +27,16 @@ end
 
 function Stage:createClimbableRects()
 	 self.rects = {}
-	 self.rects[1] = Rect(80, 450, self.endOfStageX, 451)
-	 self.rects[2] = Rect(79, 120, 80, 450)
-	 self.rects[3] = Rect(895, 150, 1015, 420)
-	 self.rects[4] = Rect(1070, 240, 1349, 450)
-	 self.rects[5] = Rect(1675, 320, 1784, 320)
-	 self.rects[6] = Rect(1845, 240, self.endOfStageX, 450)
+	 self.rects[1] = Rect(0, 120, 81, 510)
+	 self.rects[2] = Rect(86, 518, 509, 111)
+	 self.rects[3] = Rect(716, 519, 214, 108)
+
+	 -- self.rects[1] = Rect(80, 450, self.endOfStageX, 451)
+	 -- self.rects[2] = Rect(79, 120, 80, 450)
+	 -- self.rects[3] = Rect(895, 150, 1015, 420)
+	 -- self.rects[4] = Rect(1070, 240, 1349, 450)
+	 -- self.rects[5] = Rect(1675, 320, 1784, 320)
+	 -- self.rects[6] = Rect(1845, 240, self.endOfStageX, 450)
 end
 
 function Stage:climbableRects()

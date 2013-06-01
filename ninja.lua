@@ -284,3 +284,11 @@ function Ninja:setY(y)
 	 self.lastY = self.y
 	 self.y = y
 end
+
+function Ninja:bottom()
+	 return self.y + self:getHeight()
+end
+
+function Ninja:lastYBottom()
+	 return self.lastY + self:getHeight()
+end

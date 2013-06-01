@@ -17,8 +17,13 @@ class Rect
     x + width
   end
 
+  def bottom_side
+    y + height
+  end
+
   def to_s
-    "#{x} #{y} #{width} #{height}"
+    #"#{x} #{y} #{width} #{height}"
+    "self.rects[] = Rect(#{x}, #{y + 120}, #{width}, #{height})"
   end
 end
 
@@ -26,15 +31,23 @@ end
 class FindRectangle
   attr_accessor :rect
 
-  def initialize
+  def initialize rects
     @rect_started = false
     @is_traveling_line = false
     @traveling_down_line = false
     @rect = Rect.new
+    @previous_rects = rects
+  end
+
+  def not_in_previous_rects x, y
+    @previous_rects.each do |rect|
+      return false if (x >= rect.x and x <= rect.right_side) and (y >= rect.y and y <= rect.bottom_side)
+    end
+    true
   end
 
   def look_at_pixel pixel, x, y
-    if pixel.opacity == 0 && @rect_started == false
+    if pixel.opacity == 0 && @rect_started == false && not_in_previous_rects(x, y)
       @rect_started = true
       @rect.x = x
       @rect.y = y
@@ -55,10 +68,17 @@ end
 
 image = Image.read("first_stage_rects.png").first
 
-fr = FindRectangle.new
-image.each_pixel do |pixel, x, y|
-  fr.look_at_pixel pixel, x, y
+rects = []
+
+while 1==1 do
+  fr = FindRectangle.new rects
+  image.each_pixel do |pixel, x, y|
+    fr.look_at_pixel pixel, x, y
+    if fr.rect.complete?
+      rects.push fr.rect
+      puts fr.rect
+      break
+    end
+  end
+  break if fr.rect.incomplete?
 end
-
-puts fr.rect
-
