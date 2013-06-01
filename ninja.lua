@@ -129,7 +129,7 @@ function Ninja:canAttack()
 end
 
 function Ninja:isFalling()
-	 return (not self.collisionDetection:isBottomColliding(self.dt)) and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
+	 return (not self.collisionDetection:isBottomColliding()) and self.jumpPressed == false and self.isHurt == false and self.isClimbing == false
 end
 
 function Ninja:getCurrentImage()
@@ -286,9 +286,13 @@ function Ninja:setY(y)
 end
 
 function Ninja:bottom()
-	 return self.y + self:getHeight()
+	 return self.y + NINJA_HEIGHT
 end
 
 function Ninja:lastYBottom()
-	 return self.lastY + self:getHeight()
+	 return self.lastY + NINJA_HEIGHT
+end
+
+function Ninja:rightSide()
+	 return self.x + NINJA_WIDTH
 end

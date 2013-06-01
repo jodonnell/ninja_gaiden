@@ -57,6 +57,7 @@ function MainGame:drawHUD()
 	 love.graphics.print(love.timer.getFPS(), xPos, 10)
 	 love.graphics.print(self.ninja.x, xPos, 40)
 	 love.graphics.print(self.ninja.y, xPos, 80)
+	 love.graphics.print(self.ninja.animations.currentImage, xPos, 100)
 end
 
 function MainGame:update(dt)

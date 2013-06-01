@@ -10,6 +10,7 @@ if os.getenv("LUA_TEST") then
    lunatest.suite("tests.stage_test")
    lunatest.suite("tests.hunchback_test")
    lunatest.suite("tests.explosion_test")
+   lunatest.suite("tests.collision_detection_test")
 
    lunatest.run()
    os.exit()

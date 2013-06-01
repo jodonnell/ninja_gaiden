@@ -15,13 +15,6 @@ function test_ninja_falls()
    assert_gt(100, ninja.y)
 end
 
-function test_ninja_lands_on_the_ground()
-	 for i=1,50 do
-			ninja:update(ONE_FRAME)
-	 end
-   assert_equal(450, ninja.y)
-end
-
 function test_ninja_transitions_to_move_right_when_ducking()
 	 ninja.downPressed = true
 	 ninja:update(ONE_FRAME)

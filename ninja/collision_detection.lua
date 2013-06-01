@@ -8,12 +8,12 @@ function CollisionDetection:init(ninja, rects)
 	 self.rects = rects
 end
 
-function CollisionDetection:isBottomColliding(dt)
+function CollisionDetection:isBottomColliding()
 	 
 	 for i, climbableRect in ipairs(self.rects) do
-			local inBoundsX = self.ninja.x > climbableRect:left() and self.ninja.x < climbableRect:right()
+			local inBoundsX = self.ninja:rightSide() > climbableRect:left() and self.ninja.x < climbableRect:right()
 			if inBoundsX and self.ninja:bottom() >= climbableRect:top() and self.ninja:lastYBottom() <= climbableRect:top() then
-				 local y = climbableRect:top() - self.ninja:getHeight()
+				 local y = climbableRect:top() - NINJA_HEIGHT
 				 self.ninja:setY(y)
 				 self.ninja.lastY = y
 				 return true
