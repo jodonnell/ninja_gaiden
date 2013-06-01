@@ -3,9 +3,9 @@ require 'constants'
 require 'ninja_animations'
 require 'sprite'
 require 'utility'
-require 'ninja/hurt'
-require 'ninja/jump'
-require 'ninja/collision_detection'
+require 'ninja.hurt'
+require 'ninja.jump'
+require 'ninja.collision_detection'
 
 Ninja = class(Sprite)
 
