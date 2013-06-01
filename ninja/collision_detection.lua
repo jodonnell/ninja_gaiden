@@ -39,10 +39,10 @@ end
 
 function CollisionDetection:isRightColliding()
 	 for i, climbableRect in ipairs(self.rects) do
-			local inBoundsY = self.ninja.y > climbableRect:top() and self.ninja.y < climbableRect:bottom()
+			local inBoundsY = self.ninja:bottom() >= climbableRect:top() and self.ninja.y < climbableRect:bottom()
 		
-			if inBoundsY and self.ninja.x >= climbableRect:left() and self.ninja.lastX <= climbableRect:left() then
-				 self.ninja.x = climbableRect:left()
+			if inBoundsY and self.ninja:rightSide() >= climbableRect:left() and self.ninja:lastXRight() <= climbableRect:left() then
+				 self.ninja.x = climbableRect:left() - NINJA_WIDTH
 				 self.attachedToRect = climbableRect
 				 return true
 			end

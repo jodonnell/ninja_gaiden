@@ -91,32 +91,6 @@ function test_ninja_does_not_fall_when_climbing()
 	 assert_false(ninja:isFalling())
 end
 
-function test_ninja_collision_detection_works_correctly()
-	 ninja.x = 10
-	 ninja.y = 80
-	 ninja:setClimbableRects({Rect(5, 50, 2000, 50)})
-	 ninja:update(ONE_FRAME)
-	 assert_gt(80, ninja.y)
-end
-
-function test_ninja_collision_detection_left_works_correctly()
-	 ninja.x = 100
-	 ninja.y = 120
-	 ninja:setClimbableRects({Rect(5, 50, 99, 300)})
-	 ninja.leftPressed = true
-	 ninja:update(ONE_FRAME)
-	 assert_true(ninja.isClimbing)
-end
-
-function test_ninja_collision_detection_right_works_correctly()
-	 ninja.x = 4
-	 ninja.y = 120
-	 ninja:setClimbableRects({Rect(5, 50, 99, 300)})
-	 ninja.rightPressed = true
-	 ninja:update(ONE_FRAME)
-	 assert_true(ninja.isClimbing)
-end
-
 function test_ninja_climbs_up()
 	 ninja.x = 99
 	 ninja.y = 100

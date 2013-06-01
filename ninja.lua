@@ -293,6 +293,10 @@ function Ninja:lastYBottom()
 	 return self.lastY + NINJA_HEIGHT
 end
 
+function Ninja:lastXRight()
+	 return self.lastX + NINJA_WIDTH
+end
+
 function Ninja:rightSide()
 	 return self.x + NINJA_WIDTH
 end
