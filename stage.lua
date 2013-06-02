@@ -16,9 +16,9 @@ end
 function Stage:draw()
 	 love.graphics.draw(self.image, -self.screenScrollX, 128)
 
-	 for i, rect in ipairs(self.rects) do
-			love.graphics.rectangle("fill", rect:left(), rect:top(), rect:width(), rect:height() )
-	 end
+	 -- for i, rect in ipairs(self.rects) do
+	 -- 		love.graphics.rectangle("fill", rect:left(), rect:top(), rect:width(), rect:height() )
+	 -- end
 end
 
 function Stage:update(enemies)
