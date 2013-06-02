@@ -11,13 +11,13 @@ function Jump:update(dt)
 	 self.timer = self.timer + dt
 
 	 if self.timer <= 0.22 then
-			self.ninja.y = self.ninja.y - (480 * dt)
+			self.ninja:setY(self.ninja.y - (480 * dt))
 	 elseif self.timer <= 0.27 then
-			self.ninja.y = self.ninja.y - (360 * dt)
+			self.ninja:setY(self.ninja.y - (360 * dt))
 	 elseif self.timer <= 0.32 then
-			self.ninja.y = self.ninja.y - (240 * dt)
+			self.ninja:setY(self.ninja.y - (240 * dt))
 	 elseif self.timer <= 0.37 then
-			self.ninja.y = self.ninja.y - (120 * dt)
+			self.ninja:setY(self.ninja.y - (120 * dt))
 	 elseif self.timer <= 0.47 then
 	 else
 			self.ninja.jumpPressed = false

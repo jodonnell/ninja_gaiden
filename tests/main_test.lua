@@ -14,6 +14,7 @@ end
 
 function test_ninja_jump_attack_and_move_right()
    mainGame.ninja.x = 0
+   mainGame.ninja:setY(450)
 	 mainGame.ninja.rightPressed = true
 	 mainGame.ninja:startJumping()
 	 

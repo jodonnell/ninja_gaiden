@@ -6,7 +6,9 @@ function setup()
 
    ninja = Ninja()
 	 ninja:setClimbableRects({Rect(0, 450, 2000, 450)})
-	 ninja:setY(450)
+
+	 STANDING_HEIGHT = 450 - NINJA_HEIGHT
+	 ninja:setY(STANDING_HEIGHT)
 end
 
 function test_ninja_falls()
@@ -20,13 +22,13 @@ function test_ninja_transitions_to_move_right_when_ducking()
 	 ninja:update(ONE_FRAME)
 	 ninja.rightPressed = true
 	 ninja:update(ONE_FRAME)
-   assert_equal(450, ninja.y)
+   assert_equal(STANDING_HEIGHT, ninja.y)
 end
 
 function test_ninja_can_jump()
 	 ninja:startJumping()
 	 ninja:update(ONE_FRAME)
-   assert_lt(450, ninja.y)
+   assert_lt(STANDING_HEIGHT, ninja.y)
 end
 
 function test_ninja_can_get_hurt()
@@ -34,7 +36,7 @@ function test_ninja_can_get_hurt()
 	 ninja:gotHurt()
 	 ninja:update(ONE_FRAME)
 	 assert_lt(x, ninja.x)
-	 assert_lt(450, ninja.y)
+	 assert_lt(STANDING_HEIGHT, ninja.y)
 end
 
 function test_ninja_can_get_hurt_and_bounces_right()
@@ -42,15 +44,15 @@ function test_ninja_can_get_hurt_and_bounces_right()
 	 ninja:gotHurt(true)
 	 ninja:update(ONE_FRAME)
 	 assert_gt(x, ninja.x)
-	 assert_lt(450, ninja.y)
+	 assert_lt(STANDING_HEIGHT, ninja.y)
 end
 
 function test_ninja_can_not_take_any_other_actions_when_hurt()
-	 ninja.y = 440
+	 ninja.y = STANDING_HEIGHT - 10
 	 ninja.isHurt = true
 	 assert_false(ninja:isFalling())
 
-	 ninja.y = 450
+	 ninja.y = STANDING_HEIGHT
 	 assert_false(ninja:canDuck())
 
 	 assert_false(ninja:canAttack())
@@ -92,12 +94,13 @@ function test_ninja_does_not_fall_when_climbing()
 end
 
 function test_ninja_climbs_up()
-	 ninja.x = 99
+	 ninja.x = 99 - NINJA_WIDTH
 	 ninja.y = 100
 	 ninja.rightPressed = true
-	 ninja:setClimbableRects({Rect(100, 50, 101, 300)})
+	 ninja:setClimbableRects({Rect(100, 50, 100, 250)})
 
 	 ninja:update(ONE_FRAME)
+	 assert_true(ninja.isClimbing, 'The ninja is climbing')
 
 	 ninja.rightPressed = false
 	 ninja.upPressed = true
@@ -107,12 +110,13 @@ function test_ninja_climbs_up()
 end
 
 function test_ninja_climbs_down()
-	 ninja.x = 99
+	 ninja.x = 99 - NINJA_WIDTH
 	 ninja.y = 100
 	 ninja.rightPressed = true
-	 ninja:setClimbableRects({Rect(100, 50, 101, 300)})
+	 ninja:setClimbableRects({Rect(100, 50, 100, 250)})
 
 	 ninja:update(ONE_FRAME)
+	 assert_true(ninja.isClimbing, 'The ninja is climbing')
 
 	 ninja.rightPressed = false
 	 ninja.downPressed = true
