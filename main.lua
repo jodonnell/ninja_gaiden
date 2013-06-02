@@ -22,7 +22,7 @@ function setWindow()
 	 local modes = love.graphics.getModes()
 	 local height = 0
 	 for key,value in pairs(modes) do 
-			if value['width'] == 1024 then
+			if value['width'] == 1024 and value['height'] > height then
 				 height = value['height']
 			end
 	 end
