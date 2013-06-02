@@ -1,6 +1,8 @@
 require 'RMagick'
 include Magick
 
+$count = 1
+
 class Rect
   attr_accessor :x, :y, :width, :height
 
@@ -23,7 +25,7 @@ class Rect
 
   def to_s
     #"#{x} #{y} #{width} #{height}"
-    "self.rects[] = Rect(#{x}, #{y + 120}, #{width}, #{height})"
+    "self.rects[#{$count}] = Rect(#{x}, #{y + 120}, #{width}, #{height})"
   end
 end
 
@@ -80,5 +82,6 @@ while 1==1 do
       break
     end
   end
+  $count += 1
   break if fr.rect.incomplete?
 end

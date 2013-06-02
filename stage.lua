@@ -31,9 +31,11 @@ end
 
 function Stage:createClimbableRects()
 	 self.rects = {}
-	 self.rects[1] = Rect(0, 120, 81, 510)
-	 self.rects[2] = Rect(86, 518, 509, 111)
-	 self.rects[3] = Rect(716, 519, 214, 108)
+	 self.rects[1] = Rect(1, 121, 80, 506)
+	 self.rects[2] = Rect(932, 238, 80, 204)
+	 self.rects[3] = Rect(1111, 322, 240, 122)
+	 self.rects[4] = Rect(714, 531, 821, 97)
+	 self.rects[5] = Rect(87, 533, 508, 92)
 end
 
 function Stage:climbableRects()

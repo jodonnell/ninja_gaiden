@@ -31,7 +31,7 @@ function setWindow()
 end
 
 function love.load()
-	 setWindow()
+	 -- setWindow()
 	 main_game:load()
 end
 
