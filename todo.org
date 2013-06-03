@@ -4,6 +4,7 @@
 *** DONE If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
 *** DONE if you are jumping and moving right and land on a platform the jump animation continues
 *** DONE Can jump over and over
+*** When climbing right at top gets stuck
 ** features
 *** DONE duck attack
 *** DONE get hurt
