@@ -92,6 +92,7 @@ function test_ninja_destroys_item_ball()
 	 mainGame.ninja.isAttacking = true
 	 mainGame:update(ONE_FRAME)
    assert_equal(0, #mainGame.stage.itemBalls, 'Itemball did not disappear')
+   assert_equal(1, #mainGame.powerups, 'Powerup appeared')
 end
 
 function advanceDraw(newX)

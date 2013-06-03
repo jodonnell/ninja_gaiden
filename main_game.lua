@@ -3,6 +3,7 @@ require 'ninja'
 require 'hunchback'
 require 'stage'
 require 'explosion'
+require 'powerup'
 require 'constants'
 
 MainGame = class()
@@ -15,6 +16,7 @@ function MainGame:load()
 	 self.ninja = Ninja()
 	 self.enemies = {}
 	 self.explosions = {}
+	 self.powerups = {}
 	 self.stage = Stage(self.ninja)
 
 	 love.graphics.setNewFont("images/PressStart2P.ttf", 30)
@@ -28,6 +30,10 @@ function MainGame:draw()
 
 	 for i, explosion in ipairs(self.explosions) do
 			explosion:draw()
+	 end
+
+	 for i, powerup in ipairs(self.powerups) do
+			powerup:draw()
 	 end
 
 	 for i, enemy in ipairs(self.enemies) do
@@ -68,6 +74,8 @@ function MainGame:update(dt)
 			end
 	 end
 
+	 self:checkForBreakingItemBall()
+
 	 for i, enemy in ipairs(self.enemies) do
 			enemy:update(dt)
 			
@@ -95,6 +103,20 @@ function MainGame:update(dt)
 			self.enemies = {}
 	 end
 
+end
+
+function MainGame:checkForBreakingItemBall()
+	 if self.ninja.isAttacking == false then
+			return
+	 end
+
+	 for i, itemBall in ipairs(self.stage.itemBalls) do
+			local collision = self:checkCollisionsBetweenSwordAndSprite(itemBall)
+			if collision then
+				 table.insert(self.powerups, Powerup(itemBall.x, itemBall.y))
+				 table.remove(self.stage.itemBalls, i)
+			end
+	 end
 end
 
 function MainGame:moveCamera()
