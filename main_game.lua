@@ -74,6 +74,10 @@ function MainGame:update(dt)
 			end
 	 end
 
+	 for i, powerup in ipairs(self.powerups) do
+			powerup:update(dt)
+	 end
+
 	 self:checkForBreakingItemBall()
 
 	 for i, enemy in ipairs(self.enemies) do
@@ -113,7 +117,7 @@ function MainGame:checkForBreakingItemBall()
 	 for i, itemBall in ipairs(self.stage.itemBalls) do
 			local collision = self:checkCollisionsBetweenSwordAndSprite(itemBall)
 			if collision then
-				 table.insert(self.powerups, Powerup(itemBall.x, itemBall.y))
+				 table.insert(self.powerups, Powerup(itemBall.x, itemBall.y, self.stage.rects))
 				 table.remove(self.stage.itemBalls, i)
 			end
 	 end
