@@ -18,6 +18,7 @@ function MainGame:load()
 	 self.stage = Stage(self.ninja)
 
 	 love.graphics.setNewFont("images/PressStart2P.ttf", 30)
+
 end
 
 function MainGame:draw()
@@ -87,7 +88,7 @@ function MainGame:update(dt)
 			end
 	 end
 
-	 self.stage:update(self.enemies)
+	 self.stage:update(dt, self.enemies)
 
 	 if self.ninja:hasLostLife() then
 			self.ninja:lostLife()

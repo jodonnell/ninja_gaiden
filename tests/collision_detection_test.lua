@@ -32,15 +32,15 @@ function test_ninja_collision_detection_left_works_correctly()
 end
 
 function test_ninja_collision_detection_right_works_correctly()
-	 ninja.x = 5 - NINJA_WIDTH
-	 ninja.lastX = 5 - NINJA_WIDTH
+	 ninja.x = 5 - NINJA_WIDTH + 10
+	 ninja.lastX = 5 - NINJA_WIDTH + 10
 	 ninja:setY(550)
    assert_true(collision_detection:isRightColliding())
 end
 
 function test_ninja_collision_detection_top_right_works_correctly()
-	 ninja.x = 5 - NINJA_WIDTH
-	 ninja.lastX = 5 - NINJA_WIDTH
+	 ninja.x = 5 - NINJA_WIDTH + 10
+	 ninja.lastX = 5 - NINJA_WIDTH + 10
 	 ninja:setY(500 - NINJA_HEIGHT - 1)
    assert_false(collision_detection:isRightColliding())
 

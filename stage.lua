@@ -1,5 +1,6 @@
 require 'class'
 require 'rect'
+require 'item_ball'
 
 Stage = class()
 
@@ -11,17 +12,26 @@ function Stage:init(ninja)
 	 self.ninja = ninja
 	 self:createClimbableRects()
 	 self.ninja:setClimbableRects(self.rects)
+	 self.itemBalls = {ItemBall(300, 350)}
 end
 
 function Stage:draw()
 	 love.graphics.draw(self.image, -self.screenScrollX, 128)
+
+	 for i, itemBall in ipairs(self.itemBalls) do
+			itemBall:draw()
+	 end
 
 	 -- for i, rect in ipairs(self.rects) do
 	 -- 		love.graphics.rectangle("fill", rect:left(), rect:top(), rect:width(), rect:height() )
 	 -- end
 end
 
-function Stage:update(enemies)
+function Stage:update(dt, enemies)
+	 for i, itemBall in ipairs(self.itemBalls) do
+			itemBall:update(dt)
+	 end
+
 	 self:insertEnemyAt(enemies, 585, 457, 100, self.endOfStageX - 40)
 	 self:insertEnemyAt(enemies, 720, 250, 1090, 1320)
 	 self:insertEnemyAt(enemies, 1000, 457, 100, self.endOfStageX - 40)

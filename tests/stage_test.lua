@@ -6,5 +6,5 @@ function setup()
 end
 
 function test_can_get_climbable_rects()
-	 assert_equal(0, stage:climbableRects()[1]:left())
+	 assert_equal(1, stage:climbableRects()[1]:left())
 end

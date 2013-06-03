@@ -85,6 +85,15 @@ function test_ninja_dies_if_falls_off_cliff()
 	 assert_equal(NINJA_STARTING_LIVES - 1, mainGame.ninja.lives)
 end
 
+function test_ninja_destroys_item_ball()
+	 mainGame.ninja.x = 100
+	 mainGame.stage.itemBalls={ItemBall(135, mainGame.ninja.y)}
+
+	 mainGame.ninja.isAttacking = true
+	 mainGame:update(ONE_FRAME)
+   assert_equal(0, #mainGame.stage.itemBalls, 'Itemball did not disappear')
+end
+
 function advanceDraw(newX)
 	 mainGame.enemies[1].loveDraw = function(self, image, x, y) 
 	 		assert_equal(newX, x, 'Moved relatively 4')

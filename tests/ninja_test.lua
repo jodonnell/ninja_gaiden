@@ -94,7 +94,7 @@ function test_ninja_does_not_fall_when_climbing()
 end
 
 function test_ninja_climbs_up()
-	 ninja.x = 99 - NINJA_WIDTH
+	 ninja.x = 99 - NINJA_WIDTH + 10
 	 ninja.y = 100
 	 ninja.rightPressed = true
 	 ninja:setClimbableRects({Rect(100, 50, 100, 250)})
@@ -110,7 +110,7 @@ function test_ninja_climbs_up()
 end
 
 function test_ninja_climbs_down()
-	 ninja.x = 99 - NINJA_WIDTH
+	 ninja.x = 99 - NINJA_WIDTH + 10
 	 ninja.y = 100
 	 ninja.rightPressed = true
 	 ninja:setClimbableRects({Rect(100, 50, 100, 250)})
