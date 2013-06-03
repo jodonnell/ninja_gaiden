@@ -20,7 +20,7 @@ end
 
 function Powerup:update(dt)
 	 if (not self:isBottomColliding()) then
-			self:setY(self.y + (NINJA_FALL_SPEED * dt))
+			self:setY(self.y + (480 * dt))
 	 end
 end
 
