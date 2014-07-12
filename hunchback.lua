@@ -30,18 +30,28 @@ function Hunchback:draw()
 end
 
 function Hunchback:update(dt)
+  self:move(dt)
+  self:reverseDirection()
+  self:animate(dt)
+end
+
+function Hunchback:move(dt)
 	 if self.direction == LEFT then
 			self.x = self.x - (120 * dt)
 	 else
 			self.x = self.x + (120 * dt)
 	 end
+end
 
-	 if self.x <= self.leftBound then
+function Hunchback:reverseDirection()
+  if self.x <= self.leftBound then
 			self.direction = RIGHT
 	 elseif self.x >= self.rightBound then
 			self.direction = LEFT
 	 end
+end
 
+function Hunchback:animate(dt)
 	 self.timer = self.timer + dt
 	 if self.timer < 0.3 then
 			self.currentImage = self.images['walk2']
