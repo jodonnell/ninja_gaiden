@@ -49,38 +49,14 @@ end
 function MainGame:update(dt)
 	 self.ninja:update(dt)
 
-	 for i, explosion in ipairs(self.explosions) do
-			explosion:update(dt)
-			if explosion:isExplosionFinished() then
-				 table.remove(self.explosions, i)
-			end
-	 end
+   self:updateExplosion(dt)
 
 	 for i, powerup in ipairs(self.powerups) do
 			powerup:update(dt)
 	 end
 
 	 self:checkForBreakingItemBall()
-
-	 for i, enemy in ipairs(self.enemies) do
-			enemy:update(dt)
-			
-			if not self.ninja.isInvincible then
-				 local collision = self:checkCollisionsBetweenSprites(self.ninja, enemy)
-				 if collision then
-						self.ninja:gotHurt(self:collidedBounceLeft(enemy))
-				 end
-			end
-
-			if self.ninja.isAttacking then
-				 local collision = self:checkCollisionsBetweenSwordAndSprite(enemy)
-				 if collision then
-						table.insert(self.explosions, Explosion(enemy.x, enemy.y))
-						table.remove(self.enemies, i)
-				 end
-				 
-			end
-	 end
+   self:updateEnemies(dt)
 
 	 self.stage:update(dt, self.enemies)
 
@@ -89,6 +65,36 @@ function MainGame:update(dt)
 			self.enemies = {}
 	 end
 
+end
+
+function MainGame:updateExplosion(dt)
+	 for i, explosion in ipairs(self.explosions) do
+			explosion:update(dt)
+			if explosion:isExplosionFinished() then
+				 table.remove(self.explosions, i)
+			end
+	 end
+end
+
+function MainGame:updateEnemies(dt)
+  for i, enemy in ipairs(self.enemies) do
+    enemy:update(dt)
+    
+    if not self.ninja.isInvincible then
+      local collision = self:checkCollisionsBetweenSprites(self.ninja, enemy)
+      if collision then
+        self.ninja:gotHurt(self:collidedBounceLeft(enemy))
+      end
+    end
+
+    if self.ninja.isAttacking then
+      local collision = self:checkCollisionsBetweenSwordAndSprite(enemy)
+      if collision then
+        table.insert(self.explosions, Explosion(enemy.x, enemy.y))
+        table.remove(self.enemies, i)
+      end
+    end
+  end
 end
 
 function MainGame:checkForBreakingItemBall()
