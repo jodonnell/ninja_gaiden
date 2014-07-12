@@ -9,27 +9,27 @@ function NinjaAnimations:init(ninja)
 	 self.direction = RIGHT;
 	 self.ninja = ninja
 
-	 self.images = { standing = love.graphics.newImage("images/ryu_stand.png"),
-									 running1 = love.graphics.newImage("images/ryu_running_1.png"),
-									 running2 = love.graphics.newImage("images/ryu_running_2.png"),
-									 running3 = love.graphics.newImage("images/ryu_running_3.png"),
-									 ducking = love.graphics.newImage("images/ryu_ducking.png"),
-									 jumping1 = love.graphics.newImage("images/ryu_right_jump.png"),
-									 jumping2 = love.graphics.newImage("images/ryu_down_jump.png"),
-									 jumping3 = love.graphics.newImage("images/ryu_left_jump.png"),
-									 jumping4 = love.graphics.newImage("images/ryu_up_jump.png"),
-									 attacking1 = love.graphics.newImage("images/ryu_attack_begin.png"),
-									 attacking2 = love.graphics.newImage("images/ryu_attack_middle.png"),
-									 attacking3 = love.graphics.newImage("images/ryu_attack_end.png"),
-									 falling = love.graphics.newImage("images/ryu_falling_attack_begin.png"),
-									 fallingAttack1 = love.graphics.newImage("images/ryu_falling_attack_middle.png"),
-									 fallingAttack2 = love.graphics.newImage("images/ryu_falling_attack_end.png"),
-									 hurt = love.graphics.newImage("images/ryu_hurt.png"),
-									 duckingAttack1 = love.graphics.newImage("images/ryu_ducking_attack_begin.png"),
-									 duckingAttack2 = love.graphics.newImage("images/ryu_ducking_attack_middle.png"),
-									 duckingAttack3 = love.graphics.newImage("images/ryu_ducking_attack_end.png"),
-									 climbing1 = love.graphics.newImage("images/ryu_climb.png"),
-									 climbing2 = love.graphics.newImage("images/ryu_climb_arms.png")
+	 self.images = { standing = love.graphics.newImage("images/ninja/ryu_stand.png"),
+									 running1 = love.graphics.newImage("images/ninja/ryu_running_1.png"),
+									 running2 = love.graphics.newImage("images/ninja/ryu_running_2.png"),
+									 running3 = love.graphics.newImage("images/ninja/ryu_running_3.png"),
+									 ducking = love.graphics.newImage("images/ninja/ryu_ducking.png"),
+									 jumping1 = love.graphics.newImage("images/ninja/ryu_right_jump.png"),
+									 jumping2 = love.graphics.newImage("images/ninja/ryu_down_jump.png"),
+									 jumping3 = love.graphics.newImage("images/ninja/ryu_left_jump.png"),
+									 jumping4 = love.graphics.newImage("images/ninja/ryu_up_jump.png"),
+									 attacking1 = love.graphics.newImage("images/ninja/ryu_attack_begin.png"),
+									 attacking2 = love.graphics.newImage("images/ninja/ryu_attack_middle.png"),
+									 attacking3 = love.graphics.newImage("images/ninja/ryu_attack_end.png"),
+									 falling = love.graphics.newImage("images/ninja/ryu_falling_attack_begin.png"),
+									 fallingAttack1 = love.graphics.newImage("images/ninja/ryu_falling_attack_middle.png"),
+									 fallingAttack2 = love.graphics.newImage("images/ninja/ryu_falling_attack_end.png"),
+									 hurt = love.graphics.newImage("images/ninja/ryu_hurt.png"),
+									 duckingAttack1 = love.graphics.newImage("images/ninja/ryu_ducking_attack_begin.png"),
+									 duckingAttack2 = love.graphics.newImage("images/ninja/ryu_ducking_attack_middle.png"),
+									 duckingAttack3 = love.graphics.newImage("images/ninja/ryu_ducking_attack_end.png"),
+									 climbing1 = love.graphics.newImage("images/ninja/ryu_climb.png"),
+									 climbing2 = love.graphics.newImage("images/ninja/ryu_climb_arms.png")
 	 }
 end
 
