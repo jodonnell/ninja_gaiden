@@ -1,6 +1,7 @@
 require 'class'
 require 'rect'
 require 'item_ball'
+require 'bird'
 
 Stage = class()
 
@@ -32,11 +33,12 @@ function Stage:update(dt, enemies)
 			itemBall:update(dt)
 	 end
 
-	 self:insertEnemyAt(enemies, 585, 457, 100, self.endOfStageX - 40)
-	 self:insertEnemyAt(enemies, 720, 250, 1090, 1320)
-	 self:insertEnemyAt(enemies, 1000, 457, 100, self.endOfStageX - 40)
-	 self:insertEnemyAt(enemies, 1400, 457, 100, self.endOfStageX - 40)
-	 self:insertEnemyAt(enemies, 1600, 457, 100, self.endOfStageX - 40)
+	 --self:insertHunchbackAt(enemies, 585, 457, 100, self.endOfStageX - 40)
+   self:insertBirdAt(enemies, 585, 257, 100, self.endOfStageX - 40)
+	 self:insertHunchbackAt(enemies, 720, 250, 1090, 1320)
+	 self:insertHunchbackAt(enemies, 1000, 457, 100, self.endOfStageX - 40)
+	 self:insertHunchbackAt(enemies, 1400, 457, 100, self.endOfStageX - 40)
+	 self:insertHunchbackAt(enemies, 1600, 457, 100, self.endOfStageX - 40)
 end
 
 function Stage:createClimbableRects()
@@ -52,13 +54,27 @@ function Stage:climbableRects()
 	 return self.rects
 end
 
-function Stage:insertEnemyAt(enemies, xPos, yPos, leftBound, rightBound)
+
+function Stage:shouldAddEnemy(enemies, xPos)
 	 if self.ninja.x > xPos and self.ninja.x < xPos + 10 then
 			for i, enemy in ipairs(enemies) do
 				 if enemy.id == xPos then
 						return false
 				 end
 			end
-			table.insert(enemies, Hunchback(xPos + 465, yPos, LEFT, xPos, leftBound, rightBound))
+      return true
 	 end
+   return false
+end
+
+function Stage:insertHunchbackAt(enemies, xPos, yPos, leftBound, rightBound)
+  if self:shouldAddEnemy(enemies, xPos) then
+    table.insert(enemies, Hunchback(xPos + 465, yPos, LEFT, xPos, leftBound, rightBound))
+  end
+end
+
+function Stage:insertBirdAt(enemies, xPos, yPos, leftBound, rightBound)
+  if self:shouldAddEnemy(enemies, xPos) then
+    table.insert(enemies, Bird(xPos + 465, yPos, LEFT, xPos, leftBound, rightBound))
+  end
 end
