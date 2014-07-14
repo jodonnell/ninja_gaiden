@@ -34,7 +34,8 @@ function Stage:update(dt, enemies)
 	 end
 
 	 --self:insertHunchbackAt(enemies, 585, 457, 100, self.endOfStageX - 40)
-   self:insertBirdAt(enemies, 585, 257, 100, self.endOfStageX - 40)
+   self:insertBirdAt(enemies, 585, 257)
+   self:insertBirdAt(enemies, 735, 357)
 	 self:insertHunchbackAt(enemies, 720, 250, 1090, 1320)
 	 self:insertHunchbackAt(enemies, 1000, 457, 100, self.endOfStageX - 40)
 	 self:insertHunchbackAt(enemies, 1400, 457, 100, self.endOfStageX - 40)
@@ -73,8 +74,8 @@ function Stage:insertHunchbackAt(enemies, xPos, yPos, leftBound, rightBound)
   end
 end
 
-function Stage:insertBirdAt(enemies, xPos, yPos, leftBound, rightBound)
+function Stage:insertBirdAt(enemies, xPos, yPos)
   if self:shouldAddEnemy(enemies, xPos) then
-    table.insert(enemies, Bird(xPos + 465, yPos, LEFT, xPos, leftBound, rightBound))
+    table.insert(enemies, Bird(xPos + 465, yPos, LEFT, xPos))
   end
 end

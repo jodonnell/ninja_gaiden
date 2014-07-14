@@ -3,10 +3,8 @@ require 'enemy'
 
 Bird = class(Enemy)
 
-function Bird:init(x, y, direction, id, leftBound, rightBound)
+function Bird:init(x, y, direction, id)
   self:setup(x, y, direction, id)
-  self.leftBound = leftBound
-  self.rightBound = rightBound
   self.speed = 380
 
   self.images = { 
@@ -18,7 +16,7 @@ end
 
 function Bird:update(dt, attributes)
   self:move(dt, attributes["ninja"])
-  self:reverseDirection()
+  self:reverseDirection(attributes["ninja"])
   self:animate(dt)
 end
 
@@ -36,10 +34,10 @@ function Bird:move(dt, ninja)
    end
 end
 
-function Bird:reverseDirection()
-  if self.x <= self.leftBound then
+function Bird:reverseDirection(ninja)
+  if self.x + 400 <= ninja.x then
 			self.direction = RIGHT
-	 elseif self.x >= self.rightBound then
+	 elseif self.x - 400 >= ninja.x then
 			self.direction = LEFT
 	 end
 end
