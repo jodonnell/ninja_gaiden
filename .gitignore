@@ -1,1 +1,4 @@
-deploy/*
+deploy/Ninja.love
+deploy/Ninja.osx.zip
+deploy/NinjaWindows.zip
+deploy/exe/
