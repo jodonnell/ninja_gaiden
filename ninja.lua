@@ -237,15 +237,20 @@ function Ninja:startJumping()
 end
 
 function Ninja:gotHurt(bouncesRight)
+  self:statusesOff()
+  self.isHurt = true
+  self.hurt = Hurt(self, bouncesRight)
+  self.isInvincible = true
+  self.invincibilityTimer = 0
+  self.bouncesRight = bouncesRight
+  self.life = self.life - 1
+end
+
+function Ninja:statusesOff()
 	 self.jumpPressed = false
 	 self.isAttacking = false
 	 self.isClimbing = false
-	 self.isHurt = true
-	 self.hurt = Hurt(self, bouncesRight)
-	 self.isInvincible = true
-	 self.invincibilityTimer = 0
-	 self.bouncesRight = bouncesRight
-	 self.life = self.life - 1
+	 self.isHurt = false
 end
 
 function Ninja:getSwordBoundingBox()

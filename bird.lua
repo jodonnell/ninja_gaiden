@@ -5,7 +5,8 @@ Bird = class(Enemy)
 
 function Bird:init(x, y, direction, id)
   self:setup(x, y, direction, id)
-  self.speed = 380
+  self.maxSpeed = 380
+  self.speed = self.maxSpeed
 
   self.images = { 
     walk1 = love.graphics.newImage("images/bird_walk1.png"),
@@ -35,11 +36,19 @@ function Bird:move(dt, ninja)
 end
 
 function Bird:reverseDirection(ninja)
-  if self.x + 400 <= ninja.x then
-			self.direction = RIGHT
-	 elseif self.x - 400 >= ninja.x then
-			self.direction = LEFT
-	 end
+  if self.x + 360 <= ninja.x and self.direction == LEFT then
+    self.speed = self.speed - 10
+    if self.speed <= 10 then
+      self.direction = RIGHT
+    end
+  elseif self.x - 360 >= ninja.x and self.direction == RIGHT then
+    self.speed = self.speed - 10
+    if self.speed <= 10 then
+      self.direction = LEFT
+    end
+  elseif self.speed < self.maxSpeed then
+    self.speed = self.speed + 10
+  end
 end
 
 function Bird:animate(dt)
