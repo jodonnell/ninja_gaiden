@@ -22,17 +22,17 @@ function Bird:update(dt, attributes)
 end
 
 function Bird:move(dt, ninja)
-	 if self.direction == LEFT then
-			self.x = self.x - (self.speed * dt)
-	 else
-			self.x = self.x + (self.speed * dt)
-	 end
+  if self.direction == LEFT then
+    self.x = self.x - (self.speed * dt)
+  else
+    self.x = self.x + (self.speed * dt)
+  end
 
-   if ninja.y > self.y then
-     self.y = self.y + 2
-   else
-     self.y = self.y - 2
-   end
+  if ninja.y > self.y then
+    self.y = self.y + 2
+  else
+    self.y = self.y - 2
+  end
 end
 
 function Bird:reverseDirection(ninja)
@@ -52,16 +52,16 @@ function Bird:reverseDirection(ninja)
 end
 
 function Bird:animate(dt)
-	 self.timer = self.timer + dt
-	 if self.timer < 0.1 then
-			self.currentImage = self.images['walk2']
-	 elseif self.timer < 0.2 then
-			self.currentImage = self.images['walk1']
-	 else
-			self.timer = 0
-	 end
+  self.timer = self.timer + dt
+  if self.timer < 0.1 then
+    self.currentImage = self.images['walk2']
+  elseif self.timer < 0.2 then
+    self.currentImage = self.images['walk1']
+  else
+    self.timer = 0
+  end
 end
 
 function Bird:getBoundingBox()
-	 return self.x + 30, self.y, self:getWidth() - 35, self:getHeight()
+  return self.x + 30, self.y, self:getWidth() - 35, self:getHeight()
 end

@@ -27,16 +27,16 @@ function HUD:draw(xPos, score, lives, life)
 end
 
 function HUD:drawLifeBars(startingX, y, life)
-	 love.graphics.setColor( 255, 100, 100 )
+  love.graphics.setColor( 255, 100, 100 )
 
-	 for i = 0, NINJA_MAX_LIFE - 1 do
-			local barX = startingX + (i * 14)
-			local fillMode = 'line'
-			if life > i then 
-				 fillMode = 'fill'
-			end
-			love.graphics.rectangle(fillMode, barX, y, 10, 25 )
-	 end
-	 love.graphics.setColor( 255, 255, 255 )
+  for i = 0, NINJA_MAX_LIFE - 1 do
+    local barX = startingX + (i * 14)
+    local fillMode = 'line'
+    if life > i then 
+      fillMode = 'fill'
+    end
+    love.graphics.rectangle(fillMode, barX, y, 10, 25 )
+  end
+  love.graphics.setColor( 255, 255, 255 )
 
 end
