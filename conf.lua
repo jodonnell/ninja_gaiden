@@ -18,5 +18,5 @@ function love.conf(t)
   t.window.width = 1024       -- The window width (number)
   t.window.height = 640       -- The window height (number)
   --t.window.height = 768       -- The window height (number)
-  t.version = "0.9.1"         -- The LÖVE version this game was made for (number)
+  t.version = "0.10.0"         -- The LÖVE version this game was made for (number)
 end
