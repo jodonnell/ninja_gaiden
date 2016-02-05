@@ -4,13 +4,7 @@ require 'main_game'
 if os.getenv("LUA_TEST") then
   require "lunatest.lunatest"
 
-  lunatest.suite("tests.main_test")
-  lunatest.suite("tests.ninja_test")
-  lunatest.suite("tests.ninja_animations_test")
-  lunatest.suite("tests.stage_test")
-  lunatest.suite("tests.hunchback_test")
-  lunatest.suite("tests.explosion_test")
-  lunatest.suite("tests.collision_detection_test")
+  -- lunatest.suite("tests.main_test")
 
   lunatest.run()
   os.exit()
@@ -21,13 +15,13 @@ local main_game = MainGame()
 function setWindow()
   local modes = love.graphics.getModes()
   local height = 0
-  for key,value in pairs(modes) do 
+  for key,value in pairs(modes) do
     if value['width'] == 1024 and value['height'] > height then
       height = value['height']
     end
   end
 
-  local success = love.graphics.setMode( 1024, height, false, false, 0 )
+  local success = love.graphics.setMode( 375, 667, false, false, 0 )
 end
 
 function love.load()
@@ -52,10 +46,6 @@ function love.keypressed(key, unicode)
     main_game.ninja.upPressed = true
   elseif key == 'down' then
     main_game.ninja.downPressed = true
-  elseif (key == 'q' or key == 'x') and main_game.ninja:canJump() then
-    main_game.ninja:startJumping()
-  elseif (key == ';' or key == 'z') and main_game.ninja:canAttack() then
-    main_game.ninja.isAttacking = true
   end
 end
 
@@ -69,4 +59,12 @@ function love.keyreleased(key, unicode)
   elseif key == 'up' then
     main_game.ninja.upPressed = false
   end
+end
+
+function love.touchpressed(id, x, y, dx, dy, pressure)
+  main_game.ninja.rightPressed = true
+end
+
+function love.touchreleased(id, x, y, dx, dy, pressure)
+  main_game.ninja.rightPressed = false
 end
