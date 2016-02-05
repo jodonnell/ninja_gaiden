@@ -1,5 +1,4 @@
 require 'class'
-require 'constants'
 require 'sprite'
 
 Ninja = class(Sprite)
