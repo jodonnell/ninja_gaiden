@@ -1,7 +1,7 @@
 {
   whitelist_globals: {
     ["./"]: {
-      "love", "lunatest"
+      "love", "lunatest", "assert_equal"
     }
   }
 }

@@ -1,11 +1,8 @@
 import MainGame from require 'main_game'
 
 if os.getenv("LUA_TEST")
-  -- import lunatest from require "lunatest.lunatest"
   require "lunatest.lunatest"
-
-  lunatest.suite("tests.main_test")
-
+  lunatest.suite("tests.ninja_test")
   lunatest.run()
   os.exit()
 
