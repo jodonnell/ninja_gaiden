@@ -1,4 +1,4 @@
-function love.conf(t)
+love.conf = (t) ->
   t.modules.joystick = false   -- Enable the joystick module (boolean)
   t.modules.audio = true      -- Enable the audio module (boolean)
   t.modules.keyboard = true   -- Enable the keyboard module (boolean)
@@ -19,4 +19,3 @@ function love.conf(t)
   t.window.height = 640       -- The window height (number)
   --t.window.height = 768       -- The window height (number)
   t.version = "0.10.0"         -- The LÖVE version this game was made for (number)
-end
