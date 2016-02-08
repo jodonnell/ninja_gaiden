@@ -3,3 +3,4 @@ deploy/Ninja.osx.zip
 deploy/NinjaWindows.zip
 deploy/exe/
 .DS_Store
+*.lua
