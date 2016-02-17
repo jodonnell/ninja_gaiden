@@ -1,19 +1,22 @@
 import Sprite from require 'sprite'
+import GlassJoeAnimations from require 'glass_joe_animations'
 
 class Ninja extends Sprite
   new: =>
+    @animations = GlassJoeAnimations!
     @rightPressed = false
     @x = 20
 
   draw: =>
-    image = love.graphics.newImage("images/ninja/ryu_stand.png")
     y = 0
     rotation = 0
-    scaleX = 1
-    scaleY = 1
-    love.graphics.draw(image, @x, y, rotation, scaleX, scaleY)
+    scaleX = 2
+    scaleY = 2
 
-  update: =>
+    love.graphics.draw(@animations.image, @animations\currentQuad(), @x, y, rotation, scaleX, scaleY)
+
+  update: (dt) =>
+    @animations\update(dt)
     if @rightPressed
       @x += 1
 
