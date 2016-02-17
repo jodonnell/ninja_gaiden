@@ -1,7 +1,7 @@
 import Sprite from require 'sprite'
 import GlassJoeAnimations from require 'glass_joe_animations'
 
-class Ninja extends Sprite
+class GlassJoe extends Sprite
   new: =>
     @animations = GlassJoeAnimations!
     @rightPressed = false
@@ -20,4 +20,4 @@ class Ninja extends Sprite
     if @rightPressed
       @x += 1
 
-{:Ninja}
+{:GlassJoe}

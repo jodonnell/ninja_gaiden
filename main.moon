@@ -2,7 +2,7 @@ import MainGame from require 'main_game'
 
 if os.getenv("LUA_TEST")
   require "lunatest.lunatest"
-  lunatest.suite("tests.ninja_test")
+  lunatest.suite("tests.glass_joe_test")
   lunatest.run()
   os.exit()
 
@@ -30,28 +30,27 @@ love.update = (dt) ->
 
 love.keypressed = (key, unicode) ->
   if key == 'right'
-    main_game.ninja.rightPressed = true
+    main_game.glass_joe.rightPressed = true
   elseif key == 'left'
-    main_game.ninja.leftPressed = true
+    main_game.glass_joe.leftPressed = true
   elseif key == 'up'
-    main_game.ninja.upPressed = true
+    main_game.glass_joe.upPressed = true
   elseif key == 'down'
-    main_game.ninja.downPressed = true
+    main_game.glass_joe.downPressed = true
 
 love.keyreleased = (key, unicode) ->
   if key == 'right'
-    main_game.ninja.rightPressed = false
+    main_game.glass_joe.rightPressed = false
   elseif key == 'left'
-    main_game.ninja.leftPressed = false
+    main_game.glass_joe.leftPressed = false
   elseif key == 'down'
-    main_game.ninja.downPressed = false
+    main_game.glass_joe.downPressed = false
   elseif key == 'up'
-    main_game.ninja.upPressed = false
+    main_game.glass_joe.upPressed = false
 
 
 love.touchpressed = (id, x, y, dx, dy, pressure) ->
-  main_game.ninja.rightPressed = true
-
+  main_game.glass_joe.rightPressed = true
 
 love.touchreleased = (id, x, y, dx, dy, pressure) ->
-  main_game.ninja.rightPressed = false
+  main_game.glass_joe.rightPressed = false

@@ -1,15 +1,15 @@
-import Ninja from require 'ninja'
+import GlassJoe from require 'glass_joe'
 
 class MainGame
   new: =>
 
   load: =>
-    @ninja = Ninja!
+    @glass_joe = GlassJoe!
 
   draw: =>
-    @ninja\draw()
+    @glass_joe\draw()
 
   update: (dt) =>
-    @ninja\update(dt)
+    @glass_joe\update(dt)
 
 {:MainGame}
