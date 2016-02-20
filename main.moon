@@ -1,12 +1,5 @@
 import MainGame from require 'main_game'
 
-if os.getenv("LUA_TEST")
-  require "lunatest.lunatest"
-  lunatest.suite("tests.glass_joe_test")
-  lunatest.run()
-  os.exit()
-
-
 main_game = MainGame!
 
 setWindow: ->

@@ -15,6 +15,7 @@ class GlassJoe extends Sprite
 
     love.graphics.draw(@animations.image, @animations\currentQuad(), @x, y, rotation, scaleX, scaleY)
 
+
   update: (dt) =>
     @animations\update(dt)
     if @rightPressed

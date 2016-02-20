@@ -4,6 +4,5 @@ find . -name '*.lua' -maxdepth 1 | xargs rm
 find tests -name '*.lua' -maxdepth 1 | xargs rm
 
 moonc *.moon
-moonc tests/*.moon
 moonc -l .
-LUA_TEST=1 /Applications/love.app/Contents/MacOS/love .
+busted --helper specs/spec_helper.moon  specs/

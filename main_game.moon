@@ -4,12 +4,12 @@ class MainGame
   new: =>
 
   load: =>
-    @glass_joe = GlassJoe!
+    @opponent = GlassJoe!
 
   draw: =>
-    @glass_joe\draw()
+    @opponent\draw()
 
   update: (dt) =>
-    @glass_joe\update(dt)
+    @opponent\update(dt)
 
 {:MainGame}
