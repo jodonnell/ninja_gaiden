@@ -23,27 +23,27 @@ love.update = (dt) ->
 
 love.keypressed = (key, unicode) ->
   if key == 'right'
-    main_game.glass_joe.rightPressed = true
+    main_game.opponent.rightPressed = true
   elseif key == 'left'
-    main_game.glass_joe.leftPressed = true
+    main_game.opponent.leftPressed = true
   elseif key == 'up'
-    main_game.glass_joe.upPressed = true
+    main_game.opponent.upPressed = true
   elseif key == 'down'
-    main_game.glass_joe.downPressed = true
+    main_game.opponent.downPressed = true
 
 love.keyreleased = (key, unicode) ->
   if key == 'right'
-    main_game.glass_joe.rightPressed = false
+    main_game.opponent.rightPressed = false
   elseif key == 'left'
-    main_game.glass_joe.leftPressed = false
+    main_game.opponent.leftPressed = false
   elseif key == 'down'
-    main_game.glass_joe.downPressed = false
+    main_game.opponent.downPressed = false
   elseif key == 'up'
-    main_game.glass_joe.upPressed = false
+    main_game.opponent.upPressed = false
 
 
 love.touchpressed = (id, x, y, dx, dy, pressure) ->
-  main_game.glass_joe.rightPressed = true
+  main_game.opponent.rightPressed = true
 
 love.touchreleased = (id, x, y, dx, dy, pressure) ->
-  main_game.glass_joe.rightPressed = false
+  main_game.opponent.rightPressed = false
