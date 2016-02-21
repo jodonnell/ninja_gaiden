@@ -18,3 +18,8 @@ describe "GlassJoe", ->
     gj.rightPressed = true
     gj\update(1)
     assert.are.equal(gj.x, 21)
+
+  it "updates the animation", ->
+    spy.on(gj.animations, "update")
+    gj\update(1)
+    assert.spy(gj.animations.update).was.called_with(gj.animations, 1)
