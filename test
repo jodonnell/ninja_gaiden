@@ -1,7 +1,6 @@
 #/bin/bash
 
 find . -name '*.lua' -maxdepth 1 | xargs rm
-find tests -name '*.lua' -maxdepth 1 | xargs rm
 
 moonc *.moon
 moonc -l .
