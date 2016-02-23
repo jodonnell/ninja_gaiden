@@ -10,7 +10,7 @@ _G.test_image = Image!
 _G.love = {
   graphics: {
     newImage: () -> test_image
-    newQuad: () -> "new_quad"
+    newQuad: (x, y, width, height, sw, sh) -> {x, y, width, height, sw, sh}
     draw: () ->
   }
 }

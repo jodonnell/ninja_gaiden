@@ -16,6 +16,6 @@ describe "MainGame", ->
     assert.spy(s).was_called()
 
   it "updates the opponent", ->
-    s = spy.on(mg.opponent, "update")
+    s = stub(mg.opponent, "update")
     mg\update(2)
     assert.spy(s).was_called_with(mg.opponent, 2)
