@@ -20,25 +20,25 @@ describe "GlassJoeAnimations", ->
 
   it "moves to second animation frame", ->
     gja\setBlockingDown()
-    gja\update(0.5)
-    assert.are.same(gja\currentQuad(), {308, 24, 32, 100, 10, 10})
+    gja\update(0.3)
+    assert.are.same(gja\currentQuad(), {346, 24, 30, 100, 10, 10})
 
   it "moves to the third animation frame", ->
     gja\setBlockingDown()
-    gja\update(0.25)
-    gja\update(0.25)
-    assert.are.same(gja\currentQuad(), {346, 24, 30, 100, 10, 10})
+    gja\update(0.3)
+    gja\update(0.15)
+    assert.are.same(gja\currentQuad(), {308, 24, 32, 100, 10, 10})
 
   it "moves to the first animation frame after last", ->
     gja\setBlockingDown()
-    gja\update(0.20)
-    gja\update(0.20)
-    gja\update(0.20)
+    gja\update(0.3)
+    gja\update(0.15)
+    gja\update(0.1)
+    gja\update(0.15)
     assert.are.same(gja\currentQuad(), {268, 24, 32, 100, 10, 10})
 
   it "will overflow", ->
     gja\setBlockingDown()
-    gja\update(0.3)
-    gja\update(0.2)
-    gja\update(0.11)
-    assert.are.same(gja\currentQuad(), {268, 24, 32, 100, 10, 10})
+    gja\update(0.4)
+    gja\update(0.1)
+    assert.are.same(gja\currentQuad(), {308, 24, 32, 100, 10, 10})
