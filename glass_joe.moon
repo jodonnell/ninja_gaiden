@@ -5,16 +5,15 @@ class GlassJoe extends Sprite
   new: =>
     @animations = GlassJoeAnimations!
     @rightPressed = false
-    @x = 20
+    @x = 120
+    @y = 60
 
   draw: =>
-    y = 0
     rotation = 0
-    scaleX = 2
-    scaleY = 2
+    scaleX = 4
+    scaleY = 4
 
-    love.graphics.draw(@animations.image, @animations\currentQuad(), @x, y, rotation, scaleX, scaleY)
-
+    love.graphics.draw(@animations.image, @animations\currentQuad(), @x, @y, rotation, scaleX, scaleY)
 
   update: (dt) =>
     @animations\update(dt)

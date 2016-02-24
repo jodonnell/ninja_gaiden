@@ -11,3 +11,6 @@ Download zipped Windows 32, copy all the files in it to deploy/windows/
 
 cp -rp /Applications/love.app deploy/Ninja.app (only not quite this, copied to wrong dir).
 Update plist.
+
+Download iOS sources
+Open in XCode love/platform/xcode/love.xcodeproj
