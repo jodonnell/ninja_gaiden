@@ -42,3 +42,18 @@ describe "GlassJoeAnimations", ->
     gja\update(0.4)
     gja\update(0.1)
     assert.are.same(gja\currentQuad(), {308, 24, 32, 100, 10, 10})
+
+  it "adds observers", ->
+    thing = {1}
+    gja\addObserver(thing)
+    assert.are.same(gja\observers(), {thing})
+
+  it "alerts obeservers when the animation ends", ->
+    t = { animationEnded: -> }
+    m = mock(t)
+    gja\setHitUpper()
+    gja\addObserver(m)
+    gja\update(1.2)
+    gja\update(1.2)
+
+    assert.spy(m.animationEnded).was.called()

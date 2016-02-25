@@ -3,7 +3,14 @@ class GlassJoeAnimations
     @image = love.graphics.newImage("images/GlassJoe.png")
     @animation_index = 1
     @timer = 0
+    @_observers = {}
     self\setBlockingDown()
+
+  addObserver: (observer) =>
+    table.insert(@_observers, observer)
+
+  observers: () =>
+    @_observers
 
   setBlockingDown: =>
     @current_animation = self\blockingDown()
@@ -45,7 +52,10 @@ class GlassJoeAnimations
       @animation_index += 1
       if @animation_index > #@current_animation
         @animation_index = 1
+        self\animationEnded()
 
+  animationEnded: =>
+    for observer in *@_observers do observer\animationEnded!
 
 
 {:GlassJoeAnimations}
