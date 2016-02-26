@@ -26,6 +26,7 @@ describe "GlassJoe", ->
   it "goes back to the default animation when the hit animation ends", ->
     gj.rightPressed = true
     gj\update(1)
+    gj.rightPressed = false
     gj\update(1)
     gj\update(1)
-    --assert.are.equal(gj.animations.currentAnimation["name"], "blockingDown")
+    assert.are.equal(gj.animations.currentAnimation["name"], "blockingDown")

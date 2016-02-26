@@ -4,6 +4,7 @@ import GlassJoeAnimations from require 'glass_joe_animations'
 class GlassJoe extends Sprite
   new: =>
     @animations = GlassJoeAnimations!
+    @animations\addObserver(self)
     @rightPressed = false
     @x = 120
     @y = 60
@@ -19,6 +20,10 @@ class GlassJoe extends Sprite
     @animations\update(dt)
     if @rightPressed
       @animations\setHitUpper()
+
+  animationEnded: =>
+    if @animations\currentName() == 'hitUpper'
+      @animations\setBlockingDown()
 
 
 {:GlassJoe}

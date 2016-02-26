@@ -27,8 +27,7 @@ class GlassJoeAnimations
     @blockingDownCache = {quads: {{self\newQuad(268, 24, 300, 124), 0.3},
       {self\newQuad(346, 24, 376, 124), 0.15},
       {self\newQuad(308, 24, 340, 124), 0.1},
-      {self\newQuad(346, 24, 376, 124), 0.15}},
-      name: "blockingDown"}
+      {self\newQuad(346, 24, 376, 124), 0.15}}, name: "blockingDown"}
     return @blockingDownCache
 
   hitUpper: =>
@@ -36,8 +35,7 @@ class GlassJoeAnimations
       return @hitUpperCache
 
     @hitUpperCache = {quads: {{self\newQuad(54, 132, 86, 224), 1.0},
-      {self\newQuad(397, 136, 428, 237), 1.15}},
-      name: "hitUpper"}
+      {self\newQuad(397, 136, 428, 237), 1.15}}, name: "hitUpper"}
     return @hitUpperCache
 
   currentQuad: =>
@@ -45,6 +43,9 @@ class GlassJoeAnimations
 
   currentSpeed: =>
     @currentAnimation["quads"][@animationIndex][2]
+
+  currentName: =>
+    @currentAnimation["name"]
 
   newQuad: (startX, startY, endX, endY) =>
     love.graphics.newQuad(startX, startY, endX - startX, endY - startY, @image\getWidth(), @image\getHeight())
