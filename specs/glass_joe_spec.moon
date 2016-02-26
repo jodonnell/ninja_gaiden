@@ -13,15 +13,19 @@ describe "GlassJoe", ->
     _ = match._
     assert.spy(love.graphics.draw).was.called_with(test_image, {268, 24, 32, 100, 10, 10}, _, _, _, _, _)
 
-  it "moves right", ->
-    gj\update(1)
-    assert.are.equal(gj.x, 120)
-
+  it "changes animation on rightPressed", ->
     gj.rightPressed = true
     gj\update(1)
-    assert.are.equal(gj.x, 121)
+    assert.are.equal(gj.animations.currentAnimation["name"], "hitUpper")
 
   it "updates the animation", ->
     stub(gj.animations, "update")
     gj\update(0.01)
     assert.spy(gj.animations.update).was.called_with(gj.animations, 0.01)
+
+  it "goes back to the default animation when the hit animation ends", ->
+    gj.rightPressed = true
+    gj\update(1)
+    gj\update(1)
+    gj\update(1)
+    --assert.are.equal(gj.animations.currentAnimation["name"], "blockingDown")

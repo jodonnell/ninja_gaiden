@@ -18,6 +18,7 @@ class GlassJoe extends Sprite
   update: (dt) =>
     @animations\update(dt)
     if @rightPressed
-      @x += 1
+      @animations\setHitUpper()
+
 
 {:GlassJoe}

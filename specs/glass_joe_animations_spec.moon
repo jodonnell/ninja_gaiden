@@ -12,7 +12,7 @@ describe "GlassJoeAnimations", ->
     assert.spy(love.graphics.newImage).was.called_with("images/GlassJoe.png")
 
   it "blocks down", ->
-    assert.are.same(gja\blockingDown()[1][1], {268, 24, 32, 100, 10, 10})
+    assert.are.same(gja\blockingDown()["quads"][1][1], {268, 24, 32, 100, 10, 10})
 
   it "can first animation frame", ->
     gja\setBlockingDown()
@@ -57,3 +57,10 @@ describe "GlassJoeAnimations", ->
     gja\update(1.2)
 
     assert.spy(m.animationEnded).was.called()
+
+  it "resets the animation index when it switches animations", ->
+    gja\setBlockingDown()
+    gja\update(0.3)
+
+    gja\setHitUpper()
+    assert.are.equal(gja.animationIndex, 1)

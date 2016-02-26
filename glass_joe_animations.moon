@@ -1,7 +1,7 @@
 class GlassJoeAnimations
   new: =>
     @image = love.graphics.newImage("images/GlassJoe.png")
-    @animation_index = 1
+    @animationIndex = 1
     @timer = 0
     @_observers = {}
     self\setBlockingDown()
@@ -13,34 +13,38 @@ class GlassJoeAnimations
     @_observers
 
   setBlockingDown: =>
-    @current_animation = self\blockingDown()
+    @animationIndex = 1
+    @currentAnimation = self\blockingDown()
 
   setHitUpper: =>
-    @current_animation = self\hitUpper()
+    @animationIndex = 1
+    @currentAnimation = self\hitUpper()
 
   blockingDown: =>
     if @blockingDownCache
       return @blockingDownCache
 
-    @blockingDownCache = {{self\newQuad(268, 24, 300, 124), 0.3},
+    @blockingDownCache = {quads: {{self\newQuad(268, 24, 300, 124), 0.3},
       {self\newQuad(346, 24, 376, 124), 0.15},
       {self\newQuad(308, 24, 340, 124), 0.1},
-      {self\newQuad(346, 24, 376, 124), 0.15}}
+      {self\newQuad(346, 24, 376, 124), 0.15}},
+      name: "blockingDown"}
     return @blockingDownCache
 
   hitUpper: =>
     if @hitUpperCache
       return @hitUpperCache
 
-    @hitUpperCache = {{self\newQuad(54, 132, 86, 224), 1.0},
-      {self\newQuad(397, 136, 428, 237), 1.15}}
+    @hitUpperCache = {quads: {{self\newQuad(54, 132, 86, 224), 1.0},
+      {self\newQuad(397, 136, 428, 237), 1.15}},
+      name: "hitUpper"}
     return @hitUpperCache
 
   currentQuad: =>
-    @current_animation[@animation_index][1]
+    @currentAnimation["quads"][@animationIndex][1]
 
   currentSpeed: =>
-    @current_animation[@animation_index][2]
+    @currentAnimation["quads"][@animationIndex][2]
 
   newQuad: (startX, startY, endX, endY) =>
     love.graphics.newQuad(startX, startY, endX - startX, endY - startY, @image\getWidth(), @image\getHeight())
@@ -49,9 +53,9 @@ class GlassJoeAnimations
     @timer += dt
     if @timer >= self\currentSpeed()
       @timer -= self\currentSpeed()
-      @animation_index += 1
-      if @animation_index > #@current_animation
-        @animation_index = 1
+      @animationIndex += 1
+      if @animationIndex > #@currentAnimation["quads"]
+        @animationIndex = 1
         self\animationEnded()
 
   animationEnded: =>
