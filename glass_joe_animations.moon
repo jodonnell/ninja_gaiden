@@ -44,6 +44,10 @@ class GlassJoeAnimations
   currentSpeed: =>
     @currentAnimation["quads"][@animationIndex][2]
 
+  currentWidth: =>
+    _, _, w, _ = self\currentQuad()\getViewport()
+    w
+
   currentName: =>
     @currentAnimation["name"]
 

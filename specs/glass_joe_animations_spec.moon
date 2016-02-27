@@ -12,22 +12,22 @@ describe "GlassJoeAnimations", ->
     assert.spy(love.graphics.newImage).was.called_with("images/GlassJoe.png")
 
   it "blocks down", ->
-    assert.are.same(gja\blockingDown()["quads"][1][1], {268, 24, 32, 100, 10, 10})
+    assert.are.same(gja\blockingDown()["quads"][1][1], Quad(268, 24, 32, 100, 10, 10))
 
   it "can first animation frame", ->
     gja\setBlockingDown()
-    assert.are.same(gja\currentQuad(), {268, 24, 32, 100, 10, 10})
+    assert.are.same(gja\currentQuad(), Quad(268, 24, 32, 100, 10, 10))
 
   it "moves to second animation frame", ->
     gja\setBlockingDown()
     gja\update(0.3)
-    assert.are.same(gja\currentQuad(), {346, 24, 30, 100, 10, 10})
+    assert.are.same(gja\currentQuad(), Quad(346, 24, 30, 100, 10, 10))
 
   it "moves to the third animation frame", ->
     gja\setBlockingDown()
     gja\update(0.3)
     gja\update(0.15)
-    assert.are.same(gja\currentQuad(), {308, 24, 32, 100, 10, 10})
+    assert.are.same(gja\currentQuad(), Quad(308, 24, 32, 100, 10, 10))
 
   it "moves to the first animation frame after last", ->
     gja\setBlockingDown()
@@ -35,13 +35,13 @@ describe "GlassJoeAnimations", ->
     gja\update(0.15)
     gja\update(0.1)
     gja\update(0.15)
-    assert.are.same(gja\currentQuad(), {268, 24, 32, 100, 10, 10})
+    assert.are.same(gja\currentQuad(), Quad(268, 24, 32, 100, 10, 10))
 
   it "will overflow", ->
     gja\setBlockingDown()
     gja\update(0.4)
     gja\update(0.1)
-    assert.are.same(gja\currentQuad(), {308, 24, 32, 100, 10, 10})
+    assert.are.same(gja\currentQuad(), Quad(308, 24, 32, 100, 10, 10))
 
   it "adds observers", ->
     thing = {1}
