@@ -13,8 +13,8 @@ describe "GlassJoe", ->
     gj\draw()
     assert.spy(love.graphics.draw).was.called_with(test_image, Quad(268, 24, 32, 100, 10, 10), _, _, _, _, _, _, _)
 
-  it "changes animation on rightPressed", ->
-    gj.rightPressed = true
+  it "changes animation on hitRight", ->
+    gj.hitRight = true
     gj\update(1)
     assert.are.equal(gj.animations.currentAnimation["name"], "hitUpper")
 
@@ -24,15 +24,15 @@ describe "GlassJoe", ->
     assert.spy(gj.animations.update).was.called_with(gj.animations, 0.01)
 
   it "goes back to the default animation when the hit animation ends", ->
-    gj.rightPressed = true
+    gj.hitRight = true
     gj\update(1)
-    gj.rightPressed = false
+    gj.hitRight = false
     gj\update(1)
     gj\update(1)
     assert.are.equal(gj.animations.currentAnimation["name"], "blockingDown")
 
   it "can be hit left", ->
-    gj.leftPressed = true
+    gj.hitLeft = true
     gj\update(1)
     assert.are.equal(gj.animations.currentAnimation["name"], "hitUpper")
     gj\draw()

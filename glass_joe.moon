@@ -5,8 +5,8 @@ class GlassJoe extends Sprite
   new: =>
     @animations = GlassJoeAnimations!
     @animations\addObserver(self)
-    @rightPressed = false
-    @leftPressed = false
+    @hitRight = false
+    @hitLeft = false
     @flipped = false
     @x = 120
     @y = 60
@@ -25,11 +25,11 @@ class GlassJoe extends Sprite
 
   update: (dt) =>
     @animations\update(dt)
-    if @rightPressed
+    if @hitRight
       @animations\setHitUpper()
       @flipped = false
 
-    if @leftPressed
+    if @hitLeft
       @animations\setHitUpper()
       @flipped = true
 

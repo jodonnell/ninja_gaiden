@@ -23,9 +23,9 @@ love.update = (dt) ->
 
 love.keypressed = (key, unicode) ->
   if key == 'right'
-    main_game.opponent.rightPressed = true
+    main_game.opponent.hitRight = true
   elseif key == 'left'
-    main_game.opponent.leftPressed = true
+    main_game.opponent.hitLeft = true
   elseif key == 'up'
     main_game.opponent.upPressed = true
   elseif key == 'down'
@@ -33,9 +33,9 @@ love.keypressed = (key, unicode) ->
 
 love.keyreleased = (key, unicode) ->
   if key == 'right'
-    main_game.opponent.rightPressed = false
+    main_game.opponent.hitRight = false
   elseif key == 'left'
-    main_game.opponent.leftPressed = false
+    main_game.opponent.hitLeft = false
   elseif key == 'down'
     main_game.opponent.downPressed = false
   elseif key == 'up'
@@ -43,7 +43,7 @@ love.keyreleased = (key, unicode) ->
 
 
 love.touchpressed = (id, x, y, dx, dy, pressure) ->
-  main_game.opponent.rightPressed = true
+  main_game.opponent.hitRight = true
 
 love.touchreleased = (id, x, y, dx, dy, pressure) ->
-  main_game.opponent.rightPressed = false
+  main_game.opponent.hitRight = false
