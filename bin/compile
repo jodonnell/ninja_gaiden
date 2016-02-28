@@ -2,6 +2,5 @@
 
 find . -name '*.lua' | xargs rm
 
-moonc *.moon
 find src -name '*.moon' | xargs moonc *.moon
 moonc -l .
