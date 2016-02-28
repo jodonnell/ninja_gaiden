@@ -11,12 +11,10 @@ class FistTracking
     @_fists
 
   didHitUpperToRight: =>
-    results = [fist\didHitUpperToRight() for fist in *@_fists]
-    _.any(results)
+    _.any([fist\didHitUpperToRight() for fist in *@_fists])
 
   didHitUpperToLeft: =>
-    results = [fist\didHitUpperToLeft() for fist in *@_fists]
-    _.any(results)
+    _.any([fist\didHitUpperToLeft() for fist in *@_fists])
 
 
 {:FistTracking}
