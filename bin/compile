@@ -1,6 +1,6 @@
 #/bin/bash
 
-find . -name '*.lua' | xargs rm
+find . -name '*.lua' | grep -v underscore.lua | xargs rm
 
 find src -name '*.moon' | xargs moonc *.moon
 moonc -l .

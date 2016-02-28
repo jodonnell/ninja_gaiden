@@ -1,3 +1,5 @@
+_ = require 'lib/underscore'
+
 class FistTracking
   new: =>
     @_fists = {}
@@ -7,6 +9,14 @@ class FistTracking
 
   fists: =>
     @_fists
-    
-    
+
+  hitUpperRight: =>
+    results = [fist\hitUpperRight() for fist in *@_fists]
+    _.any(results)
+
+  hitUpperLeft: =>
+    results = [fist\hitUpperLeft() for fist in *@_fists]
+    _.any(results)
+
+
 {:FistTracking}
