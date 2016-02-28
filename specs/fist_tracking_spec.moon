@@ -15,11 +15,11 @@ describe "FistTracking", ->
   it "detects hit upper right", ->
     fist = Fist(0, 1, 1, 0, 0, 0)
     ft\startTracking(fist)
-    assert.is.truthy(ft\hitUpperRight())
-    assert.is.falsy(ft\hitUpperLeft())
+    assert.is.truthy(ft\didHitUpperToRight())
+    assert.is.falsy(ft\didHitUpperToLeft())
 
   it "detects hit upper left", ->
     fist = Fist(0, 300, 1, 0, 0, 0)
     ft\startTracking(fist)
-    assert.is.truthy(ft\hitUpperLeft())
-    assert.is.falsy(ft\hitUpperRight())
+    assert.is.truthy(ft\didHitUpperToLeft())
+    assert.is.falsy(ft\didHitUpperToRight())

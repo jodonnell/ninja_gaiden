@@ -7,10 +7,10 @@ class Fist
     @dy = dy
     @pressure = pressure
 
-  hitUpperRight: =>
+  didHitUpperToRight: =>
     return @x <= self\middleOfScreen()
 
-  hitUpperLeft: =>
+  didHitUpperToLeft: =>
     return @x > self\middleOfScreen()
 
   middleOfScreen: =>

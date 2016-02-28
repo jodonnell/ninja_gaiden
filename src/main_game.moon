@@ -20,9 +20,9 @@ class MainGame
     @fistTracking\startTracking(fist)
 
   touchmoved: (id, x, y, dx, dy, pressure) =>
-    --if @fistTracking\hitUpperRight()
+    --if @fistTracking\didHitUpperToRight()
     --  @opponent.hitRight = true
-    --if @fistTracking\hitUpperLeft()
+    --if @fistTracking\didHitUpperToLeft()
     --  @opponent.hitLeft = true
 
     width, _ = love.graphics.getDimensions()
