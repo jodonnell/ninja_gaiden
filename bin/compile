@@ -4,4 +4,3 @@ find . -name '*.lua' -maxdepth 1 | xargs rm
 
 moonc *.moon
 moonc -l .
-busted --helper specs/spec_helper.moon  specs/

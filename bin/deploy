@@ -1,0 +1,4 @@
+#/bin/bash
+
+./bin/compile
+moon ./bin/deploy.moon

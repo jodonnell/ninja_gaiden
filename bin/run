@@ -1,0 +1,4 @@
+#/bin/bash
+
+./bin/compile
+/Applications/love.app/Contents/MacOS/love .

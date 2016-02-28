@@ -1,0 +1,4 @@
+#/bin/bash
+
+./bin/compile
+busted --helper specs/spec_helper.moon  specs/
