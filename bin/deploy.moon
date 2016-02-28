@@ -29,7 +29,12 @@ buildMac = () ->
   os.execute("cp deploy/Ninja.love deploy/Ninja.app/Contents/Resources/.")
   os.execute("zip -9 -q -r -y deploy/Ninja.osx.zip deploy/Ninja.app/")
 
+buildIOS = () ->
+  os.execute("rm deploy/ios/platform/xcode/Ninja.love")
+  os.execute("cp deploy/Ninja.love deploy/ios/platform/xcode/.")
+
 cleanLastBuild()
 createLoveFile()
 buildWindows()
 buildMac()
+--buildIOS()
