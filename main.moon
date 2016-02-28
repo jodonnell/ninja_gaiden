@@ -18,6 +18,7 @@ love.load = ->
 love.draw = ->
   main_game\draw()
 
+
 love.update = (dt) ->
   main_game\update(dt)
 
@@ -43,7 +44,11 @@ love.keyreleased = (key, unicode) ->
 
 
 love.touchpressed = (id, x, y, dx, dy, pressure) ->
-  main_game.opponent.hitRight = true
+  main_game\touchpressed(id, x, y, dx, dy, pressure)
+
+love.touchmoved = (id, x, y, dx, dy, pressure) ->
+  main_game\touchmoved(id, x, y, dx, dy, pressure)
 
 love.touchreleased = (id, x, y, dx, dy, pressure) ->
   main_game.opponent.hitRight = false
+  main_game.opponent.hitLeft = false

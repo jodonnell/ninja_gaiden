@@ -24,6 +24,7 @@ _G.love = {
     newImage: () -> test_image
     newQuad: (x, y, width, height, sw, sh) -> Quad(x, y, width, height, sw, sh)
     draw: () ->
+    getDimensions: () -> 414, 736
   }
 }
 

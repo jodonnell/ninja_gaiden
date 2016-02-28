@@ -19,3 +19,11 @@ describe "MainGame", ->
     s = stub(mg.opponent, "update")
     mg\update(2)
     assert.spy(s).was_called_with(mg.opponent, 2)
+
+  it "hits the player to the right", ->
+    mg\touchmoved(0, 20, 100, 1, -1, 1)
+    assert.is.truthy(mg.opponent.hitRight)
+
+  it "hits the player to the left", ->
+    mg\touchmoved(0, 300, 100, -1, -1, 1)
+    assert.is.truthy(mg.opponent.hitLeft)

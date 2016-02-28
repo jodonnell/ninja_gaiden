@@ -56,7 +56,7 @@ class GlassJoeAnimations
 
   update: (dt) =>
     @timer += dt
-    if @timer >= self\currentSpeed()
+    while @timer >= self\currentSpeed()
       @timer -= self\currentSpeed()
       @animationIndex += 1
       if @animationIndex > #@currentAnimation["quads"]

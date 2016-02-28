@@ -64,3 +64,9 @@ describe "GlassJoeAnimations", ->
 
     gja\setHitUpper()
     assert.are.equal(gja.animationIndex, 1)
+
+  it "can skip an animation", ->
+    gja\setBlockingDown()
+    gja\update(0.46)
+
+    assert.are.equal(gja.animationIndex, 3)
