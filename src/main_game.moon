@@ -1,4 +1,4 @@
-import GlassJoe from require 'glass_joe'
+import GlassJoe from require 'src/opponents/glass_joe'
 
 class MainGame
   new: =>

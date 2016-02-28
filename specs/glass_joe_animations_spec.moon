@@ -1,4 +1,4 @@
-import GlassJoeAnimations from require 'glass_joe_animations'
+import GlassJoeAnimations from require 'src/opponents/animations/glass_joe_animations'
 
 describe "GlassJoeAnimations", ->
   local gja

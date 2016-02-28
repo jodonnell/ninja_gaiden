@@ -1,4 +1,4 @@
-import MainGame from require 'main_game'
+import MainGame from require 'src/main_game'
 
 main_game = MainGame!
 

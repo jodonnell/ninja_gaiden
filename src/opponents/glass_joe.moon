@@ -1,5 +1,5 @@
-import Sprite from require 'sprite'
-import GlassJoeAnimations from require 'glass_joe_animations'
+import Sprite from require 'src/sprite'
+import GlassJoeAnimations from require 'src/opponents/animations/glass_joe_animations'
 
 class GlassJoe extends Sprite
   new: =>
