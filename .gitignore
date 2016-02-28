@@ -4,3 +4,4 @@ deploy/NinjaWindows.zip
 deploy/exe/
 .DS_Store
 *.lua
+deploy/ios/platform/xcode/love.xcodeproj/project.xcworkspace/xcuserdata/jacob.xcuserdatad/UserInterfaceState.xcuserstate
