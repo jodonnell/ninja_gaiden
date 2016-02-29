@@ -20,15 +20,13 @@ class MainGame
     @fistTracking\startTracking(fist)
 
   touchmoved: (id, x, y, dx, dy, pressure) =>
-    --if @fistTracking\didHitUpperToRight()
-    --  @opponent.hitRight = true
-    --if @fistTracking\didHitUpperToLeft()
-    --  @opponent.hitLeft = true
-
-    width, _ = love.graphics.getDimensions()
-    if x > (width / 2)
-      @opponent.hitLeft = true
-    else
+    if @fistTracking\didHitUpperToRight()
       @opponent.hitRight = true
+    if @fistTracking\didHitUpperToLeft()
+      @opponent.hitLeft = true
+
+  touchreleased: (id, x, y, dx, dy, pressure) =>
+    fist = @fistTracking\findFist(id)
+    @fistTracking\endTracking(fist)
 
 {:MainGame}

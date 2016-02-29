@@ -23,3 +23,19 @@ describe "FistTracking", ->
     ft\startTracking(fist)
     assert.is.truthy(ft\didHitUpperToLeft())
     assert.is.falsy(ft\didHitUpperToRight())
+
+  it "find fist", ->
+    fist = Fist(0, 300, 1, 0, 0, 0)
+    ft\startTracking(fist)
+
+    fist2 = Fist(1, 0, 1, 0, 0, 0)
+    ft\startTracking(fist2)
+
+    assert.are.equal(ft\findFist(1), fist2)
+
+  it "endTracking", ->
+    fist = Fist(0, 300, 1, 0, 0, 0)
+    ft\startTracking(fist)
+    ft\endTracking(fist)
+
+    assert.are.same({}, ft\fists())
