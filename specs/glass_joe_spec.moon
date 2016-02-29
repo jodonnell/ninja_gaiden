@@ -37,3 +37,8 @@ describe "GlassJoe", ->
     assert.are.equal(gj.animations.currentAnimation["name"], "hitUpper")
     gj\draw()
     assert.spy(love.graphics.draw).was.called_with(test_image, _, _, _, _, -4, _, 32, _)
+
+  it "has a face", ->
+    assert.are.same(gj\face(), {160, 130, 60, 50})
+
+

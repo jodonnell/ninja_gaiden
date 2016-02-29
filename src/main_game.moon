@@ -4,10 +4,10 @@ import Fist from require 'src/input/fist'
 
 class MainGame
   new: =>
-    @fistTracking = FistTracking!
 
   load: =>
     @opponent = GlassJoe!
+    @fistTracking = FistTracking(@opponent\face())
 
   draw: =>
     @opponent\draw()
@@ -18,10 +18,12 @@ class MainGame
     @opponent.hitLeft = false
 
   touchpressed: (id, x, y, dx, dy, pressure) =>
-    fist = Fist(id, x, y, dx, dy, pressure)
+    fist = @fistTracking\createFist(id, x, y, dx, dy, pressure)
     @fistTracking\startTracking(fist)
 
   touchmoved: (id, x, y, dx, dy, pressure) =>
+    fist = @fistTracking\findFist(id)
+    fist\update(x, y, dx, dy, pressure)
     if @fistTracking\didHitUpperToRight()
       @opponent.hitRight = true
     if @fistTracking\didHitUpperToLeft()

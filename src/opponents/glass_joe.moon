@@ -10,6 +10,7 @@ class GlassJoe extends Sprite
     @flipped = false
     @x = 120
     @y = 60
+    @_face = {160, 130, 60, 50}
 
   draw: =>
     rotation = 0
@@ -36,6 +37,9 @@ class GlassJoe extends Sprite
   animationEnded: =>
     if @animations\currentName() == 'hitUpper'
       @animations\setBlockingDown()
+
+  face: =>
+    @_face
 
 
 {:GlassJoe}

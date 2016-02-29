@@ -1,8 +1,13 @@
 _ = require 'lib/underscore'
+import Fist from require 'src/input/fist'
 
 class FistTracking
-  new: =>
+  new: (face) =>
+    @_face = face
     @_fists = {}
+
+  createFist: (id, x, y, dx, dy, pressure) =>
+    Fist(id, x, y, dx, dy, pressure, @_face)
 
   startTracking: (fist) =>
     table.insert(@_fists, fist)
