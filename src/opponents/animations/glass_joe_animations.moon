@@ -14,10 +14,12 @@ class GlassJoeAnimations
 
   setBlockingDown: =>
     @animationIndex = 1
+    @timer = 0
     @currentAnimation = self\blockingDown()
 
   setHitUpper: =>
     @animationIndex = 1
+    @timer = 0
     @currentAnimation = self\hitUpper()
 
   blockingDown: =>

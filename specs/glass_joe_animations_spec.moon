@@ -65,6 +65,11 @@ describe "GlassJoeAnimations", ->
     gja\setHitUpper()
     assert.are.equal(gja.animationIndex, 1)
 
+  it "resets the clock when it switches animations", ->
+    gja.timer = 1
+    gja\setHitUpper()
+    assert.are.equal(gja.timer, 0)
+
   it "can skip an animation", ->
     gja\setBlockingDown()
     gja\update(0.46)
