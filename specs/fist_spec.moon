@@ -10,3 +10,8 @@ describe "FistTracking", ->
     fist = Fist(0, 300, 1, 0, 0, 0)
     assert.is.truthy(fist\didHitUpperToLeft())
     assert.is.falsy(fist\didHitUpperToRight())
+
+  it "only hits once", ->
+    fist = Fist(0, 300, 1, 0, 0, 0)
+    assert.is.truthy(fist\didHitUpperToLeft())
+    assert.is.falsy(fist\didHitUpperToLeft())

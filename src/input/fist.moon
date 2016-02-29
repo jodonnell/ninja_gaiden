@@ -6,12 +6,19 @@ class Fist
     @dx = dx
     @dy = dy
     @pressure = pressure
+    @hasFistConnected = false
 
   didHitUpperToRight: =>
-    return @x <= self\middleOfScreen()
+    connected = not @hasFistConnected and @x <= self\middleOfScreen()
+    if connected
+      @hasFistConnected = true
+    connected
 
   didHitUpperToLeft: =>
-    return @x > self\middleOfScreen()
+    connected = not @hasFistConnected and @x > self\middleOfScreen()
+    if connected
+      @hasFistConnected = true
+    connected
 
   middleOfScreen: =>
     width, _ = love.graphics.getDimensions()
