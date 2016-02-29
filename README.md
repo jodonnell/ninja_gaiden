@@ -1,4 +1,4 @@
-# ninja_gaiden
+# Punch It
 
 Here is how to update:
 
