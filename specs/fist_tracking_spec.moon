@@ -5,7 +5,7 @@ describe "FistTracking", ->
   local ft
 
   before_each ->
-    ft = FistTracking({100, 100, 50, 50})
+    ft = FistTracking({200, 100, 100, 100})
 
   it "takes in fists to track", ->
     fist = ft\createFist(0, 1, 1, 0, 0, 0)
@@ -13,13 +13,13 @@ describe "FistTracking", ->
     assert.are.same(ft\fists(), {fist})
 
   it "detects hit upper right", ->
-    fist = ft\createFist(0, 100, 100, 0, 0, 0)
+    fist = ft\createFist(0, 200, 100, 0, 0, 0)
     ft\startTracking(fist)
     assert.is.truthy(ft\didHitUpperToRight())
     assert.is.falsy(ft\didHitUpperToLeft())
 
   it "detects hit upper left", ->
-    fist = ft\createFist(0, 300, 1, 0, 0, 0)
+    fist = ft\createFist(0, 300, 100, 0, 0, 0)
     ft\startTracking(fist)
     assert.is.truthy(ft\didHitUpperToLeft())
     assert.is.falsy(ft\didHitUpperToRight())

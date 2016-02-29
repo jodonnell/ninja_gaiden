@@ -29,7 +29,7 @@ class Fist
     connected
 
   didHitUpperToLeft: =>
-    connected = not @hasFistConnected and @didStartOnRight
+    connected = not @hasFistConnected and @didStartOnRight and boundingBox(@face, @x, @y)
     if connected
       @hasFistConnected = true
     connected

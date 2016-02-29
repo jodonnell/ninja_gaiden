@@ -27,7 +27,7 @@ describe "MainGame", ->
 
   it "hits the player to the left", ->
     mg\touchpressed(0, 300, 100, -1, -1, 1)
-    mg\touchmoved(0, 300, 100, -1, -1, 1)
+    mg\touchmoved(0, 200, 150, -1, -1, 1)
     assert.is.truthy(mg.opponent.hitLeft)
 
   it "ends tracking when the touch ends", ->
