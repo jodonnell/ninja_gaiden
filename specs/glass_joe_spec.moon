@@ -39,6 +39,6 @@ describe "GlassJoe", ->
     assert.spy(love.graphics.draw).was.called_with(test_image, _, _, _, _, -4, _, 32, _)
 
   it "has a face", ->
-    assert.are.same(gj\face(), {160, 130, 60, 50})
+    assert.are.same(gj\face(), {160, 110, 60, 70})
 
 

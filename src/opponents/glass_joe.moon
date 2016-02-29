@@ -10,7 +10,7 @@ class GlassJoe extends Sprite
     @flipped = false
     @x = 120
     @y = 60
-    @_face = {160, 130, 60, 50}
+    @_face = {160, 110, 60, 70}
 
   draw: =>
     rotation = 0
