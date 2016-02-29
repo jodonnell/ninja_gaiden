@@ -36,8 +36,8 @@ class GlassJoeAnimations
     if @hitUpperCache
       return @hitUpperCache
 
-    @hitUpperCache = {quads: {{self\newQuad(54, 132, 86, 224), 0.4},
-      {self\newQuad(397, 136, 428, 237), 1.15}}, name: "hitUpper"}
+    @hitUpperCache = {quads: {{self\newQuad(54, 132, 86, 224), 0.3},
+      {self\newQuad(397, 136, 428, 237), 0.8}}, name: "hitUpper"}
     return @hitUpperCache
 
   currentQuad: =>
