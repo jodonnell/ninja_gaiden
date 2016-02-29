@@ -50,5 +50,4 @@ love.touchmoved = (id, x, y, dx, dy, pressure) ->
   main_game\touchmoved(id, x, y, dx, dy, pressure)
 
 love.touchreleased = (id, x, y, dx, dy, pressure) ->
-  main_game.opponent.hitRight = false
-  main_game.opponent.hitLeft = false
+  main_game\touchreleased(id, x, y, dx, dy, pressure)

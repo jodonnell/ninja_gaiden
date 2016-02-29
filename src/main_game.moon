@@ -28,5 +28,7 @@ class MainGame
   touchreleased: (id, x, y, dx, dy, pressure) =>
     fist = @fistTracking\findFist(id)
     @fistTracking\endTracking(fist)
+    @opponent.hitRight = false
+    @opponent.hitLeft = false
 
 {:MainGame}

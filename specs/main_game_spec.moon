@@ -34,3 +34,9 @@ describe "MainGame", ->
     mg\touchpressed(0, 300, 100, -1, -1, 1)
     mg\touchreleased(0, 300, 100, -1, -1, 1)
     assert.are.equal(#mg.fistTracking\fists(), 0)
+
+  it "resets when touch is released", ->
+    mg\touchpressed(0, 20, 100, 1, -1, 1)
+    mg\touchmoved(0, 20, 100, 1, -1, 1)
+    mg\touchreleased(0, 20, 100, -1, -1, 1)
+    assert.is.falsy(mg.opponent.hitRight)
