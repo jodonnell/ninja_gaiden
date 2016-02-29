@@ -8,9 +8,7 @@ class Fist
     @dx = dx
     @dy = dy
     @pressure = pressure
-    endX = face[1] + face[3]
-    endY = face[2] + face[4]
-    @face = {{x: face[1], y: face[2]}, {x: endX, y: endY}}
+    self\setFace(face)
     @hasFistConnected = false
     @didStartOnLeft = @x <= self\middleOfScreen()
     @didStartOnRight = @x > self\middleOfScreen()
@@ -23,13 +21,13 @@ class Fist
     @pressure = pressure
 
   didHitUpperToRight: =>
-    connected = not @hasFistConnected and @didStartOnLeft and boundingBox(@face, @x, @y)
-    if connected
-      @hasFistConnected = true
-    connected
+    self\didConnectUpper(@didStartOnLeft)
 
   didHitUpperToLeft: =>
-    connected = not @hasFistConnected and @didStartOnRight and boundingBox(@face, @x, @y)
+    self\didConnectUpper(@didStartOnRight)
+
+  didConnectUpper: (connectOnSide) =>
+    connected = not @hasFistConnected and connectOnSide and boundingBox(@face, @x, @y)
     if connected
       @hasFistConnected = true
     connected
@@ -37,6 +35,11 @@ class Fist
   middleOfScreen: =>
     width, _ = love.graphics.getDimensions()
     width / 2
+
+  setFace: (face) =>
+    endX = face[1] + face[3]
+    endY = face[2] + face[4]
+    @face = {{x: face[1], y: face[2]}, {x: endX, y: endY}}
 
 
 {:Fist}
