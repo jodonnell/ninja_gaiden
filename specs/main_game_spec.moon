@@ -1,4 +1,4 @@
-import MainGame from require 'src/main_game'
+import MainGame from require 'src.main_game'
 
 describe "MainGame", ->
   local mg

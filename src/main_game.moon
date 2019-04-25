@@ -1,4 +1,4 @@
-import GlassJoe from require 'src/opponents/glass_joe'
+import GlassJoe from require 'src.opponents.glass_joe'
 
 class MainGame
   new: =>
@@ -16,7 +16,7 @@ class MainGame
     @opponent.hitRight = true
 
   touchmoved: (id, x, y, dx, dy, pressure) =>
-    width, _ = love.graphics.getDimensions()
+    width, _ = display.getDimensions()
     if x > (width / 2)
       @opponent.hitLeft = true
     else

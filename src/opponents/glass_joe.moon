@@ -1,5 +1,5 @@
-import Sprite from require 'src/sprite'
-import GlassJoeAnimations from require 'src/opponents/animations/glass_joe_animations'
+import Sprite from require 'src.sprite'
+import GlassJoeAnimations from require 'src.opponents.animations.glass_joe_animations'
 
 class GlassJoe extends Sprite
   new: =>
@@ -12,16 +12,7 @@ class GlassJoe extends Sprite
     @y = 60
 
   draw: =>
-    rotation = 0
-    scaleX = 4
-    scaleY = 4
-    offsetX = 0
-    offsetY = 0
-    if @flipped
-      scaleX *= -1
-      offsetX = @animations\currentWidth()
-
-    love.graphics.draw(@animations.image, @animations\currentQuad(), @x, @y, rotation, scaleX, scaleY, offsetX, offsetY)
+    1
 
   update: (dt) =>
     @animations\update(dt)

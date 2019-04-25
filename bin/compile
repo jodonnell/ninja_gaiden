@@ -3,4 +3,4 @@
 find . -name '*.lua' | xargs rm
 
 find src -name '*.moon' | xargs moonc *.moon
-moonc -l .
+find . -name '*.moon' | grep -v config.moon | xargs moonc -l

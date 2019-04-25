@@ -1,7 +1,7 @@
 {
   whitelist_globals: {
     ["./"]: {
-      "love", "describe", "before_each", "spy", "it", "test_image", "stub", "mock", "Quad"
+      "graphics", "describe", "before_each", "spy", "it", "test_image", "stub", "mock", "display"
     }
   }
 }
