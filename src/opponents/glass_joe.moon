@@ -1,32 +1,79 @@
-import Sprite from require 'src.sprite'
-import GlassJoeAnimations from require 'src.opponents.animations.glass_joe_animations'
-
-class GlassJoe extends Sprite
+class GlassJoe
   new: =>
-    @animations = GlassJoeAnimations!
-    @animations\addObserver(self)
-    @hitRight = false
-    @hitLeft = false
-    @flipped = false
-    @x = 120
-    @y = 60
+    @sequence = {
+      {
+        name: "ready",
+        frames: { 1, 2, 3, 2 },
+        time: 550,
+        loopCount: 0
+      },
+      {
+        name: "hurt",
+        frames: { 4, 5, 5, 5 },
+        time: 800,
+        loopCount: 1
+      },
+    }
 
-  draw: =>
-    1
+    @sheetOptions = {
+      frames: {
+        {
+          x: 268,
+          y: 24,
+          width: 32,
+          height: 100
+        },
+        {
+          x: 346,
+          y: 24,
+          width: 30,
+          height: 100
+        },
+        {
+          x: 308,
+          y: 24,
+          width: 32,
+          height: 100
+        },
+        {
+          x: 54,
+          y: 132,
+          width: 32,
+          height: 92
+        },
+        {
+          x: 397,
+          y: 136,
+          width: 31,
+          height: 101
+        }
+      }
+    }
 
-  update: (dt) =>
-    @animations\update(dt)
-    if @hitRight
-      @animations\setHitUpper()
-      @flipped = false
+    objectSheet = graphics.newImageSheet("images/GlassJoe.png", @sheetOptions)
+    @character = display.newSprite(objectSheet, @sequence)
+    @character.x = display.contentCenterX
+    @character.y = display.contentCenterY
+    @character.id = "GlassJoe"
+    @character\scale(10, 10)
+    @character\setSequence("ready")
+    @character\play()
 
-    if @hitLeft
-      @animations\setHitUpper()
-      @flipped = true
+  setReadyAnimation: =>
+    @character.xScale = 10
+    @character\setSequence("ready")
+    @character\play()
 
-  animationEnded: =>
-    if @animations\currentName() == 'hitUpper'
-      @animations\setBlockingDown()
+  setHurtAnimation: (startX) =>
+    @character\setSequence("hurt")
+    @character\play()
+    if startX > display.contentCenterX
+      @character.xScale = -10
+    onHurtEnded = (event) ->
+      if event.phase == "ended"
+        self\setReadyAnimation()
+        @character\removeEventListener("sprite", onHurtEnded)
 
+    @character\addEventListener("sprite", onHurtEnded)
 
 {:GlassJoe}
