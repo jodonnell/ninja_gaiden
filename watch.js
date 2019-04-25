@@ -15,5 +15,6 @@ execFile('find', [ '.' ], function(err, stdout, stderr) {
 watcher.on('change', function(file, stat) {
   execFile('moonc', [ file ], function(err, stdout, stderr) {
     console.log(stdout)
+    console.log(stderr)
   })
 });
