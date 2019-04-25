@@ -1,0 +1,7 @@
+settings = {
+ iphone = {
+   plist = {
+     UILaunchStoryboardName = "LaunchScreen",
+   }
+ }
+}
