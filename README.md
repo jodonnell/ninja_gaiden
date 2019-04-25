@@ -14,3 +14,7 @@ Update plist.
 
 Download iOS sources
 Open in XCode love/platform/xcode/love.xcodeproj
+
+
+npm install filewatcher
+node watch.js

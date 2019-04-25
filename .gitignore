@@ -1,7 +1,4 @@
-deploy/Ninja.love
-deploy/Ninja.osx.zip
-deploy/NinjaWindows.zip
-deploy/exe/
 .DS_Store
 *.lua
-deploy/ios/platform/xcode/love.xcodeproj/project.xcworkspace/xcuserdata/jacob.xcuserdatad/UserInterfaceState.xcuserstate
+package-lock.json
+node_modules
