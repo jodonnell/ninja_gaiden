@@ -1,29 +1,11 @@
-* Ninja
-** Bugs
-*** DONE Holding down while jumping makes you duck in the wrong spot
-*** DONE If you are facing right and jump and move left and hit a wall you are facing the wrong way in climb
-*** DONE if you are jumping and moving right and land on a platform the jump animation continues
-*** DONE Can jump over and over
-*** When climbing right at top gets stuck
-** features
-*** DONE duck attack
-*** DONE get hurt
-**** DONE need to make bounce the other way
-**** DONE need to make temporarily invincible
-*** DONE kill enemy
-*** DONE climb
-**** DONE Make the jump smaller off a climb
-*** DONE make generic climbing and falling boundaries
-*** DONE enemies
-**** DONE only one enemy should appear when you hit a certain point
-**** Make sword box y more accurate
-*** DONE falling off cliffs
-*** DONE life
-*** DONE lives
-** tech debt
-*** DONE fix up test suite
-*** DONE Seems to run at different speeds on different computers
-*** DONE Fullscreen dependant on conf file
-*** extract love to abstraction
-** assets
-*** font from http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=528
+* PunchIt
+** Gestures
+*** Uppercut
+**** Did it start from opposite bottom side?
+**** Did it start from below face?
+**** Is it currently above the face?
+**** Is it currently past the opposite X on the face?
+**** Happens within a certain time limit
+***** This may make the next moot
+**** Is roughly a straight line?
+***** this one can probably be skipped
