@@ -171,23 +171,20 @@ class GlassJoe
     @character\play()
     if startX > display.contentCenterX
       @character.xScale = -10
-    onHurtEnded = (event) ->
-      if event.phase == "ended"
-        self\setReadyAnimation()
-        @character\removeEventListener("sprite", onHurtEnded)
 
-    @character\addEventListener("sprite", onHurtEnded)
+    @character\addEventListener("sprite", self\onHurtEnded)
 
   setLowerHurtAnimation: (startX) =>
     @character\setSequence("lowerBlock")
     @character\play()
     if startX > display.contentCenterX
       @character.xScale = -10
-    onHurtEnded = (event) ->
-      if event.phase == "ended"
-        self\setReadyAnimation()
-        @character\removeEventListener("sprite", onHurtEnded)
+    @character\addEventListener("sprite", self\onHurtEnded)
 
-    @character\addEventListener("sprite", onHurtEnded)
+  onHurtEnded: (event) =>
+    if event.phase == "ended"
+      self\setReadyAnimation()
+      @character\removeEventListener("sprite", self\onHurtEnded)
+    
 
 {:GlassJoe}
