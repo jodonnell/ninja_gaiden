@@ -33,6 +33,10 @@ doLinesIntersect = ( a, b, c, d ) ->
 
   nil
 
+isPointInRect = (point, left, top, width, height) ->
+  isXInTheRect = point.x >= left and point.x <= (left + width)
+  isYInTheRect = point.y >= top and point.y <= (top + height)
+  isXInTheRect and isYInTheRect
 
 class GestureDetector
   new: =>
@@ -61,5 +65,17 @@ class GestureDetector
     doesIntersectRight = doLinesIntersect(first, last, topRightFace, bottomRightFace)
     doesIntersectBottom = doLinesIntersect(first, last, bottomLeftFace, bottomRightFace)
     doesIntersectLeft or doesIntersectBottom or doesIntersectRight
+
+  isJab: =>
+    last = _.last(@points)
+    if last == nil
+      return false
+
+    left = display.contentCenterX - 40
+    top = display.contentCenterY
+    width = 100
+    height = 100
+    isPointInRect(last, left, top, width, height)
+
 
 {:GestureDetector}

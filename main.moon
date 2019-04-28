@@ -22,6 +22,10 @@ onObjectTouch = (event) ->
     gestureDetector\clear()
     glassJoe\setHurtAnimation(event.xStart)
 
+  if gestureDetector\isJab()
+    gestureDetector\clear()
+    glassJoe\setLowerHurtAnimation(event.xStart)
+
   true
 
 background\addEventListener("touch", onObjectTouch)
