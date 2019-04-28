@@ -158,33 +158,35 @@ class GlassJoe
     @character.y = display.contentCenterY
     @character.id = "GlassJoe"
     @character\scale(10, 10)
-    @character\setSequence("ready")
-    @character\play()
+    self\setAndPlay("ready")
 
   setReadyAnimation: =>
     @character.xScale = 10
-    @character\setSequence("ready")
-    @character\play()
+    self\setAndPlay("ready")
 
   setHurtAnimation: (startX) =>
-    @character\setSequence("hurt")
-    @character\play()
-    if startX > display.contentCenterX
-      @character.xScale = -10
-
+    self\setAndPlay("hurt")
+    self\flipIfPunchCameFromRight(startX)
     @character\addEventListener("sprite", self\onHurtEnded)
 
   setLowerHurtAnimation: (startX) =>
-    @character\setSequence("lowerBlock")
-    @character\play()
-    if startX > display.contentCenterX
-      @character.xScale = -10
+    self\setAndPlay("lowerBlock")
+    self\flipIfPunchCameFromRight(startX)
     @character\addEventListener("sprite", self\onHurtEnded)
 
   onHurtEnded: (event) =>
     if event.phase == "ended"
       self\setReadyAnimation()
       @character\removeEventListener("sprite", self\onHurtEnded)
+
+  setAndPlay: (sequence) =>
+    @character\setSequence(sequence)
+    @character\play()
+
+  flipIfPunchCameFromRight: (startX) =>
+    if startX > display.contentCenterX
+      @character.xScale = -10
+    
     
 
 {:GlassJoe}
